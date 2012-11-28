@@ -7,20 +7,7 @@
         "title": "Getting Started",
         "items": [
           { "title": "Start here", "url": "/" },
-        ],
-      },
-      {
-        "title": "Tutorials",
-        "items": [
-          { "title": "Node", "url": "/a0-nodejs-tutorial" },
-          { "title": "ASP.NET MVC 4", "url": "/a0-mvc-tutorial" }
-        ]
-      },
-      {
-        "title": "Advanced Topics",
-        "items": [
-          { "title": "Identity Providers", "url": "/a0-identityproviders" },
-          { "title": "Node under the hood", "url": "/a0-node-underthehood" }
+          { "title": "Node", "url": "/a0-nodejs-tutorial" }
         ]
       }
     ],
