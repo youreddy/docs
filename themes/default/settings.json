@@ -6,8 +6,21 @@
       {
         "title": "Getting Started",
         "items": [
-          { "title": "Start here", "url": "/" },
-          { "title": "Node", "url": "/a0-nodejs-tutorial" }
+          { "title": "Start here", "url": "/" }
+        ]
+      },
+      {
+        "title": "Tutorials",
+        "items": [
+          { "title": "Node", "url": "/a0-nodejs-tutorial" },
+          { "title": "ASP.NET MVC4", "url": "/a0-mvc-tutorial" }
+        ]
+      },
+      {
+        "title": "Advanced topics",
+        "items": [
+          { "title": "Identity Providers", "url": "/a0-identityproviders" },
+          { "title": "Auth0 and Node under the hood", "url": "/a0-node-underthehood" }
         ]
       }
     ],
