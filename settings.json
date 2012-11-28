@@ -1,0 +1,21 @@
+{
+  "theme": "default",
+  "title": "Auth0 Docs",
+  "menus": {
+    "navigation": [
+      {
+        "title": "Getting Started",
+        "items": [
+          { "title": "Start here", "url": "/" },
+          { "title": "Next", "url": "/next" }
+        ]
+      }
+    ],
+    "footer": [
+      {
+        "title": "Getting Started",
+        "url": "/"
+      }
+    ]
+  }
+}
