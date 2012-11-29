@@ -3,10 +3,10 @@ var docsapp = new mdoc.App();
 
 docsapp.on('prerender', function( req, res, doc ){
   res.locals.account = {};
-  res.locals.account.userName = 'Eugenio Pace';
-  res.locals.account.namespace =  'eugeniopace.auth0.com';
-  res.locals.account.clientId = 'ep-clientid';
-  res.locals.account.clientSecret = 'ep-clientsecret';
+  res.locals.account.userName = 'User Name';
+  res.locals.account.namespace =  'namespace.auth0.com';
+  res.locals.account.clientId = 'user-clientid';
+  res.locals.account.clientSecret = 'user-clientsecret';
 
   console.log(JSON.stringify(res.locals.account));
 }
