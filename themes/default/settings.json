@@ -20,6 +20,7 @@
       {
         "title": "Advanced topics",
         "items": [
+          { "title": "API Reference", "url":"/a0-api-reference"},
           { "title": "Identity Providers", "url": "/a0-identityproviders" },
           { "title": "Auth0 and Node under the hood", "url": "/a0-node-underthehood" }
         ]
