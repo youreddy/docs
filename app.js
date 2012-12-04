@@ -1,5 +1,5 @@
-var mdoc = require('markdocs');
-var docsapp = new mdoc.App();
+var markdocs = require('markdocs');
+var docsapp = new markdocs.App();
 
 docsapp.on('prerender', function( req, res, doc ){
   res.locals.account = {};

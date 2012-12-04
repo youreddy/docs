@@ -1,22 +1,12 @@
 {
-  "name": "auth0-mdoc",
+  "name": "auth0-markdocs",
   "description": "Auth0 Documents",
   "version": "0.0.1",
   "author": "Auth10 <support@auth10.com>",
   "dependencies": {
-    "markdocs": "0.0.2"
+    "markdocs": "0.0.3"
   },
-  "devDependencies": {
-
-  },
-  "keywords": [
-    "markdown",
-    "docs"
-  ],
   "main": "app.js",
-  "bin": {
-    "mdoc": "./bin/node-mdoc"
-  },
   "engines": {
     "node": "0.8.x",
     "npm": "1.1.x"
