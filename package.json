@@ -4,7 +4,7 @@
   "version": "0.0.1",
   "author": "Auth10 <support@auth10.com>",
   "dependencies": {
-    "node-mdoc": "0.0.5"
+    "markdocs": "0.0.2"
   },
   "devDependencies": {
 

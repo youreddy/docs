@@ -1,33 +1,19 @@
 {
-  "theme": "default",
-  "title": "Auth0 Docs",
   "menus": {
     "navigation": [
       {
-        "title": "Getting Started",
+        "title": "Menu",
         "items": [
-          { "title": "Start here", "url": "/" }
-        ]
-      },
-      {
-        "title": "Tutorials",
-        "items": [
-          { "title": "Node", "url": "/a0-nodejs-tutorial" },
-          { "title": "ASP.NET MVC4", "url": "/a0-mvc-tutorial" },
-          { "title": "ServiceStack", "url": "/a0-servicestack-tutorial" }
-        ]
-      },
-      {
-        "title": "Advanced topics",
-        "items": [
-          { "title": "API Reference", "url":"/a0-api-reference"},
-          { "title": "Identity Providers", "url": "/a0-identityproviders" }
+          {
+            "title": "Home",
+            "url": "/"
+          }
         ]
       }
     ],
     "footer": [
       {
-        "title": "Getting Started",
+        "title": "Home",
         "url": "/"
       }
     ]
