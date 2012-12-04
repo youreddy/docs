@@ -4,7 +4,7 @@ var docsapp = new markdocs.App();
 docsapp.on('prerender', function( req, res, doc ){
   res.locals.account = {};
   res.locals.account.userName = 'User Name';
-  res.locals.account.namespace =  'https://YOUR_NAMESPACE.auth0.com';
+  res.locals.account.namespace =  'YOUR_NAMESPACE.auth0.com';
   res.locals.account.clientId = 'YOUR_CLIENT_ID';
   res.locals.account.clientSecret = 'YOUR_CLIENT_SECRET';
 
