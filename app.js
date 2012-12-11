@@ -42,7 +42,7 @@ app.configure(function(){
   this.set("view engine", "jade");
   this.use(express.logger('dev'));
   this.use(express.cookieParser());
-  this.use(express.session({ secret: nconf.get("sessionSecret"), key: "auth0l", cookie: {
+  this.use(express.session({ secret: nconf.get("sessionSecret"), sessionStore: sessionStore, key: "auth0l", cookie: {
     domain: process.env.NODE_ENV === 'production' ? '.auth0.com' : null,
     path: '/',
     httpOnly: true,
