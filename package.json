@@ -4,7 +4,14 @@
   "version": "0.0.1",
   "author": "Auth10 <support@auth10.com>",
   "dependencies": {
-    "markdocs": "0.0.3"
+    "markdocs": "0.0.3",
+    "winston": "~0.6.2",
+    "mongodb": "~1.1.7",
+    "connect-mongodb": "~1.1.5",
+    "nconf": "~0.6.4",
+    "express": "~3.0.0rc4",
+    "passport": "~0.1.12",
+    "jade": "~0.27.7"
   },
   "main": "app.js",
   "engines": {

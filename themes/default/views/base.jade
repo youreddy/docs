@@ -17,8 +17,32 @@ html(lang="en")
     <![endif]-->
 
   body
-    header
-      a(href=furl('/'))= site.title
+    .navbar.navbar-fixed-top
+      .navbar-inner
+        .container
+          a.btn.btn-primary.btn-dropnav(data-toggle="collapse", data-target=".nav-collapse")
+            span.icon-bar
+            span.icon-bar
+            span.icon-bar
+          a.brand(href="/") Auth0
+          .nav-collapse.collapse
+            ul.nav.pull-right
+              li
+                a(href="/") Home
+              li
+                a(href="/") About
+              li
+                a(href="/") Features
+              li
+                a(href="/") Pricing
+              li
+                a(href="/") Login
+              li
+                a(href="/") Register
+              li
+                a(href="/") Contact
+              li.active
+                a(href="/") Docs
     div.container
       nav
         ul
