@@ -26,15 +26,14 @@ var getDb = require('./lib/data'),
     collection: 'sessions'
   });
 
-
 passport.serializeUser(function(user, done) {
-   done(null, {id: user.id, provider: user.provider});
+   done(null, user.id);
  });
 
-passport.deserializeUser(function(obj, done) {
+passport.deserializeUser(function(id, done) {
   getDb(function(db){
     var userColl = db.collection("tenantUsers");
-    userColl.findOne({id: obj.id, provider: obj.provider}, done);
+    userColl.findOne({id: id, provider: 'auth0'}, done);
   });
 });
 
@@ -42,7 +41,8 @@ app.configure(function(){
   this.set("view engine", "jade");
   this.use(express.logger('dev'));
   this.use(express.cookieParser());
-  this.use(express.session({ secret: nconf.get("sessionSecret"), sessionStore: sessionStore, key: "auth0l", cookie: {
+  console.log('setting session mongo');
+  this.use(express.session({ secret: nconf.get("sessionSecret"), store: sessionStore, key: "auth0l", cookie: {
     domain: process.env.NODE_ENV === 'production' ? '.auth0.com' : null,
     path: '/',
     httpOnly: true,
@@ -57,19 +57,33 @@ app.configure(function(){
   this.use(this.router);
 });
 
-var docsapp = new markdocs.App(__dirname, '', app);
-
-docsapp.on('prerender', function( req, res, doc ){
-  console.log(req.user);
+var docsapp = new markdocs.App(__dirname, '', app, function (req, res, next) {
   res.locals.account = {};
-  res.locals.account.userName = 'User Name';
+  res.locals.account.userName = '';
   res.locals.account.namespace =  'YOUR_NAMESPACE';
   res.locals.account.clientId = 'YOUR_CLIENT_ID';
   res.locals.account.clientSecret = 'YOUR_CLIENT_SECRET';
+  
+  if (!req.user || !req.user.tenant)
+    return next();
 
-  console.log(JSON.stringify(res.locals.account));
-}
-);
+  getDb(function(db){
+    db.collection('clients').findOne({tenant: req.user.tenant}, function(err, client){
+      if(err) {
+        console.error("error: " + err);
+        return next(err);
+      }
+      
+      res.locals.account.userName = req.user.name;
+      res.locals.account.namespace =  client.tenant + '.auth0.com';
+      res.locals.account.clientId = client.clientID;
+      res.locals.account.clientSecret = client.clientSecret;
+
+      next();
+    });
+  });
+});
+
 
 if (!module.parent) {
   var port = process.env.PORT || 3000;
