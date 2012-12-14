@@ -46,7 +46,8 @@ app.configure(function(){
     domain: process.env.NODE_ENV === 'production' ? '.auth0.com' : null,
     path: '/',
     httpOnly: true,
-    maxAge: null
+    maxAge: null,
+    secure: true
   }}));
   this.use(express.favicon());
   this.use(express.logger('dev'));
