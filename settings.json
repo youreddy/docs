@@ -12,16 +12,17 @@
       {
         "title": "Tutorials",
         "items": [
-          { "title": "Node", "url": "/a0-nodejs-tutorial" },
-          { "title": "ASP.NET MVC4", "url": "/a0-mvc-tutorial" },
-          { "title": "ServiceStack", "url": "/a0-servicestack-tutorial" }
+          { "title": "Node", "url": "/nodejs-tutorial" },
+          { "title": "ASP.NET MVC4", "url": "/mvc-tutorial" },
+          { "title": "ServiceStack", "url": "/servicestack-tutorial" }
         ]
       },
       {
         "title": "Advanced topics",
         "items": [
-          { "title": "API Reference", "url":"/a0-api-reference"},
-          { "title": "Identity Providers", "url": "/a0-identityproviders" }
+          { "title": "API Reference", "url":"/api-reference"},
+          { "title": "Protocols", "url":"/protocols"},
+          { "title": "Identity Providers", "url": "/identityproviders" }
         ]
       }
     ],
