@@ -90,12 +90,12 @@ var overrideIfAuthenticated = function overrideIfAuthenticated (req, res, next) 
   });
 };
 
-var overrideIfTenantInQs = function overrideIfTenantInQs (req, res, next) {
-  if (!req.query || !req.query.t)
+var overrideIfClientInQs = function overrideIfClientInQs (req, res, next) {
+  if (!req.query || !req.query.a)
     return next();
 
   getDb(function(db){
-    db.collection('clients').findOne({tenant: req.query.t}, function(err, client){
+    db.collection('clients').findOne({clientID: req.query.a}, function(err, client){
       if(err) {
         console.error("error: " + err);
         return next(err);
@@ -113,7 +113,7 @@ var overrideIfTenantInQs = function overrideIfTenantInQs (req, res, next) {
 var docsapp = new markdocs.App(__dirname, '', app,
   [defaultValues,
   overrideIfAuthenticated,
-  overrideIfTenantInQs]);
+  overrideIfClientInQs]);
 
 if (!module.parent) {
   var port = process.env.PORT || 3000;
