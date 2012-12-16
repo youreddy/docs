@@ -57,13 +57,18 @@ app.configure(function(){
   this.use(this.router);
 });
 
-var docsapp = new markdocs.App(__dirname, '', app, function (req, res, next) {
+var defaultValues = function defaultValues (req, res, next) {
   res.locals.account = {};
   res.locals.account.userName = '';
+  res.locals.account.appName = 'YOUR_APP_NAME';
   res.locals.account.namespace =  'YOUR_NAMESPACE';
   res.locals.account.clientId = 'YOUR_CLIENT_ID';
   res.locals.account.clientSecret = 'YOUR_CLIENT_SECRET';
-  
+
+  next();
+};
+
+var overrideIfAuthenticated = function overrideIfAuthenticated (req, res, next) {
   if (!req.user || !req.user.tenant)
     return next();
 
@@ -74,6 +79,7 @@ var docsapp = new markdocs.App(__dirname, '', app, function (req, res, next) {
         return next(err);
       }
       
+      res.locals.account.appName = client.name || 'Your App';
       res.locals.account.userName = req.user.name;
       res.locals.account.namespace =  client.tenant + '.auth0.com';
       res.locals.account.clientId = client.clientID;
@@ -82,8 +88,32 @@ var docsapp = new markdocs.App(__dirname, '', app, function (req, res, next) {
       next();
     });
   });
-});
+};
 
+var overrideIfTenantInQs = function overrideIfTenantInQs (req, res, next) {
+  if (!req.query || !req.query.t)
+    return next();
+
+  getDb(function(db){
+    db.collection('clients').findOne({tenant: req.query.t}, function(err, client){
+      if(err) {
+        console.error("error: " + err);
+        return next(err);
+      }
+      
+      res.locals.account.appName = client.name || 'Your App';
+      res.locals.account.namespace =  client.tenant + '.auth0.com';
+      res.locals.account.clientId = client.clientID;
+
+      next();
+    });
+  });
+};
+
+var docsapp = new markdocs.App(__dirname, '', app,
+  [defaultValues,
+  overrideIfAuthenticated,
+  overrideIfTenantInQs]);
 
 if (!module.parent) {
   var port = process.env.PORT || 3000;

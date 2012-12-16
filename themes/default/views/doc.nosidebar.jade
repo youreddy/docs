@@ -1,0 +1,35 @@
+doctype 5
+html(lang="en")
+  head
+    title= title + ' - ' + site.title
+    meta(charset="utf-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    meta(name="description", content="")
+    meta(name="author", content="")
+
+    <style>html, body { background-color: #E8EBEF; }</style>
+
+    link(href="/css/bootstrap.css", rel="stylesheet")
+    link(href="/css/default.css", rel="stylesheet")
+
+    <!--[if lt IE 9]>
+    script(src="http://html5shim.googlecode.com/svn/trunk/html5.js")
+    <![endif]-->
+
+  body
+    .navbar.navbar-fixed-top
+      .navbar-inner
+        .container
+          a.btn.btn-primary.btn-dropnav(data-toggle="collapse", data-target=".nav-collapse")
+            span.icon-bar
+            span.icon-bar
+            span.icon-bar
+          a.brand(href="/")= account.appName
+    div.container
+      section.nosidebar
+        != sections.content
+    footer
+        ul
+          li.right
+            span Powered by 
+              a(href="//auth0.com") Auth0
