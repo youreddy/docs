@@ -49,8 +49,18 @@ function AddRelyingParty
   $rp = Get-ADFSRelyingPartyTrust -Name $realm
 
   # transform Rules
+  $rules = @'
+  @RuleName = "Store: ActiveDirectory -> Mail (ldap attribute: mail), Name (ldap attribute: userPrincipalName), GivenName (ldap attribute: givenName), Surname (ldap attribute: sn)" 
+  c:[Type == "http://schemas.microsoft.com/ws/2008/06/identity/claims/windowsaccountname", Issuer == "AD AUTHORITY"]
+   => issue(store = "Active Directory", types = ("http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress", 
+   "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name", 
+   "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier", 
+   "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/givenname", 
+   "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/surname"), query = ";mail,displayName,userPrincipalName,givenName,sn;{0}", param = c.Value);
+'@
+  
   Write-Verbose "Adding Claim Rules"
-  Set-ADFSRelyingPartyTrust –TargetName $realm -IssuanceTransformRulesFile ..\OutputClaimRules.txt 
+  Set-ADFSRelyingPartyTrust –TargetName $realm -IssuanceTransformRules $rules
 
   # Authorization Rules
   $authRules = '=> issue(Type = "http://schemas.microsoft.com/authorization/claims/permit", Value = "true");'
