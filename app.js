@@ -110,10 +110,10 @@ var overrideIfClientInQs = function overrideIfClientInQs (req, res, next) {
   });
 };
 
-var docsapp = new markdocs.App(__dirname, '', app,
-  [defaultValues,
-  overrideIfAuthenticated,
-  overrideIfClientInQs]);
+var docsapp = new markdocs.App(__dirname, '', app);
+docsapp.addPreRender(defaultValues);
+docsapp.addPreRender(overrideIfAuthenticated);
+docsapp.addPreRender(overrideIfClientInQs);
 
 if (!module.parent) {
   var port = process.env.PORT || 3000;
