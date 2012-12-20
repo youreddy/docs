@@ -82,6 +82,7 @@ var overrideIfAuthenticated = function overrideIfAuthenticated (req, res, next) 
       res.locals.account.appName = client.name || 'Your App';
       res.locals.account.userName = req.user.name;
       res.locals.account.namespace =  client.tenant + '.auth0.com';
+      res.locals.account.tenant = client.tenant;
       res.locals.account.clientId = client.clientID;
       res.locals.account.clientSecret = client.clientSecret;
 
