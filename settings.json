@@ -14,7 +14,7 @@
         "items": [
           { "title": "Node", "url": "/nodejs-tutorial" },
           { "title": "ASP.NET MVC4", "url": "/mvc-tutorial" },
-          { "title": "ServiceStack", "url": "/servicestack-tutorial" }
+          { "title": "ServiceStack", "url": "/servicestack-tutorial" },
           { "title": "WinRT", "url": "/win8-tutorial" }
         ]
       },
