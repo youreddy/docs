@@ -15,7 +15,8 @@
           { "title": "Node", "url": "/nodejs-tutorial" },
           { "title": "ASP.NET MVC4", "url": "/mvc-tutorial" },
           { "title": "ServiceStack", "url": "/servicestack-tutorial" },
-          { "title": "WinRT", "url": "/win8-tutorial" }
+          { "title": "WinRT", "url": "/win8-tutorial" },
+          { "title": "Windows Phone", "url": "/windowsphone-tutorial" }
         ]
       },
       {
