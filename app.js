@@ -60,7 +60,8 @@ app.configure(function(){
 var defaultValues = function defaultValues (req, res, next) {
   res.locals.account = {};
   res.locals.account.userName = '';
-  res.locals.account.appName = 'YOUR_APP_NAME';
+  res.locals.account.appName = 'YOUR_APPNAME';
+  res.locals.account.tenant = 'YOUR_TENANT';
   res.locals.account.namespace =  'YOUR_NAMESPACE';
   res.locals.account.clientId = 'YOUR_CLIENT_ID';
   res.locals.account.clientSecret = 'YOUR_CLIENT_SECRET';
