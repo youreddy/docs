@@ -2,7 +2,8 @@ var markdocs = require('markdocs'),
   nconf = require('nconf'),
   path = require('path'),
   express = require('express'),
-  passport = require('passport');
+  passport = require('passport'),
+  winston = require('winston');
 
 var app = express();
 
@@ -25,6 +26,10 @@ var getDb = require('./lib/data'),
     password: connectionData.password,
     collection: 'sessions'
   });
+
+winston.setLevels(winston.config.syslog.levels);
+winston.remove(winston.transports.Console);
+winston.add(winston.transports.Console, { colorize: true, level: nconf.get("consoleLogLevel") || "debug", prettyPrint: true });
 
 passport.serializeUser(function(user, done) {
    done(null, user.id);
@@ -60,8 +65,7 @@ app.configure(function(){
 var defaultValues = function defaultValues (req, res, next) {
   res.locals.account = {};
   res.locals.account.userName = '';
-  res.locals.account.appName = 'YOUR_APPNAME';
-  res.locals.account.tenant = 'YOUR_TENANT';
+  res.locals.account.appName = 'YOUR_APP_NAME';
   res.locals.account.namespace =  'YOUR_NAMESPACE';
   res.locals.account.clientId = 'YOUR_CLIENT_ID';
   res.locals.account.clientSecret = 'YOUR_CLIENT_SECRET';
@@ -71,16 +75,19 @@ var defaultValues = function defaultValues (req, res, next) {
 };
 
 var overrideIfAuthenticated = function overrideIfAuthenticated (req, res, next) {
+  winston.debug('user', req.user);
+  
   if (!req.user || !req.user.tenant)
     return next();
 
   getDb(function(db){
     db.collection('clients').findOne({tenant: req.user.tenant}, function(err, client){
       if(err) {
-        console.error("error: " + err);
+        winston.error("error: " + err);
         return next(err);
       }
       
+      winston.debug('client found');
       res.locals.account.appName = client.name || 'Your App';
       res.locals.account.userName = req.user.name;
       res.locals.account.namespace =  client.tenant + '.auth0.com';
