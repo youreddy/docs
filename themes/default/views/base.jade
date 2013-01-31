@@ -19,37 +19,37 @@ html(lang="en")
     <![endif]-->
 
   body
-    .navbar.navbar-fixed-top
-      .navbar-inner
-        .container
-          a.btn.btn-primary.btn-dropnav(data-toggle="collapse", data-target=".nav-collapse")
-            span.icon-bar
-            span.icon-bar
-            span.icon-bar
-          a.brand(href="https://beta.auth0.com") Auth0
-          .nav-collapse.collapse
-            ul.nav.pull-right
-              li.active
-                a(href="/") Docs
-    div.container
-      nav
-        ul
-          -var navigation = site.menus.navigation
-          - for (var k1 in navigation)
-            - var l1 = navigation[k1]
+    .header
+      .header-container
+          a(href='http://auth0.com')
+            .logo
+            h1.depth(title='Auth0') Auth0
+          ul
             li
-              span= l1.title
-              ul
-                - for (var k2 in l1.items)
-                  - var l2 = l1.items[k2]
-                  - if (l2.url == url)
-                      li.selected 
-                        a(href=furl(l2.url))= l2.title
-                  - else
-                      li 
-                        a(href=furl(l2.url))= l2.title
-      section
-        block content
+              a(href='https://docs.auth0.com') Docs
+            li
+              a(href='/') Blog
+
+    .inset
+      .container
+        nav
+          ul
+            -var navigation = site.menus.navigation
+            - for (var k1 in navigation)
+              - var l1 = navigation[k1]
+              li
+                span= l1.title
+                ul
+                  - for (var k2 in l1.items)
+                    - var l2 = l1.items[k2]
+                    - if (l2.url == url)
+                        li.selected 
+                          a(href=furl(l2.url))= l2.title
+                    - else
+                        li 
+                          a(href=furl(l2.url))= l2.title
+        section
+          block content
     footer
         ul
           -var footer = site.menus.footer
