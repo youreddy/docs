@@ -30,26 +30,25 @@ html(lang="en")
             li
               a(href='/') Blog
 
-    .inset
-      .container
-        nav
-          ul
-            -var navigation = site.menus.navigation
-            - for (var k1 in navigation)
-              - var l1 = navigation[k1]
-              li
-                span= l1.title
-                ul
-                  - for (var k2 in l1.items)
-                    - var l2 = l1.items[k2]
-                    - if (l2.url == url)
-                        li.selected 
-                          a(href=furl(l2.url))= l2.title
-                    - else
-                        li 
-                          a(href=furl(l2.url))= l2.title
-        section
-          block content
+    .container
+      nav
+        ul
+          -var navigation = site.menus.navigation
+          - for (var k1 in navigation)
+            - var l1 = navigation[k1]
+            li
+              span= l1.title
+              ul
+                - for (var k2 in l1.items)
+                  - var l2 = l1.items[k2]
+                  - if (l2.url == url)
+                      li.selected 
+                        a(href=furl(l2.url))= l2.title
+                  - else
+                      li 
+                        a(href=furl(l2.url))= l2.title
+      section
+        block content
     footer
         ul
           -var footer = site.menus.footer
