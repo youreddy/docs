@@ -89,7 +89,8 @@ var overrideIfAuthenticated = function overrideIfAuthenticated (req, res, next) 
       }
       
       winston.debug('client found');
-      res.locals.account.appName = client.name || 'Your App';
+      res.locals.account.appName = client.name && client.name.trim !== '' ? client.name : 'Your App';
+      console.log(res.locals.account.appName);
       res.locals.account.userName = req.user.name;
       res.locals.account.namespace =  client.tenant + '.auth0.com';
       res.locals.account.tenant = client.tenant;
@@ -112,7 +113,7 @@ var overrideIfClientInQs = function overrideIfClientInQs (req, res, next) {
         return next(err);
       }
       
-      res.locals.account.appName = client.name || 'Your App';
+      res.locals.account.appName = client.name && client.name.trim !== '' ? client.name : 'Your App';
       res.locals.account.namespace =  client.tenant + '.auth0.com';
       res.locals.account.clientId = client.clientID;
 
