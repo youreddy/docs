@@ -14,8 +14,8 @@
         "items": [
           { "title": "Node", "url": "/nodejs-tutorial" },
           { "title": "iOS", "url": "/ios-tutorial" },
-          { "title": "ASP.NET MVC4", "url": "/mvc-tutorial" },
-          { "title": "ASP.NET MVC4 2", "url": "/mvc-tutorial-enterprise" },
+          { "title": "ASP.NET MVC4 Part 1", "url": "/mvc-tutorial" },
+          { "title": "ASP.NET MVC4 Part 2", "url": "/mvc-tutorial-enterprise" },
           { "title": "ServiceStack", "url": "/servicestack-tutorial" },
           { "title": "WinRT", "url": "/win8-tutorial" },
           { "title": "Windows Phone", "url": "/windowsphone-tutorial" }
