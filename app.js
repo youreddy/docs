@@ -81,8 +81,15 @@ var overrideIfAuthenticated = function overrideIfAuthenticated (req, res, next) 
   if (!req.user || !req.user.tenant)
     return next();
 
+  var queryDoc = {tenant: req.user.tenant};
+
+  if(req.session.selectedClient){
+    queryDoc.clientID = req.session.selectedClient;
+  }
+
   getDb(function(db){
-    db.collection('clients').findOne({tenant: req.user.tenant}, function(err, client){
+
+    db.collection('clients').findOne(queryDoc, function(err, client){
       if(err) {
         winston.error("error: " + err);
         return next(err);
