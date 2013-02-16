@@ -83,9 +83,9 @@ var overrideIfAuthenticated = function overrideIfAuthenticated (req, res, next) 
 
   var queryDoc = {tenant: req.user.tenant};
 
-  if(req.session.selectedClient){
-    queryDoc.clientID = req.session.selectedClient;
-  }
+  // if(req.session.selectedClient){
+  //   queryDoc.clientID = req.session.selectedClient;
+  // }
 
   getDb(function(db){
 
