@@ -490,3 +490,15 @@ table p {
     border-bottom: 2px solid #308CCF;
     color: #FFFFFF;
 }
+
+
+pre code {
+  white-space: pre;
+}
+
+pre {
+  overflow: auto;
+  word-break: normal;
+  word-wrap: normal;
+  white-space: pre;
+}
