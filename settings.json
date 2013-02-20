@@ -17,7 +17,7 @@
           { "title": "ASP.NET MVC3 Part 1", "url": "/mvc3-tutorial" },
           { "title": "ASP.NET MVC4 Part 1", "url": "/mvc-tutorial" },
           { "title": "ASP.NET MVC4 Part 2", "url": "/mvc-tutorial-enterprise" },
-          { "title": "ASP.NET Web API & SPA", "url": "/webapi" },
+          { "title": "Web API & SPA", "url": "/webapi" },
           { "title": "ServiceStack", "url": "/servicestack-tutorial" },
           { "title": "WinRT", "url": "/win8-tutorial" },
           { "title": "Windows Phone", "url": "/windowsphone-tutorial" }
