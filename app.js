@@ -130,6 +130,10 @@ var overrideIfClientInQs = function overrideIfClientInQs (req, res, next) {
         console.error("error: " + err);
         return next(err);
       }
+
+      if(!client) {
+        return res.send(404, 'client not found');
+      }
       
       res.locals.account.appName = client.name && client.name.trim !== '' ? client.name : 'Your App';
       res.locals.account.namespace =  client.tenant + '.auth0.com';
