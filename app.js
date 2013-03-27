@@ -135,19 +135,25 @@ var overrideIfClientInQs = function overrideIfClientInQs (req, res, next) {
         return res.send(404, 'client not found');
       }
       
-      res.locals.account.appName = client.name && client.name.trim !== '' ? client.name : 'Your App';
-      res.locals.account.namespace =  client.tenant + '.auth0.com';
-      res.locals.account.clientId = client.clientID;
+      res.locals.account.appName   = client.name && client.name.trim !== '' ? client.name : 'Your App';
+      res.locals.account.namespace = client.tenant + '.auth0.com';
+      res.locals.account.clientId  = client.clientID;
 
       next();
     });
   });
 };
 
+var appendTicket = function (req, res, next) {
+  res.locals.ticket = req.query.ticket;
+  next();
+};
+
 var docsapp = new markdocs.App(__dirname, '', app);
 docsapp.addPreRender(defaultValues);
 docsapp.addPreRender(overrideIfAuthenticated);
 docsapp.addPreRender(overrideIfClientInQs);
+docsapp.addPreRender(appendTicket);
 
 if (!module.parent) {
   var port = process.env.PORT || 3000;
