@@ -38,7 +38,7 @@ passport.serializeUser(function(user, done) {
 passport.deserializeUser(function(id, done) {
   getDb(function(db){
     var userColl = db.collection("tenantUsers");
-    userColl.findOne({id: id, provider: 'auth0'}, done);
+    userColl.findOne({id: id}, done);
   });
 });
 
