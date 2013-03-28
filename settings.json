@@ -14,10 +14,12 @@
         "items": [
           { "title": "Node", "url": "/nodejs-tutorial" },
           { "title": "iOS", "url": "/ios-tutorial" },
+          { "title": "ASP.NET", "url": "/aspnet-tutorial" },
           { "title": "ASP.NET MVC3 Part 1", "url": "/mvc3-tutorial" },
           { "title": "ASP.NET MVC4 Part 1", "url": "/mvc-tutorial" },
           { "title": "ASP.NET MVC4 Part 2", "url": "/mvc-tutorial-enterprise" },
           { "title": "Web API & SPA", "url": "/webapi" },
+          { "title": "Windows Azure", "url": "/azure-tutorial" },
           { "title": "ServiceStack", "url": "/servicestack-tutorial" },
           { "title": "WCF", "url": "/wcf-tutorial" },
           { "title": "WinRT", "url": "/win8-tutorial" },
