@@ -15,7 +15,6 @@
           { "title": "Node", "url": "/nodejs-tutorial" },
           { "title": "iOS", "url": "/ios-tutorial" },
           { "title": "ASP.NET", "url": "/aspnet-tutorial" },
-          { "title": "ASP.NET MVC3", "url": "/mvc3-tutorial" },
           { "title": "ASP.NET MVC4", "url": "/mvc-tutorial" },
           { "title": "Web API & SPA", "url": "/webapi" },
           { "title": "Windows Azure", "url": "/azure-tutorial" },
