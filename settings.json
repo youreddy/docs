@@ -28,6 +28,7 @@
       {
         "title": "Advanced topics",
         "items": [
+          { "title": "Normalized Profile", "url":"/user-profile"},
           { "title": "API Reference", "url":"/api-reference"},
           { "title": "Protocols", "url":"/protocols"},
           { "title": "Identity Providers", "url": "/identityproviders" }
