@@ -502,3 +502,16 @@ pre {
   word-wrap: normal;
   white-space: pre;
 }
+
+h4.current-step {
+  color: rgb(141, 134, 196);
+  font-size: 20px;
+}
+
+h4.step-finished img {
+  position: absolute;
+  left: -26px;
+  display: inline-block;
+  margin-top: -16px;
+}
+

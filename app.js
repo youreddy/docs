@@ -5,6 +5,7 @@ var markdocs = require('markdocs'),
   passport = require('passport'),
   winston = require('winston');
 
+
 var app = express();
 
 nconf
@@ -16,6 +17,8 @@ nconf
     "db" : 'mongodb://localhost:27017/auth11',
     'sessionSecret': 'auth11 secret string'
   });
+
+var connections = require('./lib/connections');
 
 var getDb = require('./lib/data'),
   MongoStore = require('connect-mongodb'),
@@ -73,20 +76,29 @@ app.configure(function(){
   this.use(this.router);
 });
 
-var defaultValues = function defaultValues (req, res, next) {
+app.get('/ticket/step', function (req, res) {
+  if (!req.query.ticket) return res.send(404);
+  connections.getCurrentStep(req.query.ticket, function (err, currentStep) {
+    if (err) return res.send(500);
+    if (!currentStep) return res.send(404);
+    res.send(currentStep);
+  });
+});
+
+var defaultValues = function (req, res, next) {
   res.locals.account = {};
-  res.locals.account.userName = '';
-  res.locals.account.appName = 'YOUR_APP_NAME';
-  res.locals.account.tenant = 'YOUR_TENANT';
-  res.locals.account.namespace =  'YOUR_NAMESPACE';
-  res.locals.account.clientId = 'YOUR_CLIENT_ID';
+  res.locals.account.userName     = '';
+  res.locals.account.appName      = 'YOUR_APP_NAME';
+  res.locals.account.tenant       = 'YOUR_TENANT';
+  res.locals.account.namespace    = 'YOUR_NAMESPACE';
+  res.locals.account.clientId     = 'YOUR_CLIENT_ID';
   res.locals.account.clientSecret = 'YOUR_CLIENT_SECRET';
-  res.locals.account.callback = 'YOUR_CALLBACK';
+  res.locals.account.callback     = 'YOUR_CALLBACK';
 
   next();
 };
 
-var overrideIfAuthenticated = function overrideIfAuthenticated (req, res, next) {
+var overrideIfAuthenticated = function (req, res, next) {
   winston.debug('user', req.user);
   
   if (!req.user || !req.user.tenant)
@@ -120,7 +132,7 @@ var overrideIfAuthenticated = function overrideIfAuthenticated (req, res, next) 
   });
 };
 
-var overrideIfClientInQs = function overrideIfClientInQs (req, res, next) {
+var overrideIfClientInQs = function (req, res, next) {
   if (!req.query || !req.query.a)
     return next();
 
@@ -145,8 +157,14 @@ var overrideIfClientInQs = function overrideIfClientInQs (req, res, next) {
 };
 
 var appendTicket = function (req, res, next) {
-  res.locals.ticket = req.query.ticket;
-  next();
+  if (!req.query.ticket) return next();
+  connections.findByTicket(req.query.ticket, function (err, connection) {
+    if (err) return res.send(500);
+    if (!connection) return res.send(404);
+    res.locals.ticket = req.query.ticket;
+    res.locals.connectionDomain = connection.options.tenant_domain;
+    next();
+  });
 };
 
 var docsapp = new markdocs.App(__dirname, '', app);
@@ -154,11 +172,19 @@ docsapp.addPreRender(defaultValues);
 docsapp.addPreRender(overrideIfAuthenticated);
 docsapp.addPreRender(overrideIfClientInQs);
 docsapp.addPreRender(appendTicket);
+docsapp.addPreRender(function(req,res,next){
+  if(process.env.NODE_ENV === 'production') {
+    res.locals.uiURL = 'https://app.auth0.com';
+  } else {
+    res.locals.uiURL = 'http://localhost:8989';
+  }
+  next();
+});
 
 if (!module.parent) {
-  var port = process.env.PORT || 3000;
+  var port = process.env.PORT || 5000;
   app.listen(port);
-  console.log('Server listening on port ' + port);
+  console.log('Server listening on http://localhost:' + port);
 } else {
   module.exports = docsapp;
 }
