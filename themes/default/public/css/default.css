@@ -504,14 +504,68 @@ pre {
 }
 
 h4.current-step {
-  color: rgb(141, 134, 196);
+  color: #0088cc;
   font-size: 20px;
+}
+
+h4.step-finished {
+  color: #8cc84b;
 }
 
 h4.step-finished img {
   position: absolute;
-  left: -26px;
+  left: -18px;
   display: inline-block;
-  margin-top: -16px;
+  margin-top: -7px;
+}
+
+.installers {
+  width: 550px;
+  margin-bottom: 20px;
+  display: table;
+  padding: 10px;
+  background-color: #f7f7f9;
+  border: 1px solid #e1e1e8;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+}
+
+.installers ul {
+  width: auto;
+  text-align: center;
+  margin: 0 auto;
+  display: table-row;
+}
+
+.installers ul img {
+  display: block;
+  margin: 0 auto;
+}
+
+.installers ul a {
+  display: block;
+  width: 100%;
+  text-decoration: none;
+  font-size: 16px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.installers ul a:hover,
+.installers ul a:active {
+  background: #e1e1e8;
+  color: #005580;
+}
+
+.installers ul li {
+  width: 33%;
+  display: table-cell;
+}
+
+.installers a small {
+  font-size: 10px;
+  display: block;
+  color: #888;
 }
 
