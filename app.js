@@ -157,6 +157,8 @@ var overrideIfClientInQs = function (req, res, next) {
 };
 
 var appendTicket = function (req, res, next) {
+  res.locals.ticket = 'YOUR_TICKET';
+  res.locals.connectionDomain = 'YOUR_CONNECTION_NAME';
   if (!req.query.ticket) return next();
   connections.findByTicket(req.query.ticket, function (err, connection) {
     if (err) return res.send(500);

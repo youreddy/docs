@@ -26,12 +26,22 @@ h1 {
  }
 
 h2 {
-  font-size: 22px;
+  margin-bottom: 7px;
+  font-size: 15px;
+  color: #222;
+}
+
+h3 {
+  font-size: 14px;
+  margin-bottom: 3px;
+  margin-top: 0px;
  }
 
- h3 {
-  font-size: 18px;
- }
+h4 {
+  font-size: 13px;
+  margin-bottom: 3px;
+  margin-top: 0px;
+}
 
 blockquote {
   border-left: 0px;
@@ -519,6 +529,8 @@ h4.step-finished img {
   margin-top: -7px;
 }
 
+.ticket {}
+
 .installers {
   width: 550px;
   margin-bottom: 20px;
@@ -567,5 +579,11 @@ h4.step-finished img {
   font-size: 10px;
   display: block;
   color: #888;
+}
+
+.btn-mid {
+  font-size: 14px;
+  font-weight: bold;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
