@@ -513,16 +513,16 @@ pre {
   white-space: pre;
 }
 
-h4.current-step {
+h2.current-step {
   color: #0088cc;
   font-size: 20px;
 }
 
-h4.step-finished {
+h2.step-finished {
   color: #8cc84b;
 }
 
-h4.step-finished img {
+h2.step-finished img {
   position: absolute;
   left: -18px;
   display: inline-block;
