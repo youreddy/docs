@@ -2,8 +2,7 @@ var markdocs = require('markdocs'),
   nconf = require('nconf'),
   path = require('path'),
   express = require('express'),
-  passport = require('passport'),
-  winston = require('winston');
+  passport = require('passport');
 
 
 var app = express();
@@ -30,9 +29,8 @@ var getDb = require('./lib/data'),
     collection: 'sessions'
   });
 
-winston.setLevels(winston.config.syslog.levels);
-winston.remove(winston.transports.Console);
-winston.add(winston.transports.Console, { colorize: true, level: nconf.get("consoleLogLevel") || "debug", prettyPrint: true });
+require('./lib/setupLogger');
+var winston = require('winston');
 
 passport.serializeUser(function(user, done) {
    done(null, user.id);
@@ -117,6 +115,8 @@ var overrideIfAuthenticated = function (req, res, next) {
         winston.error("error: " + err);
         return next(err);
       }
+      
+      if (!client) return next();
       
       winston.debug('client found');
       res.locals.account.appName = client.name && client.name.trim !== '' ? client.name : 'Your App';
