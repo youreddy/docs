@@ -13,8 +13,9 @@ nconf
   .env()
   .file({ file: process.env.CONFIG_FILE || path.join(__dirname, "config.json")})
   .defaults({
-    'db' : 'mongodb://localhost:27017/auth11',
-    'sessionSecret': 'auth11 secret string'
+    'db' :           'mongodb://localhost:27017/auth11',
+    'sessionSecret': 'auth11 secret string',
+    'COOKIE_SCOPE':  process.env.NODE_ENV === 'production' ? '.auth0.com' : null
   });
 
 var connections = require('./lib/connections');
@@ -60,7 +61,7 @@ app.configure(function(){
   this.use(express.cookieParser());
   console.log('setting session mongo');
   this.use(express.session({ secret: nconf.get("sessionSecret"), store: sessionStore, key: "auth0l", cookie: {
-    domain: process.env.NODE_ENV === 'production' ? '.auth0.com' : null,
+    domain: nconf.get('COOKIE_SCOPE'),
     path: '/',
     httpOnly: true,
     maxAge: null
