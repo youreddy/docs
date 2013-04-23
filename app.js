@@ -17,7 +17,8 @@ nconf
     'sessionSecret':     'auth11 secret string',
     'COOKIE_SCOPE':      process.env.NODE_ENV === 'production' ? '.auth0.com' : null,
     'DOMAIN_URL_SERVER': '{tenant}.auth0.com:3000',
-    'DOMAIN_URL_APP':    'localhost:8989'
+    'DOMAIN_URL_APP':    'localhost:8989',
+    'DOMAIN_URL_SDK':    'localhost:3000'
   });
 
 var connections = require('./lib/connections');
@@ -179,9 +180,11 @@ docsapp.addPreRender(overrideIfClientInQs);
 docsapp.addPreRender(appendTicket);
 docsapp.addPreRender(function(req,res,next){
   if(process.env.NODE_ENV === 'production') {
-    res.locals.uiURL = 'https://' + nconf.get('DOMAIN_URL_APP');
+    res.locals.uiURL  = 'https://' + nconf.get('DOMAIN_URL_APP');
+    res.locals.sdkURL = 'https://' + nconf.get('DOMAIN_URL_SDK');
   } else {
-    res.locals.uiURL = 'http://' + nconf.get('DOMAIN_URL_APP');
+    res.locals.uiURL  = 'http://' + nconf.get('DOMAIN_URL_APP');
+    res.locals.sdkURL = 'http://' + nconf.get('DOMAIN_URL_SDK');
   }
   next();
 });
