@@ -11,9 +11,9 @@ nconf
   .use("memory")
   .argv()
   .env()
-  .file({ file: path.join(__dirname, "config.json")})
+  .file({ file: process.env.CONFIG_FILE || path.join(__dirname, "config.json")})
   .defaults({
-    "db" : 'mongodb://localhost:27017/auth11',
+    'db' : 'mongodb://localhost:27017/auth11',
     'sessionSecret': 'auth11 secret string'
   });
 
