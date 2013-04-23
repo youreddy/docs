@@ -13,9 +13,11 @@ nconf
   .env()
   .file({ file: process.env.CONFIG_FILE || path.join(__dirname, "config.json")})
   .defaults({
-    'db' :           'mongodb://localhost:27017/auth11',
-    'sessionSecret': 'auth11 secret string',
-    'COOKIE_SCOPE':  process.env.NODE_ENV === 'production' ? '.auth0.com' : null
+    'db' :               'mongodb://localhost:27017/auth11',
+    'sessionSecret':     'auth11 secret string',
+    'COOKIE_SCOPE':      process.env.NODE_ENV === 'production' ? '.auth0.com' : null,
+    'DOMAIN_URL_SERVER': '{tenant}.auth0.com:3000',
+    'DOMAIN_URL_APP':    'localhost:8989'
   });
 
 var connections = require('./lib/connections');
@@ -123,7 +125,7 @@ var overrideIfAuthenticated = function (req, res, next) {
       res.locals.account.appName = client.name && client.name.trim !== '' ? client.name : 'Your App';
       console.log(res.locals.account.appName);
       res.locals.account.userName = req.user.name;
-      res.locals.account.namespace =  client.tenant + '.auth0.com';
+      res.locals.account.namespace = nconf.get('DOMAIN_URL_SERVER').replace('{tenant}', client.tenant);
       res.locals.account.tenant = client.tenant;
       res.locals.account.clientId = client.clientID;
       res.locals.account.clientSecret = client.clientSecret;
@@ -149,7 +151,7 @@ var overrideIfClientInQs = function (req, res, next) {
       }
       
       res.locals.account.appName   = client.name && client.name.trim !== '' ? client.name : 'Your App';
-      res.locals.account.namespace = client.tenant + '.auth0.com';
+      res.locals.account.namespace = nconf.get('DOMAIN_URL_SERVER').replace('{tenant}', client.tenant);
       res.locals.account.clientId  = client.clientID;
 
       next();
@@ -177,9 +179,9 @@ docsapp.addPreRender(overrideIfClientInQs);
 docsapp.addPreRender(appendTicket);
 docsapp.addPreRender(function(req,res,next){
   if(process.env.NODE_ENV === 'production') {
-    res.locals.uiURL = 'https://app.auth0.com';
+    res.locals.uiURL = 'https://' + nconf.get('DOMAIN_URL_APP');
   } else {
-    res.locals.uiURL = 'http://localhost:8989';
+    res.locals.uiURL = 'http://' + nconf.get('DOMAIN_URL_APP');
   }
   next();
 });
