@@ -29,6 +29,7 @@
         "title": "Advanced topics",
         "items": [
           { "title": "Normalized Profile", "url":"/user-profile"},
+          { "title": "Login Widget", "url":"/login-widget"},
           { "title": "API Reference", "url":"/api-reference"},
           { "title": "Protocols", "url":"/protocols"},
           { "title": "Identity Providers", "url": "/identityproviders" }

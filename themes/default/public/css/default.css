@@ -236,6 +236,8 @@ section ul, section ol {
 
 section ul li {
   list-style-type: square;
+  padding-left: 4px;
+  margin-top: 4px;
 }
 
 /* copy from bootstrap - applied without class attribute */
