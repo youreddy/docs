@@ -6,13 +6,14 @@
   "dependencies": {
     "markdocs": "~0.4.1",
     "winston": "~0.6.2",
-    "mongodb": "~1.1.7",
     "connect-mongodb": "~1.1.5",
     "nconf": "~0.6.4",
     "express": "~3.0.0rc4",
     "passport": "~0.1.12",
     "jade": "~0.27.7",
-    "winston-email": "0.0.6"
+    "winston-email": "0.0.6",
+    "mongo-getdb": "0.0.2",
+    "mongodb": "~1.2.14"
   },
   "main": "app.js",
   "scripts": {
