@@ -27,10 +27,9 @@ var getDb = require('./lib/data'),
   MongoStore = require('connect-mongodb'),
   connectionData = require('./lib/data/connection-data'),
   sessionStore = new MongoStore({
-    db: getDb.createConnector(),
-    username: connectionData.user,
-    password: connectionData.password,
-    collection: 'sessions'
+      url:            nconf.get('db'),
+      collection:      'sessions',
+      auto_reconnect: true
   });
 
 require('./lib/setupLogger');
