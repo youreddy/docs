@@ -13,7 +13,7 @@
     "winston-email": "0.0.6",
     "mongodb": "~1.2.14",
     "xtend": "~2.0.3",
-    "mongo-getdb": "0.0.5",
+    "mongo-getdb": "0.0.6",
     "connect-mongo": "~0.3.2"
   },
   "main": "app.js",
