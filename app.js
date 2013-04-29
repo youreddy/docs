@@ -23,7 +23,7 @@ nconf
 var connections = require('./lib/connections');
 
 var getDb = require('./lib/data');
-var sessionStore = require('./lib/SessionStore');
+var sessionStore = require('./lib/sessionStore');
 
 require('./lib/setupLogger');
 var winston = require('winston');
