@@ -1,9 +1,8 @@
-var markdocs = require('markdocs'),
-  nconf = require('nconf'),
-  path = require('path'),
-  express = require('express'),
-  passport = require('passport');
-
+var markdocs = require('markdocs');
+var nconf    = require('nconf');
+var path     = require('path');
+var express  = require('express');
+var passport = require('passport');
 
 var app = express();
 
@@ -23,14 +22,8 @@ nconf
 
 var connections = require('./lib/connections');
 
-var getDb = require('./lib/data'),
-  MongoStore = require('connect-mongodb'),
-  connectionData = require('./lib/data/connection-data'),
-  sessionStore = new MongoStore({
-      url:            nconf.get('db'),
-      collection:      'sessions',
-      auto_reconnect: true
-  });
+var getDb = require('./lib/data');
+var sessionStore = require('./lib/SessionStore');
 
 require('./lib/setupLogger');
 var winston = require('winston');
