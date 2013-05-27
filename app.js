@@ -17,7 +17,8 @@ nconf
     'COOKIE_SCOPE':      process.env.NODE_ENV === 'production' ? '.auth0.com' : null,
     'DOMAIN_URL_SERVER': '{tenant}.auth0.com:3000',
     'DOMAIN_URL_APP':    'localhost:8989',
-    'DOMAIN_URL_SDK':    'localhost:3000'
+    'DOMAIN_URL_SDK':    'localhost:3000',
+    'DOMAIN_URL_DOCS':   'http://localhost:5000' 
   });
 
 var connections = require('./lib/connections');
@@ -44,7 +45,7 @@ app.configure('production', function(){
   if(!nconf.get('dontForceHttps')){
     this.use(function(req, res, next){
       if(req.headers['x-forwarded-proto'] !== 'https')
-        return res.redirect(nconf.get('baseUrl') + req.url);
+        return res.redirect(nconf.get('DOMAIN_URL_DOCS') + req.url);
       next();
     });
   }
@@ -88,6 +89,19 @@ var defaultValues = function (req, res, next) {
   res.locals.account.clientId     = 'YOUR_CLIENT_ID';
   res.locals.account.clientSecret = 'YOUR_CLIENT_SECRET';
   res.locals.account.callback     = 'YOUR_CALLBACK';
+
+  next();
+};
+
+var embedded = function (req, res, next) {
+  if (req.query.e === '1') {
+    res.locals.meta.layout = 'doc.embedded';
+    res.locals.base_url = nconf.get('DOMAIN_URL_DOCS');
+  }
+
+  if (req.query.callback) {
+    res.locals.jsonp = true;
+  }
 
   next();
 };
@@ -166,6 +180,7 @@ var appendTicket = function (req, res, next) {
 };
 
 var docsapp = new markdocs.App(__dirname, '', app);
+docsapp.addPreRender(embedded);
 docsapp.addPreRender(defaultValues);
 docsapp.addPreRender(overrideIfAuthenticated);
 docsapp.addPreRender(overrideIfClientInQs);
