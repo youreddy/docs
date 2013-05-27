@@ -94,9 +94,9 @@ var defaultValues = function (req, res, next) {
 };
 
 var embedded = function (req, res, next) {
-  if (req.query.e === '1') {
-    res.locals.meta.layout = 'doc.embedded';
+  if (req.query.e || req.query.callback) {
     res.locals.base_url = nconf.get('DOMAIN_URL_DOCS');
+    res.locals.embedded = true;
   }
 
   if (req.query.callback) {
@@ -180,11 +180,12 @@ var appendTicket = function (req, res, next) {
 };
 
 var docsapp = new markdocs.App(__dirname, '', app);
-docsapp.addPreRender(embedded);
+docsapp.addPreRender(function(req, res, next) { console.log(res.locals); next();});
 docsapp.addPreRender(defaultValues);
 docsapp.addPreRender(overrideIfAuthenticated);
 docsapp.addPreRender(overrideIfClientInQs);
 docsapp.addPreRender(appendTicket);
+docsapp.addPreRender(embedded);
 docsapp.addPreRender(function(req,res,next){
   if(process.env.NODE_ENV === 'production') {
     res.locals.uiURL  = 'https://' + nconf.get('DOMAIN_URL_APP');
