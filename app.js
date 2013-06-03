@@ -2,6 +2,8 @@ var markdocs = require('markdocs');
 var nconf    = require('nconf');
 var path     = require('path');
 var express  = require('express');
+var http     = require('http');
+var https    = require('https');
 var passport = require('passport');
 
 var app = express();
@@ -18,7 +20,7 @@ nconf
     'DOMAIN_URL_SERVER': '{tenant}.auth0.com:3000',
     'DOMAIN_URL_APP':    'localhost:8989',
     'DOMAIN_URL_SDK':    'localhost:3000',
-    'DOMAIN_URL_DOCS':   'http://localhost:5000' 
+    'DOMAIN_URL_DOCS':   'https://localhost:5000' 
   });
 
 var connections = require('./lib/connections');
@@ -198,9 +200,27 @@ docsapp.addPreRender(function(req,res,next){
 });
 
 if (!module.parent) {
+  var server;
+  if (process.env.NODE_ENV === 'production') {
+    server = http.createServer(app);
+  } else {
+    var options = {
+      key:  fs.readFileSync('./localhost.key'),
+      cert: fs.readFileSync('./localhost.pem')
+    };
+
+    server = https.createServer(options, app)
+                  .on('error', function (err) {
+                    if(err.errno === 'EADDRINUSE'){
+                      console.log('error when running http server on port ', port, '\n', err.message);
+                      process.exit(1);
+                    }
+                  });
+  }
+
   var port = process.env.PORT || 5000;
-  app.listen(port);
-  console.log('Server listening on http://localhost:' + port);
+  server.listen(port);
+  console.log('Server listening on https://localhost:'  + port);
 } else {
   module.exports = docsapp;
 }
