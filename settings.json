@@ -22,7 +22,8 @@
           { "title": "WCF", "url": "/wcf-tutorial" },
           { "title": "WinRT", "url": "/win8-tutorial" },
           { "title": "Windows Phone", "url": "/windowsphone-tutorial" },
-          { "title": "Ruby on Rails", "url": "/rails-tutorial" }
+          { "title": "Ruby on Rails", "url": "/rails-tutorial" },
+          { "title": "Database Connection", "url": "/mysql-connection-tutorial" }
         ]
       },
       {
