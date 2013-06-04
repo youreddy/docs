@@ -90,7 +90,7 @@ var defaultValues = function (req, res, next) {
   res.locals.account.namespace    = 'YOUR_NAMESPACE';
   res.locals.account.clientId     = 'YOUR_CLIENT_ID';
   res.locals.account.clientSecret = 'YOUR_CLIENT_SECRET';
-  res.locals.account.callback     = 'YOUR_CALLBACK';
+  res.locals.account.callback     = 'http://YOUR_APP/callback';
 
   next();
 };
