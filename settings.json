@@ -34,7 +34,8 @@
           { "title": "Login Widget", "url":"/login-widget"},
           { "title": "API Reference", "url":"/api-reference"},
           { "title": "Protocols", "url":"/protocols"},
-          { "title": "Identity Providers", "url": "/identityproviders" }
+          { "title": "Identity Providers", "url": "/identityproviders" },
+          { "title": "Link Accounts", "url": "/link-accounts" }
         ]
       }
     ],
