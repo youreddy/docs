@@ -16,7 +16,6 @@
           { "title": "iOS", "url": "/ios-tutorial" },
           { "title": "Android", "url": "/android-tutorial" },
           { "title": "ASP.NET", "url": "/aspnet-tutorial" },
-          { "title": "ASP.NET MVC4", "url": "/mvc-tutorial" },
           { "title": "Web API & SPA", "url": "/webapi" },
           { "title": "Windows Azure", "url": "/azure-tutorial" },
           { "title": "ServiceStack", "url": "/servicestack-tutorial" },
