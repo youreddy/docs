@@ -1,0 +1,14 @@
+html
+  head
+  body
+    #root(style='width: 400px; margin: 40px auto; height: 400px; background-color: pink;')
+      | embeded area
+    script#auth0(src=auth0_sdk_route)
+    script
+      if (window.Auth0) {
+        window.Auth0.ready(function(){
+          window.Auth0.signIn({ onestep: true, theme: 'static', standalone: true });
+        });
+      } else {
+        document.getElementById('root').innerHTML = 'Cannot load the widget at the moment, try again later';
+      }

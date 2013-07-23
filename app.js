@@ -20,7 +20,8 @@ nconf
     'DOMAIN_URL_SERVER': '{tenant}.auth0.com:3000',
     'DOMAIN_URL_APP':    'localhost:8989',
     'DOMAIN_URL_SDK':    'localhost:3000',
-    'DOMAIN_URL_DOCS':   'https://localhost:5000' 
+    'DOMAIN_URL_DOCS':   'https://localhost:5000',
+    'WIDGET_FALLBACK_CLIENTID': 'aCbTAJNi5HbsjPJtRpSP6BIoLPOrSj2C'
   });
 
 var connections = require('./lib/connections');
@@ -198,6 +199,9 @@ docsapp.addPreRender(function(req,res,next){
   }
   next();
 });
+
+docsapp.addPreRender(require('./sdk/middleware'));
+require('./sdk/demos-routes')(app);
 
 if (!module.parent) {
   var server;

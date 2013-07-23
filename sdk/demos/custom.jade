@@ -1,0 +1,32 @@
+html
+  head
+  body
+    style(type='text/css')
+      li {
+        padding: 10px;
+      }
+    
+    ul#my-list
+
+    script#auth0(src=auth0_sdk_route)
+
+    script(src='//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js')
+    script
+      if (window.Auth0) {
+        window.Auth0.ready(function(){
+          var client = window.Auth0.getClient();
+          for (var i in client.strategies) {
+            for (var j in client.strategies[i].connections) {
+              var connection = client.strategies[i].connections[j];
+
+              var link = $('<a>')
+                              .text(connection.name)
+                              .attr('href', connection.url);
+
+              $('#my-list').append($('<li>').append(link));
+            }
+          }
+        });
+      } else {
+        document.getElementById('root').innerHTML = 'Cannot load the widget at the moment, try again later';
+      }

@@ -14,7 +14,8 @@
     "mongodb": "~1.2.14",
     "xtend": "~2.0.3",
     "mongo-getdb": "0.0.6",
-    "connect-mongo": "https://github.com/jfromaniello/connect-mongo/tarball/master"
+    "connect-mongo": "https://github.com/jfromaniello/connect-mongo/tarball/master",
+    "ejs": "~0.8.4"
   },
   "main": "app.js",
   "scripts": {

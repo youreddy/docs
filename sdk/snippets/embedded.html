@@ -1,0 +1,9 @@
+<div id="root" style="width: 400px; margin: 40px auto; height: 400px; background-color: pink;">
+    embeded area
+</div>
+<script id="auth0" src="<%= auth0_sdk_route %>&container=root"></script>
+<script>
+  window.Auth0.ready(function(){
+    window.Auth0.signIn({ onestep: true, theme: 'static', standalone: true });
+  });
+</script>

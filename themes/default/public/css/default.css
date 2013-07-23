@@ -589,3 +589,63 @@ h2.step-finished img {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
+
+.browser {
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  margin: 10px 0 0 0;
+}
+
+.browser iframe {
+  border-radius: 0 0 5px 5px; 
+  border: 0;
+  width: 100%;
+  height: 500px;
+  display: block;
+}
+
+.browser-toolbar {
+  border-bottom: 1px solid #ddd;
+  padding: 6px;
+}
+
+.browser-icons {
+  float: left;
+  padding: 7px 0 0 0;
+  margin-left: 4px;
+}
+
+.browser-icons i {
+  margin-right: 3px;
+}
+
+.browser-address {
+  background: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  margin-left: 60px;
+  padding: 4px;
+}
+.browser-address i {
+  margin-top: 2px;
+}
+
+.browser-content {
+  background: #ffffff;
+  border-radius: 0 0 5px 5px;
+}
+
+.edit-fiddle {
+  color: #0088cc;
+  border: none;
+  font-family: 'Open Sans', Helvetica,Arial,sans-serif;
+  padding-left: 35px;
+  background: url(http://jsfiddle.net/img/embeddable/logo.png) 5% 40% no-repeat;
+  margin-right: 15px;
+  font-size: 13px;
+}
+
+.edit-fiddle:hover {
+  color: #005580;
+  text-decoration: underline;
+}

@@ -1,0 +1,9 @@
+html
+  head
+  body
+    button(onclick='window.Auth0.signIn({onestep: true})') Login
+    script#auth0(src=auth0_sdk_route)
+    script
+      window.Auth0.ready(function(){
+        window.Auth0.signIn({onestep: true});
+      });

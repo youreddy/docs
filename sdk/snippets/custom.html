@@ -1,0 +1,21 @@
+<ul id="my-list"></ul>
+
+<script id="auth0" src="<%= auth0_sdk_route %>"></script>
+<script src="http://code.jquery.com/jquery.js"></script>
+<script>
+  
+  window.Auth0.ready(function(){
+    var client = window.Auth0.getClient();
+    for (var i in client.strategies) {
+      for (var j in client.strategies[i].connections) {
+        var connection = client.strategies[i].connections[j];
+
+        var link = $('<a>')
+                        .text(connection.name)
+                        .attr('href', connection.url);
+
+        $('#my-list').append($('<li>').append(link));
+      }
+    }
+  });
+</script>

@@ -1,0 +1,64 @@
+p There are different ways of integrating Auth0 in your site. Below, some of them with a preview and a code snippet to copy paste.
+
+select#widget-chooser
+  option(value="login") Login Widget 
+  option(value="embedded") Embedded Widget 
+  option(value="link") Link 
+  option(value="custom") Custom
+
+p Preview
+.browser
+  .browser-toolbar
+    .browser-icons
+      a(href="javascript:history.back()", target="widget-demo")
+        i.icon-arrow-left
+      a(href="javascript:history.forward()", target="widget-demo")
+        i.icon-arrow-right
+      a(href="javascript:document.getElementById('widget-demo').contentWindow.location.reload(true);")
+        i.icon-refresh
+    .browser-address
+      i.icon-lock
+  .browser-content
+    iframe#widget-demo(src='')
+
+mixin fiddletize(snippet)
+  div
+    | Want to play around with this snippet?   
+    form(action='http://jsfiddle.net/api/post/library/pure/', method='post', target="_blank", style="display: inline;")
+      input(type="hidden", name="html", value=snippet)
+      input.edit-fiddle(type="submit", value="Edit in JsFiddle")
+
+div#widget-login.widget-tut(style="display:none")
+  pre
+    code #{include_snippet('login')}
+  mixin fiddletize(include_snippet('login'))
+
+div#widget-embedded.widget-tut(style="display:none")
+  pre
+    code #{include_snippet('embedded')}
+  mixin fiddletize(include_snippet('embedded'))
+
+div#widget-link.widget-tut(style="display:none")
+  pre
+    code #{include_snippet('link')}
+  mixin fiddletize(include_snippet('link'))
+
+div#widget-custom.widget-tut(style="display:none")
+  pre
+    code #{include_snippet('custom')}
+  mixin fiddletize(include_snippet('custom'))
+
+p For more information about the login widget check the documentation 
+  a(href="/login-widget") here
+  | .
+
+script
+  $('#widget-chooser').change(function (e) {
+    var method = $(this).val();
+    $('.widget-tut').hide();
+    $('#widget-'+method).show();
+    $('#widget-demo').attr('src', '#{DOMAIN_URL_DOCS}/widget-demos/' + method + ('#{account.clientId}' !== 'YOUR_CLIENT_ID' ? '?a=#{account.clientId}' : ''));
+  });
+
+  $('#widget-chooser').val($('#widget-chooser option:first').attr('value'));
+  $('#widget-chooser').change();
