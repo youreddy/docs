@@ -11,6 +11,10 @@ html(lang="en")
     link(rel="shortcut icon", href="/img/logo-small.png")
     link(href="/css/bootstrap.css", rel="stylesheet")
     link(href="/css/default.css", rel="stylesheet")
+    
+    //- link(href='//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css', rel='stylesheet')
+    link(href='//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css', rel='stylesheet')
+
     link(href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800", rel="stylesheet", type='text/css')
     link(rel='stylesheet', type='text/css', href='/css/prettify.css')
 
@@ -79,3 +83,14 @@ html(lang="en")
       var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
     })();
 
+  script
+    var sectionIndex = 1;
+    $('h3').each(function(){
+      $(this)
+        .attr('id', sectionIndex)
+        .prepend('<a class="anchor" href="#' + sectionIndex + '"><i class="icon-link"></i></a>');
+      sectionIndex++;
+    });
+    if(window.location.hash) {
+      window.location.hash = window.location.hash;
+    }

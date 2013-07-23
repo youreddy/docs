@@ -649,3 +649,18 @@ h2.step-finished img {
   color: #005580;
   text-decoration: underline;
 }
+
+a.anchor {
+  margin-right: 5px;
+  visibility: hidden;
+  text-decoration: none;
+}
+
+h3 {
+  left: -20px;
+  position: relative;
+}
+
+h3:hover a.anchor{
+  visibility: visible;
+}
