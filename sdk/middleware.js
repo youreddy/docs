@@ -16,7 +16,7 @@ var widget_script_url = require('./widget_script_url');
 
 var tmpl     = jade.compile(fs.readFileSync(tmplPath).toString(), {
   filename: tmplPath,
-  pretty: process.env.NODE_ENV !== "production"
+  pretty: true
 });
 
 function include_snippet (locals) {
