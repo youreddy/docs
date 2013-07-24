@@ -52,6 +52,10 @@ html(lang="en")
                   - else
                       li 
                         a(href=furl(l2.url))= l2.title
+        .fixit 
+          | Found a typo? 
+          i.icon-github-alt
+          a(href='#', target='_blank') Fix it :)
       section
         block content
     footer
@@ -91,6 +95,10 @@ html(lang="en")
         .prepend('<a class="anchor" href="#' + sectionIndex + '"><i class="icon-link"></i></a>');
       sectionIndex++;
     });
+
     if(window.location.hash) {
       window.location.hash = window.location.hash;
     }
+
+    $('.fixit a').attr('href', 'https://github.com/auth0/docs/tree/master/docs' + window.location.pathname + '.md');
+    
