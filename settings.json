@@ -31,6 +31,7 @@
         "items": [
           { "title": "Normalized Profile", "url":"/user-profile"},
           { "title": "Login Widget", "url":"/login-widget"},
+          { "title": "Rules", "url":"/rules"},
           { "title": "API Reference", "url":"/api-reference"},
           { "title": "Protocols", "url":"/protocols"},
           { "title": "Identity Providers", "url": "/identityproviders" },
