@@ -85,7 +85,7 @@ html(lang="en")
 
   script
     var sectionIndex = 1;
-    $('h3').each(function(){
+    $('h2,h3,h4').each(function(){
       $(this)
         .attr('id', sectionIndex)
         .prepend('<a class="anchor" href="#' + sectionIndex + '"><i class="icon-link"></i></a>');
