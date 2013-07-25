@@ -35,6 +35,7 @@
           { "title": "API Reference", "url":"/api-reference"},
           { "title": "Protocols", "url":"/protocols"},
           { "title": "Identity Providers", "url": "/identityproviders" },
+          { "title": "SAML", "url":"/saml-configuration"},
           { "title": "Link Accounts", "url": "/link-accounts" }
         ]
       }
