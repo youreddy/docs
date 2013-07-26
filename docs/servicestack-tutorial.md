@@ -84,7 +84,7 @@ Open your `web.config` file and change the three Auth0's parameters under `<appS
 <add key="oauth.auth0.OAuthServerUrl" value="https://@@account.namespace@@" />
 ```
 
-> These values can be obtained from the [Settings section](@@uiURL@@/#/Settings) on Auth0's Dashboard.
+> These values can be obtained from the [Settings section](@@uiURL@@/#/applications/@@account.clientId@@/integrate) on Auth0's Dashboard.
 
 ###5. Add backend code to test the app
 
@@ -179,7 +179,7 @@ Add this snippet at the end of the `content` div:
 
 ###7. Setup the callback URL in Auth0
 
-Did you keep your [settings](@@uiURL@@/#/Settings) page open? Make sure the __callback address__ in Auth0 is configured with the app's callback URL. For ServiceStack this would be:
+Did you keep your [settings](@@uiURL@@/#/applications/@@account.clientId@@/integrate) page open? Make sure the __callback address__ in Auth0 is configured with the app's callback URL. For ServiceStack this would be:
 
 	http://{your-app}/api/auth/auth0/
 

@@ -25,7 +25,7 @@ Someone using a browser hits a protected resource in your web app (a page that r
 
 > A note on `state`. This is an optional parameter, but we __strongly__ recommend you use it as it mitigates [CSRF attacks](http://en.wikipedia.org/wiki/Cross-site_request_forgery).
 
-The `redirect_uri` __must__ match what is defined in your [settings](@@uiURL@@/#/settings) page. `http://localhost` is a valid address and Auth0 allows you to enter many addresses simultaneously.
+The `redirect_uri` __must__ match what is defined in your [settings](@@uiURL@@/#/applications/@@account.clientId@@/integrate) page. `http://localhost` is a valid address and Auth0 allows you to enter many addresses simultaneously.
 
 > Optionally, you can specify a `scope` parameter. The only supported values today are: `openid` and `openid profile`. If you do add a `scope` parameter (with the supported values), Auth0 will return a [JsonWebToken](jwt) in addition to the `access_token` in step #3 (below). 
 
@@ -82,7 +82,7 @@ The client requests authorization to Auth0 endpoint:
 
 	https://@@account.namespace@@/authorize/?client_id=@@account.clientId@@&response_type=token&redirect_uri=@@account.callback@@&state=OPAQUE_VALUE&connection=YOUR_CONNECTION
 
-The `redirect_uri` __must__ match one of the addresses defined in your [settings](@@uiURL@@/#/settings) page. 
+The `redirect_uri` __must__ match one of the addresses defined in your [settings](@@uiURL@@/#/applications/@@account.clientId@@/integrate) page. 
 
 > Optionally, you can specify a `scope` parameter. The only supported values today are: `openid` and `openid profile`. If you do add a `scope` parameter (with the supported values), Auth0 will return a [JsonWebToken](jwt) in addition to the `access_token` in step #3 (below).
 

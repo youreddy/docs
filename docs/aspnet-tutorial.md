@@ -16,7 +16,7 @@ Install-Package Auth0-ASPNET
 
 ### 2. Setting up the callback URL in Auth0
 
-Run your web application and go to [Auth0 Settings](@@uiURL@@/#/settings) and make sure to set the callback URL to your application URL:
+Run your web application and go to the [integrate section](@@uiURL@@/#/applications/@@account.clientId@@/integrate) of Auth0 and make sure to set the callback URL to your application URL:
 
 ```
 http://localhost:port/LoginCallback.ashx

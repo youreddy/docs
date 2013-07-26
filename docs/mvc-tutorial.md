@@ -41,7 +41,7 @@ Open the AuthConfig.cs file (under `App_Start` folder), and look for the ```Regi
 
 ###3. Setup the callback URL in Auth0
 
-Go to [Settings](@@uiURL@@/#/settings) and make sure to set the callback URL to this:
+Go to [Settings](@@uiURL@@/#/applications/@@account.clientId@@/integrate) and make sure to set the callback URL to this:
 
 ```
 http://localhost:port/Account/ExternalLoginCallback
