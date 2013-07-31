@@ -29,21 +29,25 @@ mixin fiddletize(snippet)
       input.edit-fiddle(type="submit", value="Edit in JsFiddle")
 
 div#widget-login.widget-tut(style="display:none")
+  .snippet-header Copy this HTML/JS code on your website...
   pre
     code #{include_snippet('login')}
   mixin fiddletize(include_snippet('login'))
 
 div#widget-embedded.widget-tut(style="display:none")
+  .snippet-header Copy this HTML/JS code on your website...
   pre
     code #{include_snippet('embedded')}
   mixin fiddletize(include_snippet('embedded'))
 
 div#widget-link.widget-tut(style="display:none")
+  .snippet-header Copy this HTML/JS code on your website...
   pre
     code #{include_snippet('link')}
   mixin fiddletize(include_snippet('link'))
 
 div#widget-custom.widget-tut(style="display:none")
+  .snippet-header Copy this HTML/JS code on your website...
   pre
     code #{include_snippet('custom')}
   mixin fiddletize(include_snippet('custom'))
