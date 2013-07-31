@@ -684,7 +684,7 @@ h4:hover a.anchor{
   font-size: 14px;
 }
 
-#widget-login .snippet-header {
+.widget-tut .snippet-header {
   background-color: #8A8A8A;
   padding: 7px;
   color: white;
@@ -694,7 +694,7 @@ h4:hover a.anchor{
   margin-top: 5px;
 }
 
-#widget-login pre {
+.widget-tut pre {
   border-top-left-radius: 0;
   border-top-right-radius: 0;
 }

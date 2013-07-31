@@ -6,7 +6,7 @@ select#widget-chooser
   option(value="link") Link 
   option(value="custom") Custom
 
-p Preview
+p This is how it will look on a browser...
 .browser
   .browser-toolbar
     .browser-icons
@@ -55,6 +55,12 @@ div#widget-custom.widget-tut(style="display:none")
 p For more information about the login widget check the documentation 
   a(href="/login-widget") here
   | .
+
+blockquote
+  p Building a Single Page Application? Consider adding 
+    code response_type=token&scope=openid
+    |  parameter to the script url or the login link. This is a hint for Auth0 to send the response back as a redirect to your site passing the tokens after the hash sign 
+    code https://yoursite#access_token=...&id_token=...
 
 script
   $('#widget-chooser').change(function (e) {
