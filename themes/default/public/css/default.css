@@ -698,3 +698,7 @@ h4:hover a.anchor{
   border-top-left-radius: 0;
   border-top-right-radius: 0;
 }
+
+#widget-chooser {
+  width: 400px;
+}

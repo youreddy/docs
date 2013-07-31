@@ -1,10 +1,12 @@
 p There are different ways of integrating Auth0 in your site. Below, some of them with a preview and a code snippet to copy paste.
 
+
 select#widget-chooser
-  option(value="login") Login Widget 
-  option(value="embedded") Embedded Widget 
-  option(value="link") Link 
-  option(value="custom") Custom
+  option(value="login") Login Widget - Popup
+  option(value="embedded") Login Widget - Inside a DIV
+  option(value="link") Login Widget - Hosted in a URL
+  option(value="logincss") Login Widget - Customized with CSS  [paid plans only]
+  option(value="custom") JavaSricpt API [paid plans only]
 
 p This is how it will look on a browser...
 .browser
@@ -51,6 +53,12 @@ div#widget-custom.widget-tut(style="display:none")
   pre
     code #{include_snippet('custom')}
   mixin fiddletize(include_snippet('custom'))
+div#widget-logincss.widget-tut(style="display:none")
+  .snippet-header Copy this HTML/JS code on your website...
+  pre
+    code #{include_snippet('logincss')}
+  mixin fiddletize(include_snippet('logincss'))
+
 
 p For more information about the login widget check the documentation 
   a(href="/login-widget") here

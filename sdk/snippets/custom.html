@@ -1,21 +1,39 @@
-<ul id="my-list"></ul>
+<button class="signin-google">Sign in with Google</button><br>
+<button class="signin-facebook">Sign in with Facebook</button><br>
+<button class="signin-waad">Sign in with Windows Azure AD</button><br>
+<button class="signin-etc">Sign in with ...</button><br><p>--- or ---</p>
+<label>User</label><input type="text" id="username"><br>
+<label>Password</label><input type="password" id="password"><br>
+<button class="signin-db">Sign in with Username/Password</button>
 
-<script id="auth0" src="<%= auth0_sdk_route %>"></script>
+<script id="auth0" src="<%= auth0_sdk_route %>&mode=headless"></script>
 <script src="http://code.jquery.com/jquery.js"></script>
 <script>
   
   window.Auth0.ready(function(){
-    var client = window.Auth0.getClient();
-    for (var i in client.strategies) {
-      for (var j in client.strategies[i].connections) {
-        var connection = client.strategies[i].connections[j];
+    $('.signin-google').on('click', function() {
+      window.Auth0.signIn({connection: 'google-oauth2'}); 
+    });
 
-        var link = $('<a>')
-                        .text(connection.name)
-                        .attr('href', connection.url);
+    $('.signin-facebook').on('click', function() {
+      window.Auth0.signIn({connection: 'facebook'}); 
+    });
 
-        $('#my-list').append($('<li>').append(link));
-      }
-    }
+    $('.signin-waad').on('click', function() {
+      window.Auth0.signIn({connection: 'tenant.onmicrosoft.com'}); 
+    });
+
+    $('.signin-etc').on('click', function() {
+      window.Auth0.signIn({connection: 'connection-name'}); 
+    });
+
+    $('.signin-db').on('click', function() {
+      window.Auth0.signIn({connection: 'foo', username: 'bar', password: 'foobar', 
+        error: function(status) { 
+          // invalid user/password
+        }
+      });
+    });
   });
+
 </script>

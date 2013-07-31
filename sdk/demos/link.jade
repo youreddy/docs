@@ -1,4 +1,5 @@
 html
   head
   body
-    a(href=tenant_domain + "/login?client=" + clientID) Sign In with Auth0
+    p Sign In by redirecting to this link: 
+      a(href=tenant_domain + "/login?client=" + clientID)= tenant_domain + "/login?client=" + clientID

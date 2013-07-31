@@ -8,24 +8,43 @@ html
     
     ul#my-list
 
-    script#auth0(src=auth0_sdk_route)
-
+    button.signin-google Sign in with Google
+    br
+    button.signin-facebook Sign in with Facebook
+    br
+    button.signin-waad Sign in with Windows Azure AD
+    br
+    button.signin-etc Sign in with ...
+    br
+    p --- or ---
+    label User
+    input(type="text", id="username")
+    br
+    label Password
+    input(type="password", id="password")
+    br
+    button.signin-db Sign in with Username/Password
+  
+    script#auth0(src=auth0_sdk_route + "&mode=headless")
     script(src='//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js')
     script
       if (window.Auth0) {
         window.Auth0.ready(function(){
-          var client = window.Auth0.getClient();
-          for (var i in client.strategies) {
-            for (var j in client.strategies[i].connections) {
-              var connection = client.strategies[i].connections[j];
-
-              var link = $('<a>')
-                              .text(connection.name)
-                              .attr('href', connection.url);
-
-              $('#my-list').append($('<li>').append(link));
-            }
-          }
+          $('.signin-google').on('click', function() {
+            alert('this would cause a redirect to google triggered by window.Auth0.signIn({connection: "google-oauth2"}); ')
+          });
+          $('.signin-facebook').on('click', function() {
+            alert('this would cause a redirect to facebook triggered by window.Auth0.signIn({connection: "facebook"}); ')
+          });
+          $('.signin-waad').on('click', function() {
+            alert('this would cause a redirect to facebook triggered by window.Auth0.signIn({connection: "tenant.onmicrosoft.com"}); ')
+          });
+          $('.signin-etc').on('click', function() {
+            alert('you probably get the point, window.Auth0.signIn({connection: "WHATEVER"}); triggers the login')
+          });
+          $('.signin-db').on('click', function() {
+            alert('this would cause a user/password validation with a db connection and is triggered by window.Auth0.signIn({connection: "foo", username: "bar", password: "foobar", ...}); ')
+          });
         });
       } else {
         document.getElementById('root').innerHTML = 'Cannot load the widget at the moment, try again later';

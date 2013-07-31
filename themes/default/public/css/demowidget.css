@@ -1,0 +1,148 @@
+/* This CSS will render the widget below */
+/* ------------------ GENERAL --------------- */
+
+.popup {
+  font-family: 'HelveticaNeue','Segoe UI', sans-serif;
+}
+/* login widget width and centered position  */
+.popup .overlay .onestep {
+  width: 660px;
+  margin: 0 0 0 -330px; /* half of width */
+}
+
+/* reset margin for login widget */
+.signin .popup .panel form {
+  margin: 0;
+}
+
+/* widget background color and border  */
+.popup .panel {
+  /*background: rgb(205, 227, 245); */
+  -moz-border-radius: 0;
+  -webkit-border-radius: 0;
+  border-radius: 0;
+}
+
+/* widget input textboxes flat style */
+.popup .panel input {
+  -moz-border-radius: 0;
+  -webkit-border-radius: 0;
+  border-radius: 0;
+}
+
+/* no radius for buttons */
+.popup .panel .zocial {
+  -moz-border-radius: 0;
+  -webkit-border-radius: 0;
+  border-radius: 0;
+}
+
+/* widget primary buttons (signin, next) */
+.popup .panel .zocial.primary {
+  background-color: #4d90fe;
+}
+
+/* ------------- END GENERAL --------------- */
+
+/* ------------------ HEADER --------------- */
+
+/* login widget header background */
+.popup .panel header {
+  /*background: rgb(205, 227, 245);*/
+}
+
+/* login widget header shadow effect */
+.popup .panel header:after {
+  /*display: none;*/
+}
+
+/* login widget header shadow effect */
+.popup .panel header:before {
+  /*display: none;*/
+}
+
+/* -------------- END HEADER --------------- */
+
+
+/* --------------- EMAIL/PASSWORD --------------- */
+
+/* login widget email/password section */
+.popup .panel .emailPassword {
+  /* float left is used when you want to show email on the left and social on the right */
+  float: left;
+  width: 300px;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  margin-left: 30px;
+  /* the line that separates email and social */
+  border-right: 1px solid rgb(164, 168, 159);
+  padding-right: 29px;
+}
+
+/* sign in button spinner */
+.popup .panel .emailPassword .action .spinner {
+  background-color: #4d90fe;
+}
+
+/* --------------- END EMAIL/PASSWORD ------------ */
+
+/* --------------- SOCIAL ICONS --------------- */
+
+.popup .panel .iconList {
+  float: right;
+  width: 300;
+}
+
+.popup .panel .iconList p {
+  display: block !important;
+  margin: 1em 0;
+  font-size: 13px;
+  color: rgb(109, 109, 109);
+  text-shadow: 0 1px 0 white;
+}
+
+/* sign in facebook button */
+.popup .panel .zocial.facebook {
+  background-color: #fbfbfb;
+  color: #050505;
+  text-shadow: 0 0 0;
+}
+
+.popup .panel .zocial.twitter {
+  background-color: #fbfbfb;
+  color: #050505;
+  text-shadow: 0 0 0;
+}
+
+.popup .panel .zocial.googleplus {
+  background-color: #fbfbfb;
+  color: #050505;
+  text-shadow: 0 0 0;
+}
+
+.popup .panel .zocial.windows {
+  background-color: #fbfbfb;
+  color: #050505;
+  text-shadow: 0 0 0;
+}
+.popup .panel .zocial.github {
+  background-color: #fbfbfb;
+  color: #050505;
+  text-shadow: 0 0 0;
+}
+
+/* --------------- END SOCIAL ICONS --------------- */
+
+/* --------------- DEFAULT SEPARATOR (---or---) ------------- */
+
+/* separator line and text */
+.popup .panel .separator {
+  display: none;
+}
+
+/* separator "or" color */
+.popup .panel .separator span {
+  background: rgb(209, 240, 238);
+}
+
+/* ---------- END DEFAULT SEPARATOR (---or---) ------------- */
