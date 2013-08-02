@@ -226,6 +226,11 @@ footer .right {
   min-height: 400px;
 }
 
+.container.nosidebar {
+  width: auto;
+  padding: 20px;
+}
+
 .container > .nosidebar {
   margin-left: 0;
 }
