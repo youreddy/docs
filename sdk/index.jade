@@ -1,12 +1,21 @@
 p There are different ways of integrating Auth0 in your site. Below, some of them with a preview and a code snippet to copy paste.
 
+if account.loggedIn
+  div 
+    label Select one of your applications:
+    select#client-chooser
+      each client in account.clients
+        option(value="#{client.clientID}") #{client.name}
 
-select#widget-chooser
-  option(value="login") Login Widget - Popup
-  option(value="embedded") Login Widget - Inside a DIV
-  option(value="link") Login Widget - Hosted in a URL
-  option(value="logincss") Login Widget - Customized with CSS  [paid plans only]
-  option(value="custom") JavaSricpt API [paid plans only]
+div 
+  label Select the widget mode:
+  select#widget-chooser
+    option(value="login") Login Widget - Modal
+    option(value="embedded") Login Widget - Inside a DIV
+    option(value="link") Login Widget - URL
+    option(value="logincss") Login Widget - Customized with CSS  [paid plans only]
+    option(value="custom") JavaSricpt API [paid plans only]
+
 
 p This is how it will look on a browser...
 .browser
@@ -76,6 +85,10 @@ script
     $('.widget-tut').hide();
     $('#widget-'+method).show();
     $('#widget-demo').attr('src', '#{DOMAIN_URL_DOCS}/widget-demos/' + method + ('#{account.clientId}' !== 'YOUR_CLIENT_ID' ? '?a=#{account.clientId}' : ''));
+  });
+
+  $('#client-chooser').change(function (e) {
+    $('#widget-demo').attr('src', '#{DOMAIN_URL_DOCS}/widget-demos/' + $('#widget-chooser').val() + '?a=' + $(this).val());
   });
 
   $('#widget-chooser').val($('#widget-chooser option:first').attr('value'));

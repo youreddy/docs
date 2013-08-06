@@ -115,7 +115,7 @@ var overrideIfAuthenticated = function (req, res, next) {
   if (!req.user || !req.user.tenant)
     return next();
 
-  var queryDoc = {tenant: req.user.tenant};
+  var queryDoc = {tenant: req.user.tenant, global: false};
 
   if(req.session.selectedClient){
     queryDoc.clientID = req.session.selectedClient;
@@ -123,17 +123,20 @@ var overrideIfAuthenticated = function (req, res, next) {
 
   getDb(function(db){
 
-    db.collection('clients').findOne(queryDoc, function(err, client){
+    db.collection('clients').find(queryDoc).toArray(function(err, clients){
       if(err) {
         winston.error("error: " + err);
         return next(err);
       }
       
-      if (!client) return next();
+      if (clients.length === 0) return next();
+
+      res.locals.account.loggedIn = true;
+      res.locals.account.clients = clients;
+      var client = clients[0];
       
       winston.debug('client found');
       res.locals.account.appName = client.name && client.name.trim !== '' ? client.name : 'Your App';
-      console.log(res.locals.account.appName);
       res.locals.account.userName = req.user.name;
       res.locals.account.namespace = nconf.get('DOMAIN_URL_SERVER').replace('{tenant}', client.tenant);
       res.locals.account.tenant = client.tenant;

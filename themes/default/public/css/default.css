@@ -226,6 +226,11 @@ footer .right {
   min-height: 400px;
 }
 
+.container.nosidebar {
+  width: auto;
+  padding: 20px;
+}
+
 .container > .nosidebar {
   margin-left: 0;
 }
@@ -640,7 +645,7 @@ h2.step-finished img {
   border: none;
   font-family: 'Open Sans', Helvetica,Arial,sans-serif;
   padding-left: 35px;
-  background: url(http://jsfiddle.net/img/embeddable/logo.png) 5% 40% no-repeat;
+  background: url("/img/logo-fiddle.png") 5% 40% no-repeat;
   margin-right: 15px;
   font-size: 13px;
 }

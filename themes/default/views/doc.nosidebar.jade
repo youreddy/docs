@@ -9,8 +9,11 @@ html(lang="en")
 
     <style>html, body { background-color: #E8EBEF; }</style>
 
+    link(rel="shortcut icon", href="/img/logo-small.png")
     link(href="/css/bootstrap.css", rel="stylesheet")
     link(href="/css/default.css", rel="stylesheet")
+    link(href='//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css', rel='stylesheet')
+    
     link(href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800", rel="stylesheet", type='text/css')
     link(rel='stylesheet', type='text/css', href='/css/prettify.css')
     
@@ -19,11 +22,7 @@ html(lang="en")
     <![endif]-->
 
   body
-    .header
-      .header-container
-          h1= account.appName
-
-    .container
+    .container.nosidebar
       section.nosidebar
         != sections.content
     footer
@@ -52,3 +51,12 @@ html(lang="en")
       ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
       var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
     })();
+
+  script
+    var sectionIndex = 1;
+    $('h2,h3,h4').each(function(){
+      $(this)
+        .attr('id', sectionIndex)
+        .prepend('<a class="anchor" href="#' + sectionIndex + '"><i class="icon-link"></i></a>');
+      sectionIndex++;
+    });
