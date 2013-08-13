@@ -127,7 +127,7 @@ var overrideIfAuthenticated = function (req, res, next) {
       if(err) {
         winston.error("error: " + err);
         return next(err);
-      }
+        return next(err);callback      }
       
       if (clients.length === 0) return next();
 
@@ -163,9 +163,11 @@ var overrideIfClientInQs = function (req, res, next) {
         return res.send(404, 'client not found');
       }
       
-      res.locals.account.appName   = client.name && client.name.trim !== '' ? client.name : 'Your App';
-      res.locals.account.namespace = nconf.get('DOMAIN_URL_SERVER').replace('{tenant}', client.tenant);
-      res.locals.account.clientId  = client.clientID;
+      res.locals.account.appName      = client.name && client.name.trim !== '' ? client.name : 'Your App';
+      res.locals.account.namespace    = nconf.get('DOMAIN_URL_SERVER').replace('{tenant}', client.tenant);
+      res.locals.account.clientId     = client.clientID;
+      res.locals.account.clientSecret = client.clientSecret;
+      res.locals.account.callback     = client.callback;
 
       next();
     });
