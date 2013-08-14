@@ -45,13 +45,15 @@ passport.deserializeUser(function(id, done) {
 
 //force https
 app.configure('production', function(){
-  if(!nconf.get('dontForceHttps')){
-    this.use(function(req, res, next){
-      if(req.headers['x-forwarded-proto'] !== 'https')
-        return res.redirect(nconf.get('DOMAIN_URL_DOCS') + req.url);
-      next();
-    });
-  }
+  
+  this.use(function(req, res, next){
+    if (nconf.get('dontForceHttps') || req.originalUrl === '/test') return next();
+
+    if(req.headers['x-forwarded-proto'] !== 'https')
+      return res.redirect(nconf.get('DOMAIN_URL_DOCS') + req.url);
+    
+    next();
+  });
 });
 
 app.configure(function(){
