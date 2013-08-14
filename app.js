@@ -57,6 +57,9 @@ app.configure('production', function(){
 app.configure(function(){
   this.set("view engine", "jade");
   this.use(express.logger('dev'));
+  this.use('/test', function (req, res) {
+    return res.json(200, process.memoryUsage());
+  });
   this.use(express.cookieParser());
   console.log('setting session mongo');
   this.use(express.session({ secret: nconf.get("sessionSecret"), store: sessionStore, key: "auth0l", cookie: {
