@@ -62,14 +62,17 @@ app.configure(function(){
   this.use('/test', function (req, res) {
     return res.json(200, process.memoryUsage());
   });
+
   this.use(express.cookieParser());
-  console.log('setting session mongo');
+
   this.use(express.session({ secret: nconf.get("sessionSecret"), store: sessionStore, key: "auth0l", cookie: {
-    domain: nconf.get('COOKIE_SCOPE'),
-    path: '/',
+    domain:   nconf.get('COOKIE_SCOPE'),
+    path:     '/',
     httpOnly: true,
-    maxAge: null
+    maxAge:   null,
+    secure:   !nconf.get('dontForceHttps') && nconf.get('NODE_ENV') === 'production'
   }}));
+
   this.use(express.favicon());
   this.use(express.logger('dev'));
   this.use(express.bodyParser());
