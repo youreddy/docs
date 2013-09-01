@@ -28,7 +28,6 @@ function include_snippet (locals) {
 }
 
 module.exports = function (req, res, next)  {
-  
   if (process.env.NODE_ENV !== "production") {
     tmpl = jade.compile(fs.readFileSync(tmplPath).toString(), {
       filename: tmplPath,

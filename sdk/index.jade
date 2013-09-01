@@ -12,7 +12,7 @@ div
   select#widget-chooser
     option(value="login") Login Widget - Modal
     option(value="embedded") Login Widget - Inside a DIV
-    option(value="link") Login Widget - URL
+    option(value="redirect") Login Link
     option(value="logincss") Login Widget - Customized with CSS  [paid plans only]
     option(value="custom") JavaSricpt API [paid plans only]
 
@@ -51,6 +51,8 @@ div#widget-embedded.widget-tut(style="display:none")
     code #{include_snippet('embedded')}
   mixin fiddletize(include_snippet('embedded'))
 
+div#widget-redirect.widget-tut(style="display:none")
+
 div#widget-link.widget-tut(style="display:none")
   .snippet-header Copy this HTML/JS code on your website...
   pre
@@ -74,8 +76,8 @@ p For more information about the login widget check the documentation
   | .
 
 blockquote
-  p Building a Single Page Application? Consider adding 
-    code response_type=token&scope=openid
+  p Building a JavaScript / Single Page Application? Consider adding 
+    code response_type=token
     |  parameter to the script url or the login link. This is a hint for Auth0 to send the response back as a redirect to your site passing the tokens after the hash sign 
     code https://yoursite#access_token=...&id_token=...
 

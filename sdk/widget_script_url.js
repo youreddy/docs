@@ -25,7 +25,7 @@ exports.get = function (clientID, done) {
           sdk_url = 'https://' + DOMAIN_URL_SDK + '/auth0.js#client=' + clientID + '&cdn=' + tenant_domain + '&assets=' + tenant_domain;
         }
 
-        done(null, sdk_url, tenant_domain);
+        done(null, sdk_url, tenant_domain, client);
 
       });
     });

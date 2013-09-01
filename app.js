@@ -20,7 +20,7 @@ nconf
     'DOMAIN_URL_SERVER': '{tenant}.auth0.com:3000',
     'DOMAIN_URL_APP':    'localhost:8989',
     'DOMAIN_URL_SDK':    'localhost:3000',
-    'DOMAIN_URL_DOCS':   'https://localhost:5000',
+    'DOMAIN_URL_DOCS':   'https://localhost:5001',
     'WIDGET_FALLBACK_CLIENTID': 'aCbTAJNi5HbsjPJtRpSP6BIoLPOrSj2C'
   });
 
@@ -235,7 +235,7 @@ if (!module.parent) {
                   });
   }
 
-  var port = process.env.PORT || 5000;
+  var port = process.env.PORT || 5001;
   server.listen(port);
   console.log('Server listening on https://localhost:'  + port);
 } else {
