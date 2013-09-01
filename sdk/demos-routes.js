@@ -20,6 +20,8 @@ module.exports = function (app) {
 
         getDb(function (db) {
           db.collection('connections').find({client_id: client.clientID, status: true}).toArray(function(err, connections) {
+            if (err) return res.send(err);
+            
             res.locals.connections = connections;
             next();
           });

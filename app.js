@@ -105,6 +105,7 @@ var defaultValues = function (req, res, next) {
 };
 
 var embedded = function (req, res, next) {
+  res.locals.embedded = false;
   if (req.query.e || req.query.callback) {
     res.locals.base_url = nconf.get('DOMAIN_URL_DOCS');
     res.locals.embedded = true;
@@ -135,7 +136,7 @@ var overrideIfAuthenticated = function (req, res, next) {
       if(err) {
         winston.error("error: " + err);
         return next(err);
-        return next(err);callback      }
+      }
       
       if (clients.length === 0) return next();
 
