@@ -216,7 +216,9 @@ docsapp.addPreRender(function(req,res,next){
 });
 
 docsapp.addPreRender(require('./sdk/middleware'));
+docsapp.addPreRender(require('./sdk2/middleware'));
 require('./sdk/demos-routes')(app);
+require('./sdk2/demos-routes')(app);
 
 if (!module.parent) {
   var server;

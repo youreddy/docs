@@ -223,7 +223,7 @@ footer .right {
   margin-left: 190px;
   box-shadow: 0 0 1px 1px rgba(80, 84, 92, 0.1),0 1px 2px rgba(80, 84, 92, 0.5);
   padding: 20px 30px;
-  min-height: 800px;
+  min-height: 825px;
 }
 
 .container.nosidebar {
@@ -607,6 +607,10 @@ h2.step-finished img {
   width: 100%;
   height: 500px;
   display: block;
+}
+
+.browser .login-widget2 iframe {
+  height: 650px;
 }
 
 .browser-toolbar {

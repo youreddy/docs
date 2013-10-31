@@ -1,0 +1,13 @@
+<div id="root" style="width: 400px; margin: 40px auto; padding: 10px; background-color: pink;">
+    embeded area
+</div>
+<script src="<%= auth0_sdk_route %>"></script>
+<script>
+	var widget = new Auth0Widget({
+		domain:       '<%= account.namespace %>',
+		clientID:     '<%= account.clientId %>',
+		callbackURL:  '<%= account.callback %>'
+	});
+
+	widget.show({ container: 'root' });
+</script>

@@ -1,0 +1,49 @@
+html
+  head
+  body
+    style(type='text/css')
+      li {
+        padding: 10px;
+      }
+    
+    ul#my-list
+
+    button.signin-google Sign in with Google
+    br
+    button.signin-facebook Sign in with Facebook
+    br
+    button.signin-waad Sign in with Windows Azure AD
+    br
+    button.signin-etc Sign in with ...
+    br
+    p --- or ---
+    label User
+    input(type="text", id="username")
+    br
+    label Password
+    input(type="password", id="password")
+    br
+    button.signin-db Sign in with Username/Password
+  
+    script(src=auth0_sdk_route)
+    script(src='//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js')
+    script
+      if (window.Auth0Widget) {
+        $('.signin-google').on('click', function() {
+          alert('this would cause a redirect to google triggered by widget.getClient().login({connection: "google-oauth2"}); ')
+        });
+        $('.signin-facebook').on('click', function() {
+          alert('this would cause a redirect to facebook triggered by widget.getClient().login({connection: "facebook"}); ')
+        });
+        $('.signin-waad').on('click', function() {
+          alert('this would cause a redirect to facebook triggered by widget.getClient().login({connection: "tenant.onmicrosoft.com"}); ')
+        });
+        $('.signin-etc').on('click', function() {
+          alert('you probably get the point, widget.getClient().login({connection: "WHATEVER"}); triggers the login')
+        });
+        $('.signin-db').on('click', function() {
+          alert('this would cause a user/password validation with a db connection and is triggered by widget.getClient().login({connection: "foo", username: "bar", password: "foobar", ...}); ')
+        });
+      } else {
+        document.getElementById('root').innerHTML = 'Cannot load the widget at the moment, try again later.';
+      }

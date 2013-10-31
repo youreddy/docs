@@ -1,0 +1,47 @@
+<button class="signin-google">Sign in with Google</button><br>
+<button class="signin-facebook">Sign in with Facebook</button><br>
+<button class="signin-waad">Sign in with Windows Azure AD</button><br>
+<button class="signin-etc">Sign in with ...</button><br><p>--- or ---</p>
+<label>User</label><input type="text" id="username"><br>
+<label>Password</label><input type="password" id="password"><br>
+<button class="signin-db">Sign in with Username/Password</button>
+
+<script src="<%= auth0_sdk_route %>"></script>
+<script src="http://code.jquery.com/jquery.js"></script>
+<script>
+  var widget = new Auth0Widget({
+    domain:       '<%= account.namespace %>',
+    clientID:     '<%= account.clientId %>', 
+    callbackURL:  '<%= account.callback %>'
+  });
+
+  var client = widget.getClient();
+
+  $('.signin-google').on('click', function() {
+    client.login({connection: 'google-oauth2'}); 
+  });
+
+  $('.signin-facebook').on('click', function() {
+    client.login({connection: 'facebook'}); 
+  });
+
+  $('.signin-waad').on('click', function() {
+    client.login({connection: 'tenant.onmicrosoft.com'}); 
+  });
+
+  $('.signin-etc').on('click', function() {
+    client.login({connection: 'connection-name'}); 
+  });
+
+  $('.signin-db').on('click', function() {
+    client.login({
+      connection: 'foo', 
+      username: 'bar', 
+      password: 'foobar'
+    },
+    function (err) {
+      // invalid user/password
+    });
+  });
+
+</script>

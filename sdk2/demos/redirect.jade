@@ -1,0 +1,15 @@
+html
+  head
+  body
+    p Trigger sign in by redirecting to:
+    ul
+      - each conn in connections 
+        li connection=#{conn.name} (notice the connection param at the end)
+        a(href='#{tenant_domain}/authorize?response_type=code&scope=openid&client_id=#{clientID}&redirect_uri=#{callback}&connection=#{conn.name}')
+          pre.
+              #{tenant_domain}/authorize?
+              response_type=code
+              &scope=openid
+              &client_id=#{clientID}
+              &redirect_uri=#{callback}
+              &connection=#{conn.name}

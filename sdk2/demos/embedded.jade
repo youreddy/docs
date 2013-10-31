@@ -1,0 +1,17 @@
+html
+  head
+  body
+    #root(style='width: 400px; margin: 40px auto; padding: 10px; background-color: pink;')
+      | embeded area
+    script(src=auth0_sdk_route)
+    script
+      if (window.Auth0Widget) {
+        var widget = new Auth0Widget({
+          domain:       '!{namespace}',
+          clientID:     '!{clientID}',
+          callbackURL:  '!{callback}'
+        });
+        widget.show({ container: 'root' });
+      } else {
+        document.getElementById('root').innerHTML = 'Cannot load the widget at the moment, try again later.';
+      }
