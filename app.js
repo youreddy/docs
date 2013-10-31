@@ -20,6 +20,7 @@ nconf
     'DOMAIN_URL_SERVER': '{tenant}.auth0.com:3000',
     'DOMAIN_URL_APP':    'localhost:8989',
     'DOMAIN_URL_SDK':    'localhost:3000',
+    'DOMAIN_URL_SDK2':   'd19p4zemcycm7a.cloudfront.net/w2',
     'DOMAIN_URL_DOCS':   'https://localhost:5000',
     'WIDGET_FALLBACK_CLIENTID': 'aCbTAJNi5HbsjPJtRpSP6BIoLPOrSj2C'
   });
@@ -206,11 +207,13 @@ docsapp.addPreRender(appendTicket);
 docsapp.addPreRender(embedded);
 docsapp.addPreRender(function(req,res,next){
   if(process.env.NODE_ENV === 'production') {
-    res.locals.uiURL  = 'https://' + nconf.get('DOMAIN_URL_APP');
-    res.locals.sdkURL = 'https://' + nconf.get('DOMAIN_URL_SDK');
+    res.locals.uiURL   = 'https://' + nconf.get('DOMAIN_URL_APP');
+    res.locals.sdkURL  = 'https://' + nconf.get('DOMAIN_URL_SDK');
+    res.locals.sdk2URL = 'https://' + nconf.get('DOMAIN_URL_SDK2');
   } else {
-    res.locals.uiURL  = 'http://' + nconf.get('DOMAIN_URL_APP');
-    res.locals.sdkURL = 'http://' + nconf.get('DOMAIN_URL_SDK');
+    res.locals.uiURL   = 'http://' + nconf.get('DOMAIN_URL_APP');
+    res.locals.sdkURL  = 'http://' + nconf.get('DOMAIN_URL_SDK');
+    res.locals.sdk2URL = 'https://' + nconf.get('DOMAIN_URL_SDK2');
   }
   next();
 });
