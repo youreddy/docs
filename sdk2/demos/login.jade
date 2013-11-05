@@ -2,11 +2,12 @@ html
   head
   body
     button(onclick='widget.show()') Login
-    script(src=auth0_sdk_route)
+    script(src=auth0_sdk_route + '/auth0-widget.min.js')
     script
       var widget = new Auth0Widget({
         domain:       '!{namespace}',
         clientID:     '!{clientID}',
-        callbackURL:  '!{callback}'
+        callbackURL:  '!{callback}',
+        assetsUrl:    '!{auth0_sdk_assets}'
       });
       widget.show();

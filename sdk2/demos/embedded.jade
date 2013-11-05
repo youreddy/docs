@@ -3,13 +3,14 @@ html
   body
     #root(style='width: 400px; margin: 40px auto; padding: 10px; background-color: pink;')
       | embeded area
-    script(src=auth0_sdk_route)
+    script(src=auth0_sdk_route + '/auth0-widget.min.js')
     script
       if (window.Auth0Widget) {
         var widget = new Auth0Widget({
           domain:       '!{namespace}',
           clientID:     '!{clientID}',
-          callbackURL:  '!{callback}'
+          callbackURL:  '!{callback}',
+          assetsUrl:    '!{auth0_sdk_assets}'
         });
         widget.show({ container: 'root' });
       } else {

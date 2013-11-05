@@ -25,24 +25,24 @@ html
     br
     button.signin-db Sign in with Username/Password
   
-    script(src=auth0_sdk_route)
+    script(src=auth0_sdk_route + '/auth0.min.js')
     script(src='//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js')
     script
-      if (window.Auth0Widget) {
+      if (window.Auth0) {
         $('.signin-google').on('click', function() {
-          alert('this would cause a redirect to google triggered by widget.getClient().login({connection: "google-oauth2"}); ')
+          alert('this would cause a redirect to google triggered by auth0.login({connection: "google-oauth2"}); ')
         });
         $('.signin-facebook').on('click', function() {
-          alert('this would cause a redirect to facebook triggered by widget.getClient().login({connection: "facebook"}); ')
+          alert('this would cause a redirect to facebook triggered by auth0.login({connection: "facebook"}); ')
         });
         $('.signin-waad').on('click', function() {
-          alert('this would cause a redirect to facebook triggered by widget.getClient().login({connection: "tenant.onmicrosoft.com"}); ')
+          alert('this would cause a redirect to facebook triggered by auth0.login({connection: "tenant.onmicrosoft.com"}); ')
         });
         $('.signin-etc').on('click', function() {
-          alert('you probably get the point, widget.getClient().login({connection: "WHATEVER"}); triggers the login')
+          alert('you probably get the point, auth0.login({connection: "WHATEVER"}); triggers the login')
         });
         $('.signin-db').on('click', function() {
-          alert('this would cause a user/password validation with a db connection and is triggered by widget.getClient().login({connection: "foo", username: "bar", password: "foobar", ...}); ')
+          alert('this would cause a user/password validation with a db connection and is triggered by auth0.login({connection: "foo", username: "bar", password: "foobar", ...}); ')
         });
       } else {
         document.getElementById('root').innerHTML = 'Cannot load the widget at the moment, try again later.';
