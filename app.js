@@ -242,7 +242,7 @@ if (!module.parent) {
                   });
   }
 
-  var port = process.env.PORT || 5050;
+  var port = nconf.get('PORT') || 5050;
   server.listen(port);
   console.log('Server listening on https://localhost:'  + port);
 } else {
