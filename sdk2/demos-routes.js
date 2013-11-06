@@ -9,7 +9,7 @@ module.exports = function (app) {
   ['custom', 'embedded', 'link', 'login', 'redirect'].forEach(function (demo) {
     app.get('/widget2-demos/' + demo, function (req, res, next) {
 
-      widget_script_url.get(req.query.a || WIDGET_FALLBACK_CLIENTID, function (err, widgetUrl, assetsUrl, tenant_domain, namespace, client) {
+      widget_script_url.get(req.query.a || WIDGET_FALLBACK_CLIENTID, function (err, widgetUrl, assetsUrl, tenant_domain, namespace, client, auth0jsUrl) {
         if (err) return res.send(err);
 
         res.locals.widget_url       = widgetUrl;
@@ -19,6 +19,7 @@ module.exports = function (app) {
         res.locals.clientID         = client.clientID;
         res.locals.callback         = client.callback;
         res.locals.docs_route       = DOMAIN_URL_DOCS;
+        res.locals.auth0js_url      = auth0jsUrl;
 
         getDb(function (db) {
           db.collection('connections').find({client_id: client.clientID, status: true}).toArray(function(err, connections) {

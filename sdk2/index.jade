@@ -31,39 +31,7 @@ p This is how it will look on a browser...
   .browser-content(class="login-widget2")
     iframe#widget-demo(src='')
 
-mixin fiddletize(snippet)
-  div
-    | Want to play around with this snippet?   
-    form(action='http://jsfiddle.net/api/post/library/pure/', method='post', target="_blank", style="display: inline;")
-      input(type="hidden", name="html", value=snippet)
-      input.edit-fiddle(type="submit", value="Edit in JsFiddle")
-
-div#widget-login.widget-tut(style="display:none")
-  .snippet-header Copy this HTML/JS code on your website...
-  pre
-    code #{include_snippet('login')}
-  mixin fiddletize(include_snippet('login'))
-
-div#widget-embedded.widget-tut(style="display:none")
-  .snippet-header Copy this HTML/JS code on your website...
-  pre
-    code #{include_snippet('embedded')}
-  mixin fiddletize(include_snippet('embedded'))
-
-div#widget-redirect.widget-tut(style="display:none")
-
-div#widget-link.widget-tut(style="display:none")
-  .snippet-header Copy this HTML/JS code on your website...
-  pre
-    code #{include_snippet('link')}
-  mixin fiddletize(include_snippet('link'))
-
-div#widget-custom.widget-tut(style="display:none")
-  .snippet-header Copy this HTML/JS code on your website...
-  pre
-    code #{include_snippet('custom')}
-  mixin fiddletize(include_snippet('custom'))
-
+div#widget-snippet
 
 p For more information about the login widget check the GitHub page 
   a(href="https://github.com/auth0/auth0-widget.js", target="_new") here
@@ -72,13 +40,19 @@ p For more information about the login widget check the GitHub page
 script
   $('#widget-chooser').change(function (e) {
     var method = $(this).val();
-    $('.widget-tut').hide();
-    $('#widget-'+method).show();
-    $('#widget-demo').attr('src', '#{DOMAIN_URL_DOCS}/widget2-demos/' + method + ('#{account.clientId}' !== 'YOUR_CLIENT_ID' ? '?a=#{account.clientId}' : ''));
+    var clientId = $('#client-chooser').val();
+    $('#widget-demo').attr('src', '#{DOMAIN_URL_DOCS}/widget2-demos/' + method + (clientId !== 'YOUR_CLIENT_ID' ? '?a=' + clientId : ''));
+    $('#widget-snippet').load('#{DOMAIN_URL_DOCS}/widget2-snippets/' + method + (clientId !== 'YOUR_CLIENT_ID' ? '?a=' + clientId : ''), function() {
+      prettyPrint();
+    });
   });
 
   $('#client-chooser').change(function (e) {
-    $('#widget-demo').attr('src', '#{DOMAIN_URL_DOCS}/widget2-demos/' + $('#widget-chooser').val() + '?a=' + $(this).val());
+    var method = $('#widget-chooser').val();
+    $('#widget-demo').attr('src', '#{DOMAIN_URL_DOCS}/widget2-demos/' + method + '?a=' + $(this).val());
+    $('#widget-snippet').load('#{DOMAIN_URL_DOCS}/widget2-snippets/' + method + '?a=' + $(this).val(), function() {
+      prettyPrint();
+    });
   });
 
   $('#widget-chooser').val($('#widget-chooser option:first').attr('value'));
