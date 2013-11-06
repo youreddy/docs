@@ -3,7 +3,7 @@ html
   body
     #root(style='width: 400px; margin: 40px auto; padding: 10px; background-color: pink;')
       | embeded area
-    script(src=auth0_sdk_route + '/auth0-widget.min.js')
+    script(src=widget_url)
     script
       if (window.Auth0Widget) {
         var widget = new Auth0Widget({

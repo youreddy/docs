@@ -20,9 +20,9 @@ nconf
     'DOMAIN_URL_SERVER': '{tenant}.auth0.com:3000',
     'DOMAIN_URL_APP':    'localhost:8989',
     'DOMAIN_URL_SDK':    'localhost:3000',
-    'DOMAIN_URL_SDK2':   'd19p4zemcycm7a.cloudfront.net/w2',
-    'DOMAIN_URL_DOCS':   'https://localhost:5000',
-    'WIDGET_FALLBACK_CLIENTID': 'aCbTAJNi5HbsjPJtRpSP6BIoLPOrSj2C'
+    'DOMAIN_URL_DOCS':   'https://localhost:5050',
+    'WIDGET_FALLBACK_CLIENTID': 'aCbTAJNi5HbsjPJtRpSP6BIoLPOrSj2C',
+    'LOGIN_WIDGET_URL':  'https://d19p4zemcycm7a.cloudfront.net/w2/auth0-widget-1.0.0.min.js'
   });
 
 var connections = require('./lib/connections');
@@ -209,11 +209,11 @@ docsapp.addPreRender(function(req,res,next){
   if(process.env.NODE_ENV === 'production') {
     res.locals.uiURL   = 'https://' + nconf.get('DOMAIN_URL_APP');
     res.locals.sdkURL  = 'https://' + nconf.get('DOMAIN_URL_SDK');
-    res.locals.sdk2URL = 'https://' + nconf.get('DOMAIN_URL_SDK2');
+    res.locals.widget_url = nconf.get('LOGIN_WIDGET_URL');
   } else {
     res.locals.uiURL   = 'http://' + nconf.get('DOMAIN_URL_APP');
     res.locals.sdkURL  = 'http://' + nconf.get('DOMAIN_URL_SDK');
-    res.locals.sdk2URL = 'https://' + nconf.get('DOMAIN_URL_SDK2');
+    res.locals.widget_url = nconf.get('LOGIN_WIDGET_URL');
   }
   next();
 });
@@ -242,7 +242,7 @@ if (!module.parent) {
                   });
   }
 
-  var port = process.env.PORT || 5000;
+  var port = process.env.PORT || 5050;
   server.listen(port);
   console.log('Server listening on https://localhost:'  + port);
 } else {

@@ -2,7 +2,7 @@ html
   head
   body
     button(onclick='widget.show()') Login
-    script(src=auth0_sdk_route + '/auth0-widget.min.js')
+    script(src=widget_url)
     script
       var widget = new Auth0Widget({
         domain:       '!{namespace}',

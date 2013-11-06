@@ -9,10 +9,10 @@ module.exports = function (app) {
   ['custom', 'embedded', 'link', 'login', 'redirect'].forEach(function (demo) {
     app.get('/widget2-demos/' + demo, function (req, res, next) {
 
-      widget_script_url.get(req.query.a || WIDGET_FALLBACK_CLIENTID, function (err, url, assetsUrl, tenant_domain, namespace, client) {
+      widget_script_url.get(req.query.a || WIDGET_FALLBACK_CLIENTID, function (err, widgetUrl, assetsUrl, tenant_domain, namespace, client) {
         if (err) return res.send(err);
 
-        res.locals.auth0_sdk_route  = url;
+        res.locals.widget_url       = widgetUrl;
         res.locals.auth0_sdk_assets = assetsUrl;
         res.locals.tenant_domain    = tenant_domain;
         res.locals.namespace        = namespace;

@@ -37,7 +37,7 @@ module.exports = function (req, res, next)  {
 
   widget_script_url.get(res.locals.account.clientId, function (err, url) {
     var jadelocals = {};
-    jadelocals.auth0_sdk_route = url;
+    jadelocals.widget_url = url;
 
     Object.keys(res.locals).forEach(function (k) {
       jadelocals[k] = res.locals[k];
