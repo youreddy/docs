@@ -48,7 +48,7 @@ script
 
   $('#widget-chooser').change(function (e) {
     var method = $(this).val();
-    var clientId = $('#client-chooser').val();
+    var clientId = $('#client-chooser').val() || '';
     refresh(method, clientId);
   });
 
