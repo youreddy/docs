@@ -1,1 +1,1 @@
-Sign In by redirecting to this link: <a href="https://<%= account.namespace %>/login?client=<%= account.clientId %>&scope=openid">https://<%= account.namespace %>/login?client=<%= account.clientId %>&scope=openid</a>
+Sign In by redirecting to this link: <a href="https://<%= account.namespace %>/login?client=<%= account.clientId %>&response_type=<%= callbackOnHash ? 'token' : 'code' %>&scope=openid%20profile">https://<%= account.namespace %>/login?client=<%= account.clientId %>&response_type=<%= callbackOnHash ? 'token' : 'code' %>&scope=openid%20profile</a>

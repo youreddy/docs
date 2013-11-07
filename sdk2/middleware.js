@@ -19,7 +19,7 @@ module.exports = function (req, res, next)  {
   }
 
   widget_script_url.get(res.locals.account.clientId, function (err, url) {
-    var jadelocals = {};
+    var jadelocals = { callbackOnHashMode: false };
     jadelocals.widget_url = url;
 
     Object.keys(res.locals).forEach(function (k) {
@@ -29,6 +29,8 @@ module.exports = function (req, res, next)  {
     jadelocals.DOMAIN_URL_DOCS = nconf.get('DOMAIN_URL_DOCS');
 
     res.locals.sdk2 = tmpl(jadelocals);
+    res.locals.sdk2WithCallbackOnHash = tmpl(xtend(jadelocals, { callbackOnHashMode: true }));
+
     next();
   });
 };

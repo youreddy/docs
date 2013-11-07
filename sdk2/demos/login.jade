@@ -8,6 +8,7 @@ html
         domain:       '!{namespace}',
         clientID:     '!{clientID}',
         callbackURL:  '!{callback}',
-        assetsUrl:    '!{auth0_sdk_assets}'
+        assetsUrl:    '!{auth0_sdk_assets}',
+        callbackOnLocationHash: !{callbackOnHash}
       });
       widget.show();

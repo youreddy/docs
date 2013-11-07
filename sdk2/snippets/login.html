@@ -1,9 +1,14 @@
 <script src="<%= widget_url %>"></script>
 <script type="text/javascript">
-    var widget = new Auth0Widget({
-        domain:       '<%= account.namespace %>',
-        clientID:     '<%= account.clientId %>', 
-        callbackURL:  '<%= account.callback %>'
-    });
+<% if (callbackOnHash) { %>	var widget = new Auth0Widget({
+		domain:       		'<%= account.namespace %>',
+		clientID:     		'<%= account.clientId %>', 
+		callbackURL:  		'<%= account.callback %>',
+		callbackOnLocationHash: true
+	});<% } else { %>	var widget = new Auth0Widget({
+		domain:       	'<%= account.namespace %>',
+		clientID:     	'<%= account.clientId %>',
+		callbackURL:  	'<%= account.callback %>'
+	});<% } %>
 </script>
 <button onclick="widget.show()">Login</button>

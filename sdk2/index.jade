@@ -38,21 +38,24 @@ p For more information about the login widget check the GitHub page
   | .
 
 script
+  function refresh (method, clientId) {
+    $('#widget-demo').attr('src', '#{DOMAIN_URL_DOCS}/widget2-demos/' + method + '?' + (clientId !== 'YOUR_CLIENT_ID' ? '&a=' + clientId : '') + '&callbackOnHash=#{callbackOnHashMode}');
+
+    $('#widget-snippet').load('#{DOMAIN_URL_DOCS}/widget2-snippets/' + method + '?' + (clientId !== 'YOUR_CLIENT_ID' ? '&a=' + clientId : '') + '&callbackOnHash=#{callbackOnHashMode}', function() {
+      prettyPrint();
+    });
+  }
+
   $('#widget-chooser').change(function (e) {
     var method = $(this).val();
     var clientId = $('#client-chooser').val();
-    $('#widget-demo').attr('src', '#{DOMAIN_URL_DOCS}/widget2-demos/' + method + (clientId !== 'YOUR_CLIENT_ID' ? '?a=' + clientId : ''));
-    $('#widget-snippet').load('#{DOMAIN_URL_DOCS}/widget2-snippets/' + method + (clientId !== 'YOUR_CLIENT_ID' ? '?a=' + clientId : ''), function() {
-      prettyPrint();
-    });
+    refresh(method, clientId);
   });
 
   $('#client-chooser').change(function (e) {
     var method = $('#widget-chooser').val();
-    $('#widget-demo').attr('src', '#{DOMAIN_URL_DOCS}/widget2-demos/' + method + '?a=' + $(this).val());
-    $('#widget-snippet').load('#{DOMAIN_URL_DOCS}/widget2-snippets/' + method + '?a=' + $(this).val(), function() {
-      prettyPrint();
-    });
+    var clientId = $(this).val();
+    refresh(method, clientId);
   });
 
   $('#widget-chooser').val($('#widget-chooser option:first').attr('value'));

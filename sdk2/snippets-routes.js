@@ -28,8 +28,9 @@ module.exports = function (app) {
 
       widget_script_url.get(req.query.a || WIDGET_FALLBACK_CLIENTID, function (err, widgetUrl, assetsUrl, tenant_domain, namespace, client, auth0jsUrl) {
         var jadelocals = {
-          widget_url: widgetUrl,
-          auth0js_url: auth0jsUrl,
+          widget_url:     widgetUrl,
+          auth0js_url:    auth0jsUrl,
+          callbackOnHash: req.query.callbackOnHash === 'true',
           account: {
             namespace:  namespace,
             clientId:   client.clientID,

@@ -20,6 +20,7 @@ module.exports = function (app) {
         res.locals.callback         = client.callback;
         res.locals.docs_route       = DOMAIN_URL_DOCS;
         res.locals.auth0js_url      = auth0jsUrl;
+        res.locals.callbackOnHash   = req.query.callbackOnHash === 'true';
 
         getDb(function (db) {
           db.collection('connections').find({client_id: client.clientID, status: true}).toArray(function(err, connections) {

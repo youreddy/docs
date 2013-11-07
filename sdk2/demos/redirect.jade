@@ -5,11 +5,11 @@ html
     ul
       - each conn in connections 
         li connection=#{conn.name} (notice the connection param at the end)
-        a(href='#{tenant_domain}/authorize?response_type=code&scope=openid&client_id=#{clientID}&redirect_uri=#{callback}&connection=#{conn.name}')
+        a(href='#{tenant_domain}/authorize?response_type=#{callbackOnHash ? 'token' : 'code'}&scope=openid%20profile&client_id=#{clientID}&redirect_uri=#{callback}&connection=#{conn.name}')
           pre.
               #{tenant_domain}/authorize?
-              response_type=code
-              &scope=openid
+              response_type=#{callbackOnHash ? 'token' : 'code'}
+              &scope=openid%20profile
               &client_id=#{clientID}
               &redirect_uri=#{callback}
               &connection=#{conn.name}
