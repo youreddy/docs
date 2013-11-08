@@ -22,7 +22,7 @@ nconf
     'DOMAIN_URL_SDK':    'localhost:3000',
     'DOMAIN_URL_DOCS':   'https://localhost:5050',
     'WIDGET_FALLBACK_CLIENTID': 'aCbTAJNi5HbsjPJtRpSP6BIoLPOrSj2C',
-    'LOGIN_WIDGET_URL':  'https://d19p4zemcycm7a.cloudfront.net/w2/auth0-widget-1.2.0.min.js',
+    'LOGIN_WIDGET_URL':  'https://d19p4zemcycm7a.cloudfront.net/w2/auth0-widget-1.3.2.min.js',
     'AUTH0JS_URL':       'https://d19p4zemcycm7a.cloudfront.net/w2/auth0-1.0.0.min.js'
   });
 

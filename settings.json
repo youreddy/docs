@@ -37,6 +37,7 @@
         "title": "Advanced topics",
         "items": [
           { "title": "Normalized Profile", "url":"/user-profile"},
+          { "title": "Login Widget v2", "url":"/login-widget2"},
           { "title": "Login Widget", "url":"/login-widget"},
           { "title": "Logout", "url":"/logout"},
           { "title": "Rules", "url":"/rules"},
