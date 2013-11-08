@@ -47,13 +47,13 @@ passport.deserializeUser(function(id, done) {
 
 //force https
 app.configure('production', function(){
-  
+
   this.use(function(req, res, next){
     if (nconf.get('dontForceHttps') || req.originalUrl === '/test') return next();
 
     if(req.headers['x-forwarded-proto'] !== 'https')
       return res.redirect(nconf.get('DOMAIN_URL_DOCS') + req.url);
-    
+
     next();
   });
 });
@@ -122,7 +122,7 @@ var embedded = function (req, res, next) {
 
 var overrideIfAuthenticated = function (req, res, next) {
   winston.debug('user', req.user);
-  
+
   if (!req.user || !req.user.tenant)
     return next();
 
@@ -139,13 +139,13 @@ var overrideIfAuthenticated = function (req, res, next) {
         winston.error("error: " + err);
         return next(err);
       }
-      
+
       if (clients.length === 0) return next();
 
       res.locals.account.loggedIn = true;
       res.locals.account.clients = clients;
       var client = clients[0];
-      
+
       winston.debug('client found');
       res.locals.account.appName = client.name && client.name.trim !== '' ? client.name : 'Your App';
       res.locals.account.userName = req.user.name;
@@ -159,7 +159,12 @@ var overrideIfAuthenticated = function (req, res, next) {
   });
 };
 
-var overrideIfClientInQs = function (req, res, next) {
+var public_allowed_tutorials = ['/adldap-authentication'];
+
+var overrideIfClientInQsForPublicAllowedUrls = function (req, res, next) {
+  if (!~public_allowed_tutorials.indexOf(req.originalUrl)) {
+    return next();
+  }
   if (!req.query || !req.query.a)
     return next();
 
@@ -173,7 +178,42 @@ var overrideIfClientInQs = function (req, res, next) {
       if(!client) {
         return res.send(404, 'client not found');
       }
-      
+
+      res.locals.account.appName      = client.name && client.name.trim !== '' ? client.name : 'Your App';
+      res.locals.account.namespace    = nconf.get('DOMAIN_URL_SERVER').replace('{tenant}', client.tenant);
+      res.locals.account.tenant       = client.tenant;
+      res.locals.account.clientId     = client.clientID;
+      res.locals.account.clientSecret = client.clientSecret;
+      res.locals.account.callback     = client.callback;
+
+      next();
+    });
+  });
+};
+
+var overrideIfClientInQs = function (req, res, next) {
+  if (!req.query || !req.query.a)
+    return next();
+
+  if (!req.user || !req.user.tenant){
+    return next();
+  }
+
+  getDb(function(db){
+    var query = {
+      clientID: req.query.a,
+      tenant: req.user.tenant
+    };
+    db.collection('clients').findOne(query, function(err, client){
+      if(err) {
+        console.error("error: " + err);
+        return next(err);
+      }
+
+      if(!client) {
+        return res.send(404, 'client not found');
+      }
+
       res.locals.account.appName      = client.name && client.name.trim !== '' ? client.name : 'Your App';
       res.locals.account.namespace    = nconf.get('DOMAIN_URL_SERVER').replace('{tenant}', client.tenant);
       res.locals.account.tenant       = client.tenant;
@@ -204,6 +244,7 @@ docsapp.addPreRender(function(req, res, next) { console.log(res.locals); next();
 docsapp.addPreRender(defaultValues);
 docsapp.addPreRender(overrideIfAuthenticated);
 docsapp.addPreRender(overrideIfClientInQs);
+docsapp.addPreRender(overrideIfClientInQsForPublicAllowedUrls);
 docsapp.addPreRender(appendTicket);
 docsapp.addPreRender(embedded);
 docsapp.addPreRender(function(req,res,next){
