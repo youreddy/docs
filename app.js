@@ -65,6 +65,13 @@ app.configure(function(){
     return res.json(200, process.memoryUsage());
   });
 
+  this.use(function (req, res, next) {
+    res.set({
+      'Access-Control-Allow-Origin': (process.env.NODE_ENV === 'production' ? 'https' : 'http') + '://' + nconf.get('DOMAIN_URL_APP')
+    });
+    next();
+  });
+
   this.use(express.cookieParser());
 
   this.use(express.session({ secret: nconf.get("sessionSecret"), store: sessionStore, key: "auth0l", cookie: {
