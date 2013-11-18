@@ -10,11 +10,11 @@
         ]
       },
       {
-        "title": "Tutorials Web",
+        "title": "Web Apps",
+        "icon": "fa-desktop",
         "items": [
-          { "title": "Node", "url": "/nodejs-tutorial" },
-          { "title": "ASP.NET", "url": "/aspnet-tutorial" },
-          { "title": "Web API & SPA", "url": "/webapi" },
+          { "title": "Node.js", "url": "/nodejs-tutorial" },
+          { "title": "ASP.NET MVC", "url": "/aspnet-tutorial" },
           { "title": "Windows Azure", "url": "/azure-tutorial" },
           { "title": "ServiceStack", "url": "/servicestack-tutorial" },
           { "title": "WCF", "url": "/wcf-tutorial" },
@@ -22,7 +22,8 @@
         ]
       },
       {
-        "title": "Tutorials (Mobile/Native)",
+        "title": "Mobile/Native",
+        "icon": "fa-mobile",
         "items": [
           { "title": "iOS", "url": "/ios-tutorial" },
           { "title": "Android", "url": "/android-tutorial" },
@@ -31,6 +32,23 @@
           { "title": "Windows 8 (JS)", "url": "/win8-tutorial" },
           { "title": "Windows 8 (C#)", "url": "/win8-cs-tutorial" },
           { "title": "WPF / Winforms", "url": "/wpf-winforms-tutorial" }
+        ]
+      },
+      {
+        "title": "HTML5",
+        "items": [
+          { "title": "Single Page Apps", "url": "/singlepageapp-tutorial" },
+          { "title": "Ember.js", "url": "/ember-tutorial" },
+          { "title": "Angular.js", "url": "/angular-tutorial" }
+        ]
+      },
+      {
+        "title": "APIs",
+        "items": [
+          { "title": "ASP.NET Web API", "url": "/aspnetwebapi-tutorial" },
+          { "title": "Node.js API", "url": "/nodeapi-tutorial" },
+          { "title": "Ruby API", "url": "/rubyapi-tutorial" },
+          { "title": "PHP API", "url": "/phpapi-tutorial" }
         ]
       },
       {
