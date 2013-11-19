@@ -242,6 +242,7 @@ var appendTicket = function (req, res, next) {
     if (!connection) return res.send(404);
     res.locals.ticket = req.query.ticket;
     res.locals.connectionDomain = connection.options.tenant_domain;
+    res.locals.connectionName = connection.name;
     next();
   });
 };
