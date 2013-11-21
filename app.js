@@ -247,9 +247,12 @@ var appendTicket = function (req, res, next) {
   });
 };
 
+var includes = require('./includes/includes');
+includes.init(path.join(__dirname, '/docs/includes'));
+
 var docsapp = new markdocs.App(__dirname, '', app);
-docsapp.addPreRender(function(req, res, next) { console.log(res.locals); next();});
 docsapp.addPreRender(defaultValues);
+docsapp.addPreRender(includes.add);;
 docsapp.addPreRender(overrideIfAuthenticated);
 docsapp.addPreRender(overrideIfClientInQs);
 docsapp.addPreRender(overrideIfClientInQsForPublicAllowedUrls);

@@ -1,14 +1,26 @@
 <script src="<%= widget_url %>"></script>
 <script type="text/javascript">
-<% if (callbackOnHash) { %>	var widget = new Auth0Widget({
-		domain:       		'<%= account.namespace %>',
-		clientID:     		'<%= account.clientId %>', 
-		callbackURL:  		'<%= account.callback %>',
-		callbackOnLocationHash: true
-	});<% } else { %>	var widget = new Auth0Widget({
-		domain:       	'<%= account.namespace %>',
-		clientID:     	'<%= account.clientId %>',
-		callbackURL:  	'<%= account.callback %>'
-	});<% } %>
+<% if (callbackOnHash) { %>	
+  var widget = new Auth0Widget({
+        domain:           '<%= account.namespace %>',
+        clientID:         '<%= account.clientId %>', 
+        callbackURL:      '<%= account.callback %>',
+        callbackOnLocationHash: true
+  });<% } else { %>	
+  var widget = new Auth0Widget({
+    domain:         '<%= account.namespace %>',
+    clientID:       '<%= account.clientId %>',
+    callbackURL:    '<%= account.callback %>'
+  });<% } %>
+  <% if (callbackOnHash) { %> 
+  // authentication result comes back in `window.location.hash`
+  widget.parseHash(window.location.hash, function (profile, id_token, access_token, state) {
+    /* 
+      store the profile and id_token in a cookie or local storage
+        $.cookie('profile', profile);
+        $.cookie('id_token', id_token);
+    */
+  });
+  <% } %>
 </script>
-<button onclick="widget.show()">Login</button>
+<button onclick="widget.signin()">Login</button>

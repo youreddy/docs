@@ -59,7 +59,7 @@ html(lang="en")
                         a(href=furl(l2.url))= l2.title
         .fixit 
           | Found a typo? 
-          i.icon-github-alt
+          i(class="fa fa-github")
           a(href='#', target='_blank') Fix it :)
       section
         block content
@@ -97,7 +97,7 @@ html(lang="en")
     $('h2,h3,h4').each(function(){
       $(this)
         .attr('id', sectionIndex)
-        .prepend('<a class="anchor" href="#' + sectionIndex + '"><i class="icon-link"></i></a>');
+        .prepend('<a class="anchor" href="#' + sectionIndex + '"><i class="fa fa-link"></i></a>');
       sectionIndex++;
     });
 
