@@ -10,19 +10,19 @@
         ]
       },
       {
-        "title": "Tutorials Web",
+        "title": "Web Apps",
+        "icon": "fa-laptop",
         "items": [
-          { "title": "Node", "url": "/nodejs-tutorial" },
-          { "title": "ASP.NET", "url": "/aspnet-tutorial" },
-          { "title": "Web API & SPA", "url": "/webapi" },
+          { "title": "Node.js", "url": "/nodejs-tutorial" },
+          { "title": "ASP.NET MVC", "url": "/aspnet-tutorial" },
           { "title": "Windows Azure", "url": "/azure-tutorial" },
           { "title": "ServiceStack", "url": "/servicestack-tutorial" },
-          { "title": "WCF", "url": "/wcf-tutorial" },
           { "title": "Ruby on Rails", "url": "/rails-tutorial" }
         ]
       },
       {
-        "title": "Tutorials (Mobile/Native)",
+        "title": "Mobile/Native",
+        "icon": "fa-mobile",
         "items": [
           { "title": "iOS", "url": "/ios-tutorial" },
           { "title": "Android", "url": "/android-tutorial" },
@@ -34,7 +34,28 @@
         ]
       },
       {
-        "title": "Advanced topics",
+        "title": "HTML5",
+        "icon": "fa-html5",
+        "items": [
+          { "title": "Single Page Apps", "url": "/singlepageapp-tutorial" },
+          { "title": "Ember.js", "url": "/ember-tutorial" },
+          { "title": "Angular.js", "url": "/angular-tutorial" }
+        ]
+      },
+      {
+        "title": "APIs",
+        "icon": "fa-terminal",
+        "items": [
+          { "title": "ASP.NET Web API", "url": "/aspnetwebapi-tutorial" },
+          { "title": "Node.js API", "url": "/nodeapi-tutorial" },
+          { "title": "Ruby API", "url": "/rubyapi-tutorial" },
+          { "title": "PHP API", "url": "/phpapi-tutorial" },
+          { "title": ".NET WCF", "url": "/wcf-tutorial" }
+        ]
+      },
+      {
+        "title": "Help Topics",
+        "icon": "fa-question-circle",
         "items": [
           { "title": "Normalized Profile", "url":"/user-profile"},
           { "title": "Login Widget v2", "url":"/login-widget2"},

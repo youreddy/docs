@@ -13,7 +13,7 @@ html(lang="en")
     link(href="/css/default.css", rel="stylesheet")
     
     //- link(href='//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css', rel='stylesheet')
-    link(href='//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css', rel='stylesheet')
+    link(href='//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css', rel='stylesheet')
 
     link(href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800", rel="stylesheet", type='text/css')
     link(rel='stylesheet', type='text/css', href='/css/prettify.css')
@@ -42,7 +42,12 @@ html(lang="en")
           - for (var k1 in navigation)
             - var l1 = navigation[k1]
             li
-              span= l1.title
+              - if (l1.icon)
+                  span
+                    i(class='fa #{l1.icon}')
+                    | #{l1.title}
+              - else
+                  span= l1.title
               ul
                 - for (var k2 in l1.items)
                   - var l2 = l1.items[k2]
@@ -54,7 +59,7 @@ html(lang="en")
                         a(href=furl(l2.url))= l2.title
         .fixit 
           | Found a typo? 
-          i.icon-github-alt
+          i(class="fa fa-github")
           a(href='#', target='_blank') Fix it :)
       section
         block content
@@ -92,7 +97,7 @@ html(lang="en")
     $('h2,h3,h4').each(function(){
       $(this)
         .attr('id', sectionIndex)
-        .prepend('<a class="anchor" href="#' + sectionIndex + '"><i class="icon-link"></i></a>');
+        .prepend('<a class="anchor" href="#' + sectionIndex + '"><i class="fa fa-link"></i></a>');
       sectionIndex++;
     });
 
