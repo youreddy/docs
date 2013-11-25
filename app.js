@@ -5,6 +5,7 @@ var express  = require('express');
 var http     = require('http');
 var https    = require('https');
 var passport = require('passport');
+var fs = require('fs');
 
 var app = express();
 
@@ -19,12 +20,16 @@ nconf
     'COOKIE_SCOPE':      process.env.NODE_ENV === 'production' ? '.auth0.com' : null,
     'DOMAIN_URL_SERVER': '{tenant}.auth0.com:3000',
     'DOMAIN_URL_APP':    'localhost:8989',
-    'DOMAIN_URL_SDK':    'localhost:3000',
+    'DOMAIN_URL_SDK':    'login-dev.auth0.com:3000',
     'DOMAIN_URL_DOCS':   'https://localhost:5050',
     'WIDGET_FALLBACK_CLIENTID': 'aCbTAJNi5HbsjPJtRpSP6BIoLPOrSj2C',
     'LOGIN_WIDGET_URL':  'https://d19p4zemcycm7a.cloudfront.net/w2/auth0-widget-1.3.2.min.js',
     'AUTH0JS_URL':       'https://d19p4zemcycm7a.cloudfront.net/w2/auth0-1.0.0.min.js'
   });
+
+if (!nconf.get('LOGIN_WIDGET_URL')) {
+  nconf.set('LOGIN_WIDGET_URL', 'https://' + nconf.get('DOMAIN_URL_SDK') + '/w2/auth0-widget.min.js');
+}
 
 var connections = require('./lib/connections');
 
