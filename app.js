@@ -31,6 +31,10 @@ if (!nconf.get('LOGIN_WIDGET_URL')) {
   nconf.set('LOGIN_WIDGET_URL', 'https://' + nconf.get('DOMAIN_URL_SDK') + '/w2/auth0-widget.min.js');
 }
 
+if (!nconf.get('AUTH0JS_URL')) {
+  nconf.set('AUTH0JS_URL', 'https://' + nconf.get('DOMAIN_URL_SDK') + '/w2/auth0.min.js');
+}
+
 var connections = require('./lib/connections');
 
 var getDb = require('./lib/data');
