@@ -24,7 +24,8 @@ nconf
     'DOMAIN_URL_DOCS':   'https://localhost:5050',
     'WIDGET_FALLBACK_CLIENTID': 'aCbTAJNi5HbsjPJtRpSP6BIoLPOrSj2C',
     'LOGIN_WIDGET_URL':  'https://d19p4zemcycm7a.cloudfront.net/w2/auth0-widget-1.3.2.min.js',
-    'AUTH0JS_URL':       'https://d19p4zemcycm7a.cloudfront.net/w2/auth0-1.0.0.min.js'
+    'AUTH0JS_URL':       'https://d19p4zemcycm7a.cloudfront.net/w2/auth0-1.0.0.min.js',
+    'SENSITIVE_DATA_ENCRYPTION_KEY': '0123456789'
   });
 
 if (!nconf.get('LOGIN_WIDGET_URL')) {
@@ -36,6 +37,7 @@ if (!nconf.get('AUTH0JS_URL')) {
 }
 
 var connections = require('./lib/connections');
+var clients     = require('./lib/clients');
 
 var getDb = require('./lib/data');
 var sessionStore = require('./lib/sessionStore');
@@ -148,30 +150,27 @@ var overrideIfAuthenticated = function (req, res, next) {
     queryDoc.clientID = req.session.selectedClient;
   }
 
-  getDb(function(db){
+  clients.find(queryDoc, function (err, clients) {
+    if (err) {
+      winston.error("error: " + err);
+      return next(err);
+    }
 
-    db.collection('clients').find(queryDoc).toArray(function(err, clients){
-      if(err) {
-        winston.error("error: " + err);
-        return next(err);
-      }
+    if (clients.length === 0) return next();
 
-      if (clients.length === 0) return next();
+    res.locals.account.loggedIn = true;
+    res.locals.account.clients = clients;
+    var client = clients[0];
 
-      res.locals.account.loggedIn = true;
-      res.locals.account.clients = clients;
-      var client = clients[0];
-
-      winston.debug('client found');
-      res.locals.account.appName = client.name && client.name.trim !== '' ? client.name : 'Your App';
-      res.locals.account.userName = req.user.name;
-      res.locals.account.namespace = nconf.get('DOMAIN_URL_SERVER').replace('{tenant}', client.tenant);
-      res.locals.account.tenant = client.tenant;
-      res.locals.account.clientId = client.clientID;
-      res.locals.account.clientSecret = client.clientSecret;
-      res.locals.account.callback = client.callback;
-      next();
-    });
+    winston.debug('client found');
+    res.locals.account.appName = client.name && client.name.trim !== '' ? client.name : 'Your App';
+    res.locals.account.userName = req.user.name;
+    res.locals.account.namespace = nconf.get('DOMAIN_URL_SERVER').replace('{tenant}', client.tenant);
+    res.locals.account.tenant = client.tenant;
+    res.locals.account.clientId = client.clientID;
+    res.locals.account.clientSecret = client.clientSecret;
+    res.locals.account.callback = client.callback;
+    next();
   });
 };
 
@@ -181,64 +180,52 @@ var overrideIfClientInQsForPublicAllowedUrls = function (req, res, next) {
   if (!~public_allowed_tutorials.indexOf(req.originalUrl)) {
     return next();
   }
-  if (!req.query || !req.query.a)
-    return next();
 
-  getDb(function(db){
-    db.collection('clients').findOne({clientID: req.query.a}, function(err, client){
-      if(err) {
-        console.error("error: " + err);
-        return next(err);
-      }
+  if (!req.query || !req.query.a) return next();
 
-      if(!client) {
-        return res.send(404, 'client not found');
-      }
+  clients.findByClientId(req.query.a, { signingKey: 0 }, function (err, client) {
+    if (err) {
+      console.error("error: " + err);
+      return next(err);
+    }
 
-      res.locals.account.appName      = client.name && client.name.trim !== '' ? client.name : 'Your App';
-      res.locals.account.namespace    = nconf.get('DOMAIN_URL_SERVER').replace('{tenant}', client.tenant);
-      res.locals.account.tenant       = client.tenant;
-      res.locals.account.clientId     = client.clientID;
-      res.locals.account.clientSecret = client.clientSecret;
-      res.locals.account.callback     = client.callback;
+    if (!client) {
+      return res.send(404, 'client not found');
+    }
 
-      next();
-    });
+    res.locals.account.appName      = client.name && client.name.trim !== '' ? client.name : 'Your App';
+    res.locals.account.namespace    = nconf.get('DOMAIN_URL_SERVER').replace('{tenant}', client.tenant);
+    res.locals.account.tenant       = client.tenant;
+    res.locals.account.clientId     = client.clientID;
+    res.locals.account.clientSecret = client.clientSecret;
+    res.locals.account.callback     = client.callback;
+
+    next();
   });
 };
 
 var overrideIfClientInQs = function (req, res, next) {
-  if (!req.query || !req.query.a)
-    return next();
+  if (!req.query || !req.query.a) return next();
+  if (!req.user || !req.user.tenant) return next();
 
-  if (!req.user || !req.user.tenant){
-    return next();
-  }
+  clients.findByTenantAndClientId(req.user.tenant, req.query.a, function (err, client) {
+    if (err) {
+      console.error("error: " + err);
+      return next(err);
+    }
 
-  getDb(function(db){
-    var query = {
-      clientID: req.query.a,
-      tenant: req.user.tenant
-    };
-    db.collection('clients').findOne(query, function(err, client){
-      if(err) {
-        console.error("error: " + err);
-        return next(err);
-      }
+    if (!client) {
+      return res.send(404, 'client not found');
+    }
 
-      if(!client) {
-        return res.send(404, 'client not found');
-      }
+    res.locals.account.appName      = client.name && client.name.trim !== '' ? client.name : 'Your App';
+    res.locals.account.namespace    = nconf.get('DOMAIN_URL_SERVER').replace('{tenant}', client.tenant);
+    res.locals.account.tenant       = client.tenant;
+    res.locals.account.clientId     = client.clientID;
+    res.locals.account.clientSecret = client.clientSecret;
+    res.locals.account.callback     = client.callback;
 
-      res.locals.account.appName      = client.name && client.name.trim !== '' ? client.name : 'Your App';
-      res.locals.account.namespace    = nconf.get('DOMAIN_URL_SERVER').replace('{tenant}', client.tenant);
-      res.locals.account.tenant       = client.tenant;
-      res.locals.account.clientId     = client.clientID;
-      res.locals.account.clientSecret = client.clientSecret;
-      res.locals.account.callback     = client.callback;
-
-      next();
-    });
+    next();
   });
 };
 
