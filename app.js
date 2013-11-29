@@ -174,13 +174,15 @@ var overrideIfAuthenticated = function (req, res, next) {
   });
 };
 
-var public_allowed_tutorials = ['/adldap-authentication'];
+var public_allowed_tutorials = ['/adldap-authentication?','/adfs?'];
 
 var overrideIfClientInQsForPublicAllowedUrls = function (req, res, next) {
-  if (!~public_allowed_tutorials.indexOf(req.originalUrl)) {
-    return next();
-  }
+  
+  var allowed = public_allowed_tutorials.some(function (allowedUrl) {
+    return req.originalUrl.indexOf(allowedUrl) === 0;
+  });
 
+  if (!allowed) return next();
   if (!req.query || !req.query.a) return next();
 
   clients.findByClientId(req.query.a, { signingKey: 0 }, function (err, client) {
