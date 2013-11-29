@@ -25,7 +25,8 @@ nconf
     'WIDGET_FALLBACK_CLIENTID': 'aCbTAJNi5HbsjPJtRpSP6BIoLPOrSj2C',
     'LOGIN_WIDGET_URL':  'https://d19p4zemcycm7a.cloudfront.net/w2/auth0-widget-1.3.2.min.js',
     'AUTH0JS_URL':       'https://d19p4zemcycm7a.cloudfront.net/w2/auth0-1.0.0.min.js',
-    'SENSITIVE_DATA_ENCRYPTION_KEY': '0123456789'
+    'SENSITIVE_DATA_ENCRYPTION_KEY': '0123456789',
+    'PUBLIC_ALLOWED_TUTORIALS': '/adldap-authentication?,/adfs?',
   });
 
 if (!nconf.get('LOGIN_WIDGET_URL')) {
@@ -174,11 +175,9 @@ var overrideIfAuthenticated = function (req, res, next) {
   });
 };
 
-var public_allowed_tutorials = ['/adldap-authentication?','/adfs?'];
-
 var overrideIfClientInQsForPublicAllowedUrls = function (req, res, next) {
   
-  var allowed = public_allowed_tutorials.some(function (allowedUrl) {
+  var allowed = nconf.get('PUBLIC_ALLOWED_TUTORIALS').split(',').some(function (allowedUrl) {
     return req.originalUrl.indexOf(allowedUrl) === 0;
   });
 
