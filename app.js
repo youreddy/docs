@@ -73,7 +73,23 @@ app.configure(function(){
   this.set("view engine", "jade");
   this.use(express.logger('dev'));
   this.use('/test', function (req, res) {
-    return res.json(200, process.memoryUsage());
+    var ping_check = setTimeout(function () {
+      winston.error('cant connect to the database (/test mongo ping timedout)');
+      res.send(500, 'cann\'t connect to the database');
+      process.exit(1);
+    }, 5000);
+    getDb(function (db) {
+      db.command({ping: 1}, function (err) {
+        clearTimeout(ping_check);
+        if (err) {
+          winston.error('cant connect to the database (/test)');
+          res.send(500, 'cann\'t connect to the database');
+        }
+        var result = process.memoryUsage();
+        result['db status'] = 'ok';
+        return res.json(200, result);
+      });
+    });
   });
 
   this.use(function (req, res, next) {
@@ -179,7 +195,7 @@ var overrideIfAuthenticated = function (req, res, next) {
 };
 
 var overrideIfClientInQsForPublicAllowedUrls = function (req, res, next) {
-  
+
   var allowed = nconf.get('PUBLIC_ALLOWED_TUTORIALS').split(',').some(function (allowedUrl) {
     return req.originalUrl.indexOf(allowedUrl) === 0;
   });
