@@ -41,7 +41,6 @@ var connections = require('./lib/connections');
 var clients     = require('./lib/clients');
 
 var getDb = require('./lib/data');
-var sessionStore = require('./lib/sessionStore');
 
 require('./lib/setupLogger');
 var winston = require('winston');
@@ -86,13 +85,17 @@ app.configure(function(){
 
   this.use(express.cookieParser());
 
-  this.use(express.session({ secret: nconf.get("sessionSecret"), store: sessionStore, key: "auth0l", cookie: {
-    domain:   nconf.get('COOKIE_SCOPE'),
-    path:     '/',
-    httpOnly: true,
-    maxAge:   null,
-    secure:   !nconf.get('dontForceHttps') && nconf.get('NODE_ENV') === 'production'
-  }}));
+  this.use(express.session({
+    secret: nconf.get("sessionSecret"),
+    store: require('./lib/sessionStore'),
+    key: "auth0l", cookie: {
+      domain:   nconf.get('COOKIE_SCOPE'),
+      path:     '/',
+      httpOnly: true,
+      maxAge:   null,
+      secure:   !nconf.get('dontForceHttps') && nconf.get('NODE_ENV') === 'production'
+    }
+  }));
 
   this.use(express.favicon());
   this.use(express.logger('dev'));
