@@ -16,7 +16,8 @@
     "ejs": "~0.8.4",
     "connect": "~2.8.5",
     "yams": "0.0.2",
-    "mongo-getdb": "~1.0.1"
+    "mongo-getdb": "~1.0.1",
+    "async": "~0.2.9"
   },
   "main": "app.js",
   "scripts": {

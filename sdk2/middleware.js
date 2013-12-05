@@ -1,7 +1,7 @@
 var jade     = require('jade');
 var fs       = require('fs');
 var nconf    = require('nconf');
-
+var xtend = require('xtend');
 var tmplPath = __dirname + '/index.jade';
 var widget_script_url = require('./widget_script_url');
 
