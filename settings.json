@@ -57,9 +57,8 @@
         "title": "Help Topics",
         "icon": "fa-question-circle",
         "items": [
+          { "title": "Login Widget", "url":"/login-widget2"},
           { "title": "Normalized Profile", "url":"/user-profile"},
-          { "title": "Login Widget v2", "url":"/login-widget2"},
-          { "title": "Login Widget", "url":"/login-widget"},
           { "title": "Logout", "url":"/logout"},
           { "title": "Rules", "url":"/rules"},
           { "title": "Database Connections", "url": "/mysql-connection-tutorial" },
