@@ -1,7 +1,7 @@
 html
   head
   body
-    button(onclick='widget.show()') Login
+    button(onclick='widget.signin()') Login
     script(src=widget_url)
     script
       var widget = new Auth0Widget({
@@ -11,4 +11,4 @@ html
         assetsUrl:    '!{auth0_sdk_assets}',
         callbackOnLocationHash: !{callbackOnHash}
       });
-      widget.show();
+      widget.signin();
