@@ -29,6 +29,10 @@ nconf
     'PUBLIC_ALLOWED_TUTORIALS': '/adldap-auth?,/adldap-x?,/adfs?',
   });
 
+if (nconf.get('NEWRELIC_KEY')) {
+  require('newrelic');
+}
+
 if (!nconf.get('LOGIN_WIDGET_URL')) {
   nconf.set('LOGIN_WIDGET_URL', 'https://' + nconf.get('DOMAIN_URL_SDK') + '/w2/auth0-widget.min.js');
 }
