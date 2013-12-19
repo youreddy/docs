@@ -1,0 +1,20 @@
+#!/bin/sh
+
+#install all deps
+npm install --production
+
+#set the version number in the package json without a new commit.
+mv .git .git-back
+npm version $BUILD_NUMBER
+mv .git-back .git
+
+#remove ignore files
+find . -name ".npmignore" -o -name ".gitignore" -delete
+
+#create a tar.gz
+bn=${PWD##*/}
+tar -czf /tmp/auth0-docs-$BUILD_NUMBER.tgz --exclude=".git" --exclude="$bn/test" -C .. $bn/
+mv /tmp/auth0-docs-$BUILD_NUMBER.tgz ./auth0-docs-$BUILD_NUMBER.tgz
+
+#revert all changes
+git checkout .
