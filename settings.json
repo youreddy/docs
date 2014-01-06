@@ -18,6 +18,7 @@
           { "title": "ASP.NET Owin", "url": "/aspnet-owin-tutorial" },
           { "title": "Windows Azure", "url": "/azure-tutorial" },
           { "title": "ServiceStack", "url": "/servicestack-tutorial" },
+          { "title": "PHP", "url": "/php-tutorial" },
           { "title": "Ruby on Rails", "url": "/rails-tutorial" }
         ]
       },
