@@ -63,6 +63,7 @@
           { "title": "Normalized Profile", "url":"/user-profile"},
           { "title": "Logout", "url":"/logout"},
           { "title": "Rules", "url":"/rules"},
+          { "title": "Rules Repository", "url":"https://github.com/auth0/rules"},
           { "title": "Database Connections", "url": "/mysql-connection-tutorial" },
           { "title": "API Reference", "url":"/api-reference"},
           { "title": "Protocols", "url":"/protocols"},
