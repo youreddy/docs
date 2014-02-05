@@ -66,7 +66,6 @@
           { "title": "Rules", "url":"/rules"},
           { "title": "Rules Repository", "url":"https://github.com/auth0/rules"},
           { "title": "Database Connections", "url": "/mysql-connection-tutorial" },
-          { "title": "API Reference", "url":"/api-reference"},
           { "title": "Protocols", "url":"/protocols"},
           { "title": "Identity Providers", "url": "/identityproviders" },
           { "title": "SAML", "url":"/saml-configuration"},
