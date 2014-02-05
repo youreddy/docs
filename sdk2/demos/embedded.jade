@@ -13,7 +13,7 @@ html
           assetsUrl:    '!{auth0_sdk_assets}',
           callbackOnLocationHash: !{callbackOnHash}
         });
-        widget.signin({ container: 'root', chrome: true });
+        widget.signin({ container: 'root', chrome: true, _avoidInitialFocus: true });
       } else {
         document.getElementById('root').innerHTML = 'Cannot load the widget at the moment, try again later.';
       }
