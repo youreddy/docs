@@ -70,7 +70,8 @@
           { "title": "Protocols", "url":"/protocols"},
           { "title": "Identity Providers", "url": "/identityproviders" },
           { "title": "SAML", "url":"/saml-configuration"},
-          { "title": "Link Accounts", "url": "/link-accounts" }
+          { "title": "Link Accounts", "url": "/link-accounts" },
+          { "title": "Custom Signup", "url": "/custom-signup" }
         ]
       }
     ],
