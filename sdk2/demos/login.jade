@@ -11,4 +11,4 @@ html
         assetsUrl:    '!{auth0_sdk_assets}',
         callbackOnLocationHash: !{callbackOnHash}
       });
-      widget.signin();
+      widget.signin({_avoidInitialFocus: true});
