@@ -11,7 +11,7 @@
       },
       {
         "title": "Web Apps",
-        "icon": "fa-laptop",
+        "icon": "icon-laptop",
         "items": [
           { "title": "Node.js", "url": "/nodejs-tutorial" },
           { "title": "ASP.NET", "url": "/aspnet-tutorial" },
@@ -25,7 +25,7 @@
       },
       {
         "title": "Mobile/Native",
-        "icon": "fa-mobile",
+        "icon": "icon-mobile-phone",
         "items": [
           { "title": "iOS", "url": "/ios-tutorial" },
           { "title": "Android", "url": "/android-tutorial" },
@@ -38,7 +38,7 @@
       },
       {
         "title": "HTML5",
-        "icon": "fa-html5",
+        "icon": "icon-html5",
         "items": [
           { "title": "Single Page Apps", "url": "/singlepageapp-tutorial" },
           { "title": "Ember.js", "url": "/ember-tutorial" },
@@ -47,7 +47,7 @@
       },
       {
         "title": "APIs",
-        "icon": "fa-terminal",
+        "icon": "icon-terminal",
         "items": [
           { "title": "ASP.NET Web API", "url": "/aspnetwebapi-tutorial" },
           { "title": "Node.js API", "url": "/nodeapi-tutorial" },
@@ -58,7 +58,7 @@
       },
       {
         "title": "Help Topics",
-        "icon": "fa-question-circle",
+        "icon": "icon-question-sign",
         "items": [
           { "title": "Login Widget", "url":"/login-widget2"},
           { "title": "Normalized Profile", "url":"/user-profile"},
