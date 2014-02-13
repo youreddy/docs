@@ -168,7 +168,7 @@ var overrideIfAuthenticated = function (req, res, next) {
   if (!req.user || !req.user.tenant)
     return next();
 
-  var queryDoc = {tenant: req.user.tenant, global: false};
+  var queryDoc = {tenant: req.user.tenant};
 
   if(req.session.selectedClient){
     queryDoc.clientID = req.session.selectedClient;
@@ -180,13 +180,29 @@ var overrideIfAuthenticated = function (req, res, next) {
       return next(err);
     }
 
-    if (clients.length === 0) return next();
+    var globalClient, nonGlobalClients = [];
 
-    res.locals.account.loggedIn = true;
-    res.locals.account.clients = clients;
-    var client = clients[0];
+    clients.forEach(function (client) {
+      if (client.global) {
+        globalClient = client;
+        return;
+      }
+
+      nonGlobalClients.push(client);
+    });
+
+    if (nonGlobalClients.length === 0) return next();
 
     winston.debug('client found');
+
+    res.locals.account.loggedIn = true;
+
+    res.locals.account.clients = nonGlobalClients;
+    var client = nonGlobalClients[0];
+
+    res.locals.account.globalClientId = globalClient.clientID;
+    res.locals.account.globalClientSecret = globalClient.clientSecret;
+
     res.locals.account.appName = client.name && client.name.trim !== '' ? client.name : 'Your App';
     res.locals.account.userName = req.user.name;
     res.locals.account.namespace = nconf.get('DOMAIN_URL_SERVER').replace('{tenant}', client.tenant);
