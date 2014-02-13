@@ -1,0 +1,20 @@
+div#api-explorer
+
+script(src="https://d19p4zemcycm7a.cloudfront.net/api-explorer/api-explorer.js", type="text/javascript")
+link(rel="stylesheet", href="https://d19p4zemcycm7a.cloudfront.net/api-explorer/api-explorer.css", type="text/css")
+
+script
+    require(['api-explorer'], function () {
+      var apiExplorer = require('api-explorer')
+      apiExplorer({
+        el:             $('#api-explorer'),
+        isAuth:         #{isAuth},
+        tenantDomain:   '#{tenantDomain}',
+        clientId:       '#{account.globalClientId}',
+        clientSecret:   '#{account.globalClientSecret}',
+        docsDomain:     '#{docsDomain}',
+        user:           !{JSON.stringify(user)},
+        readOnly:       #{readOnly}
+      });
+    });
+
