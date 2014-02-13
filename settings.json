@@ -59,7 +59,7 @@
       },
       {
         "title": "API Reference",
-        "icon": "fa-cogs",
+        "icon": "icon-cogs",
         "items": [
           { "title": "Auth0 API", "url": "/api"},
           { "title": "Auth API", "url": "/auth-api"}
