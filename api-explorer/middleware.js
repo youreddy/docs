@@ -36,6 +36,8 @@ module.exports = function (req, res, next)  {
         name: 'John Doe',
         mail: 'john@doe.com'
       };
+      jadeContext.globalClientSecret  = '';
+      jadeContext.globalClientID      = '';
     }
 
     res.locals.apiExplorer = function (ctx) {
