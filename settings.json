@@ -58,6 +58,14 @@
         ]
       },
       {
+        "title": "API Reference",
+        "icon": "fa-cogs",
+        "items": [
+          { "title": "Auth0 API", "url": "/api"},
+          { "title": "Auth API", "url": "/auth-api"}
+        ]
+      },
+      {
         "title": "Help Topics",
         "icon": "icon-question-sign",
         "items": [
