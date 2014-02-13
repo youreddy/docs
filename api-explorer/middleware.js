@@ -25,6 +25,10 @@ module.exports = function (req, res, next)  {
         name:  req.user.name,
         mail:  req.user.mail
       };
+
+      jadeContext.globalClientSecret  = res.locals.account.globalClientSecret;
+      jadeContext.globalClientID      = res.locals.account.globalClientId;
+
     } else {
       jadeContext.readOnly = true;
       jadeContext.user = {
@@ -35,7 +39,7 @@ module.exports = function (req, res, next)  {
     }
 
     res.locals.apiExplorer = function (ctx) {
-      jadeContext = copyDictionary(jadeContext, ctx);
+      jadeContext = extend(jadeContext, ctx);
       return tmpl(jadeContext);
     };
 
