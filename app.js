@@ -23,8 +23,8 @@ nconf
     'DOMAIN_URL_SDK':    'login-dev.auth0.com:3000',
     'DOMAIN_URL_DOCS':   'https://localhost:5050',
     'WIDGET_FALLBACK_CLIENTID': 'aCbTAJNi5HbsjPJtRpSP6BIoLPOrSj2C',
-    'LOGIN_WIDGET_URL':  'https://d19p4zemcycm7a.cloudfront.net/w2/auth0-widget-2.4.min.js',
-    'AUTH0JS_URL':       'https://d19p4zemcycm7a.cloudfront.net/w2/auth0-1.2.2.min.js',
+    'LOGIN_WIDGET_URL':  'https://cdn.auth0.com/w2/auth0-widget-2.4.min.js',
+    'AUTH0JS_URL':       'https://cdn.auth0.com/w2/auth0-1.2.2.min.js',
     'SENSITIVE_DATA_ENCRYPTION_KEY': '0123456789',
     'PUBLIC_ALLOWED_TUTORIALS': '/adldap-auth?,/adldap-x?,/adfs?',
   });
