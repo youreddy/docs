@@ -314,6 +314,7 @@ docsapp.addPreRender(require('./sdk2/middleware'));
 require('./sdk/demos-routes')(app);
 require('./sdk2/demos-routes')(app);
 require('./sdk2/snippets-routes')(app);
+require('./lib/sitemap')(app);
 
 if (!module.parent) {
   var server;
