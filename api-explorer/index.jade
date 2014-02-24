@@ -14,7 +14,8 @@ script
         clientSecret:   '#{globalClientSecret}',
         docsDomain:     '#{docsDomain}',
         user:           !{JSON.stringify(user)},
-        readOnly:       #{readOnly}
+        readOnly:       #{readOnly},
+        anchors:        #{anchors}
       });
     });
 
