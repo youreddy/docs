@@ -75,6 +75,7 @@
           { "title": "Logout", "url":"/logout"},
           { "title": "Rules", "url":"/rules"},
           { "title": "Rules Repository", "url":"https://github.com/auth0/rules"},
+          { "title": "Active Directory", "url": "/ad" },
           { "title": "Database Connections", "url": "/mysql-connection-tutorial" },
           { "title": "Protocols", "url":"/protocols"},
           { "title": "Sequence Diagrams", "url":"/sequence-diagrams"},
