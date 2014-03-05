@@ -15,7 +15,7 @@
         "items": [
           { "title": "Node.js", "url": "/nodejs-tutorial" },
           { "title": "ASP.NET", "url": "/aspnet-tutorial" },
-          { "title": "ASP.NET Owin", "url": "/aspnet-owin-tutorial" },
+          { "title": "ASP.NET (OWIN)", "url": "/aspnet-owin-tutorial" },
           { "title": "Windows Azure", "url": "/azure-tutorial" },
           { "title": "ServiceStack", "url": "/servicestack-tutorial" },
           { "title": "PHP", "url": "/php-tutorial" },
@@ -51,6 +51,7 @@
         "icon": "icon-terminal",
         "items": [
           { "title": "ASP.NET Web API", "url": "/aspnetwebapi-tutorial" },
+          { "title": "ASP.NET Web API (OWIN)", "url": "/aspnetwebapi-owin-tutorial" },
           { "title": "Node.js API", "url": "/nodeapi-tutorial" },
           { "title": "Ruby API", "url": "/rubyapi-tutorial" },
           { "title": "PHP API", "url": "/phpapi-tutorial" },
