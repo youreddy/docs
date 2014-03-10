@@ -56,7 +56,8 @@
           { "title": "Ruby API", "url": "/rubyapi-tutorial" },
           { "title": "PHP API", "url": "/phpapi-tutorial" },
           { "title": ".NET WCF", "url": "/wcf-tutorial" },
-          { "title": "AWS", "url": "/awsapi-tutorial" }
+          { "title": "AWS", "url": "/awsapi-tutorial" },
+          { "title": "Java API", "url": "/javaapi-tutorial" }
         ]
       },
       {
