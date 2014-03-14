@@ -1,28 +1,12 @@
-
-section ul li {
-  list-style-type: square;
-  padding-left: 4px;
-  margin-top: 4px;
-}
-
-h2.current-step {
-  color: #0088cc;
-  font-size: 20px;
-}
-
 h2.step-finished {
   color: #8cc84b;
 }
-
 h2.step-finished img {
   position: absolute;
   left: -18px;
   display: inline-block;
   margin-top: -3px;
 }
-
-.ticket {}
-
 .installers {
   width: 550px;
   margin-bottom: 20px;
@@ -34,19 +18,16 @@ h2.step-finished img {
   -moz-border-radius: 4px;
   border-radius: 4px;
 }
-
 .installers ul {
   width: auto;
   text-align: center;
   margin: 0 auto;
   display: table-row;
 }
-
 .installers ul img {
   display: block;
   margin: 0 auto;
 }
-
 .installers ul a {
   display: block;
   width: 100%;
@@ -55,66 +36,54 @@ h2.step-finished img {
   padding-top: 10px;
   padding-bottom: 10px;
 }
-
 .installers ul a:hover,
 .installers ul a:active {
   background: #e1e1e8;
   color: #005580;
 }
-
 .installers ul li {
   width: 33%;
   display: table-cell;
 }
-
 .installers a small {
   font-size: 10px;
   display: block;
   color: #888;
 }
-
 .btn-mid {
   font-size: 14px;
   font-weight: bold;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
-
-
 .browser {
   border: 1px solid #ddd;
   border-radius: 5px;
   margin: 10px 0 0 0;
 }
-
 .browser iframe {
-  border-radius: 0 0 5px 5px; 
+  border-radius: 0 0 5px 5px;
   border: 0;
   width: 100%;
   height: 500px;
   display: block;
 }
-
 .browser .login-widget2 iframe {
   height: 650px;
 }
-
 .browser-toolbar {
   border-bottom: 1px solid #ddd;
   padding: 6px;
 }
-
 .browser-icons {
   float: left;
   padding: 7px 0 0 0;
   margin-left: 4px;
 }
-
 .browser-icons i {
   margin-right: 3px;
 }
-
 .browser-address {
-  background: #ffffff;
+  background: #fff;
   border: 1px solid #ddd;
   border-radius: 3px;
   margin-left: 60px;
@@ -123,66 +92,109 @@ h2.step-finished img {
 .browser-address i {
   margin-top: 2px;
 }
-
 .browser-content {
-  background: #ffffff;
+  background: #fff;
   border-radius: 0 0 5px 5px;
 }
-
 .edit-fiddle {
-  color: #0088cc;
+  color: #08c;
   border: none;
-  font-family: 'Open Sans', Helvetica,Arial,sans-serif;
+  font-family: 'Open Sans', Helvetica, Arial, sans-serif;
   padding-left: 35px;
   background: url("/img/logo-fiddle.png") 5% 40% no-repeat;
   margin-right: 15px;
   font-size: 13px;
 }
-
 .edit-fiddle:hover {
   color: #005580;
   text-decoration: underline;
 }
-
 a.anchor {
   margin-right: 5px;
   visibility: hidden;
   text-decoration: none;
 }
-
-
-.fixit {
-  position: fixed;
-  bottom: 0;
-  margin-left: 18px;
-  margin-bottom: 5px;
-  font-size: 12px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  background-color: rgba(255, 255, 255, 0.5);
-  padding: 5px;
-}
-
-.fixit i {
-  margin-right: 5px;
-  font-size: 14px;
-}
-
 .widget-tut .snippet-header {
-  background-color: #8A8A8A;
+  background-color: #8a8a8a;
   padding: 7px;
-  color: white;
+  color: #fff;
   border-radius: 2px;
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
   margin-top: 5px;
 }
-
 .widget-tut pre {
   border-top-left-radius: 0;
   border-top-right-radius: 0;
 }
-
 #widget-chooser {
   width: 400px;
+}
+body {
+  padding-top: 130px;
+}
+header.site-header {
+  position: fixed;
+}
+h1,
+h2,
+h3,
+h4,
+h5 {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+h1 {
+  margin-top: 0;
+}
+p,
+li {
+  color: #4d4d4d;
+}
+p {
+  margin-bottom: 20px;
+}
+blockquote {
+  background: #f1f1f1;
+  border: 0;
+  font-family: georgia;
+  padding: 20px 30px;
+}
+blockquote p {
+  line-height: 30px;
+}
+pre {
+  border: 0;
+  padding: 20px;
+  font-size: 13px;
+  line-height: 20px;
+}
+.sidebar-docs ul {
+  margin: 0;
+  padding: 0;
+  max-width: 230px;
+  list-style: none;
+}
+.sidebar-docs ul li.box {
+  border: 1px solid #eee;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  padding: 20px;
+}
+.sidebar-docs ul li.box span {
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 12px;
+  margin-bottom: 10px;
+  display: block;
+  letter-spacing: 1px;
+}
+.sidebar-docs ul li.box a {
+  color: #333;
+}
+.sidebar-docs ul ul li {
+  line-height: 28px;
+}
+section h1 {
+  margin-top: 0;
 }
