@@ -1,3 +1,8 @@
+color_blue = #14204d;
+color_blue_light = #3cc8f4;
+color_red = #eb5422;
+color_grey = #d1d2d4;
+
 h2.step-finished {
   color: #8cc84b;
 }
@@ -171,22 +176,13 @@ h1
 
 p,li 
   color: #4d4d4d;
-p
-  margin-bottom: 20px;
-
-blockquote
-  background: #f1f1f1;
-  border: 0;
-  font-family: georgia;
-  padding: 20px 30px;
-  p
-    line-height: 30px;
 
 pre 
   border: 0;
   padding: 20px;
   font-size: 13px;
   line-height: 20px;
+  margin-bottom: 20px;
 
 .sidebar-docs
   ul 
@@ -206,6 +202,7 @@ pre
         margin-bottom: 10px;
         display: block
         letter-spacing: 1px;
+        color: #999;
       a 
         color: #333;
 
@@ -214,6 +211,42 @@ pre
         line-height: 28px;
 
 
-section 
+section.content
   h1 
     margin-top: 0;
+
+  li, p
+    line-height: 26px;
+
+  p
+    margin-bottom: 20px;
+
+  ul, ol
+    padding: 0;
+    padding-left: 18px;
+    margin: 0; 
+    margin-bottom: 20px;
+
+
+  blockquote
+    background: lighten(color_blue_light, 90%);
+    border: 0;
+    font-family: georgia;
+    text-align: center
+    color: white;
+    padding: 20px 30px;
+    p
+      line-height: 30px;
+      color: color_blue
+      margin: 0;
+
+
+.fixit
+  display: block
+  margin-top: 20px;
+  text-align: right
+  padding-top: 20px;
+  border-top: 1px solid #eee;
+  color: #666;
+  a 
+    font-weight: bold

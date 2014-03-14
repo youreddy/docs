@@ -92,14 +92,17 @@ html(lang="en")
                       - else
                           li 
                             a(href=furl(l2.url))= l2.title
-            .fixit 
+  
+        .col-sm-9
+          section.content
+            block content
+    
+
+          .fixit 
               | Found a typo? 
               i(class="fa fa-github")
-              a(href='#', target='_blank') Fix it :)
+              a(href='#', target='_blank') Fix it
          
-        .col-sm-9
-          section
-            block content
     footer
         ul
           -var footer = site.menus.footer
