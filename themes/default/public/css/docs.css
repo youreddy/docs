@@ -260,6 +260,9 @@
 .page-docs .sidebar-docs .box-mobile-phone ul li i:before {
   content: none;
 }
+.page-docs .sidebar-docs li.box-mobile-phone ul li i {
+  border-radius: 0;
+}
 .page-docs section.content h1 {
   margin-top: 0;
 }
