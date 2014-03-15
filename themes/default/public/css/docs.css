@@ -206,21 +206,22 @@
   border: 1px solid #eee;
   border-radius: 3px;
   margin-bottom: 20px;
-  padding: 20px;
+  padding: 14px 20px;
 }
-.page-docs .sidebar-docs ul li.box span {
+.page-docs .sidebar-docs ul li.box strong {
   text-transform: uppercase;
   font-weight: bold;
   font-size: 12px;
-  margin-bottom: 4px;
+  margin-bottom: 6px;
   display: block;
   letter-spacing: 1px;
   color: #999;
 }
 .page-docs .sidebar-docs ul li.box a {
-  color: #333;
+  color: #666;
 }
-.page-docs .sidebar-docs ul li.box a:hover {
+.page-docs .sidebar-docs ul li.box a:hover,
+.page-docs .sidebar-docs ul li.box a.selected {
   color: #000;
 }
 .page-docs .sidebar-docs ul li.box.box-laptop {
@@ -259,6 +260,62 @@
 .page-docs .sidebar-docs li.box-laptop ul li i:before,
 .page-docs .sidebar-docs .box-mobile-phone ul li i:before {
   content: none;
+}
+.page-docs .sidebar-docs li.box-laptop ul .docs-page .quick-start ul li.node i,
+.page-docs .sidebar-docs .box-mobile-phone ul .docs-page .quick-start ul li.node i {
+  border-color: #a9d353;
+}
+.page-docs .sidebar-docs li.box-laptop ul .docs-page .quick-start ul li.asp i,
+.page-docs .sidebar-docs .box-mobile-phone ul .docs-page .quick-start ul li.asp i {
+  border-color: #4ea5c7;
+}
+.page-docs .sidebar-docs li.box-laptop ul .docs-page .quick-start ul li.asp-win i,
+.page-docs .sidebar-docs .box-mobile-phone ul .docs-page .quick-start ul li.asp-win i {
+  border-color: #4e79c7;
+}
+.page-docs .sidebar-docs li.box-laptop ul .docs-page .quick-start ul li.windows-azure i,
+.page-docs .sidebar-docs .box-mobile-phone ul .docs-page .quick-start ul li.windows-azure i {
+  border-color: #684ec7;
+}
+.page-docs .sidebar-docs li.box-laptop ul .docs-page .quick-start ul li.service-stack i,
+.page-docs .sidebar-docs .box-mobile-phone ul .docs-page .quick-start ul li.service-stack i {
+  border-color: #a84ec7;
+}
+.page-docs .sidebar-docs li.box-laptop ul .docs-page .quick-start ul li.php i,
+.page-docs .sidebar-docs .box-mobile-phone ul .docs-page .quick-start ul li.php i {
+  border-color: #cf5191;
+}
+.page-docs .sidebar-docs li.box-laptop ul .docs-page .quick-start ul li.ruby-on-rails i,
+.page-docs .sidebar-docs .box-mobile-phone ul .docs-page .quick-start ul li.ruby-on-rails i {
+  border-color: #e35e59;
+}
+.page-docs .sidebar-docs li.box-laptop ul .docs-page .quick-start ul li.ios i,
+.page-docs .sidebar-docs .box-mobile-phone ul .docs-page .quick-start ul li.ios i {
+  border-color: #e39359;
+}
+.page-docs .sidebar-docs li.box-laptop ul .docs-page .quick-start ul li.android i,
+.page-docs .sidebar-docs .box-mobile-phone ul .docs-page .quick-start ul li.android i {
+  border-color: #e3ae59;
+}
+.page-docs .sidebar-docs li.box-laptop ul .docs-page .quick-start ul li.windows-phone i,
+.page-docs .sidebar-docs .box-mobile-phone ul .docs-page .quick-start ul li.windows-phone i {
+  border-color: #e3ca59;
+}
+.page-docs .sidebar-docs li.box-laptop ul .docs-page .quick-start ul li.xamarin i,
+.page-docs .sidebar-docs .box-mobile-phone ul .docs-page .quick-start ul li.xamarin i {
+  border-color: #dfe158;
+}
+.page-docs .sidebar-docs li.box-laptop ul .docs-page .quick-start ul li.windows-8-c i,
+.page-docs .sidebar-docs .box-mobile-phone ul .docs-page .quick-start ul li.windows-8-c i {
+  border-color: #4ec75c;
+}
+.page-docs .sidebar-docs li.box-laptop ul .docs-page .quick-start ul li.windows-8-js i,
+.page-docs .sidebar-docs .box-mobile-phone ul .docs-page .quick-start ul li.windows-8-js i {
+  border-color: #f00;
+}
+.page-docs .sidebar-docs li.box-laptop ul .docs-page .quick-start ul li.wpf i,
+.page-docs .sidebar-docs .box-mobile-phone ul .docs-page .quick-start ul li.wpf i {
+  border-color: #ffc0cb;
 }
 .page-docs .sidebar-docs li.box-mobile-phone ul li i {
   border-radius: 0;

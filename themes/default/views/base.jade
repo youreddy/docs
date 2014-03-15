@@ -83,22 +83,24 @@ html(lang="en")
                 - var l1 = navigation[k1]
                 li(class="box-" + l1.icon.substr(5)).box
                   - if (l1.icon)
-                      span
+                      strong
                         //- i(class='icon #{l1.icon}')
                         | #{l1.title}
                   - else
-                      span= l1.title
+                      strong= l1.title
                   ul
                     - for (var k2 in l1.items)
                       - var l2 = l1.items[k2]
                       - if (l2.url == url)
-                          li.selected 
-                            i 
-                            a(href=furl(l2.url))= l2.title
+                          li(class=l2.url).substr(1).selected 
+                            a(href=furl(l2.url))
+                              i 
+                              span= l2.title
                       - else
-                          li 
-                            i
-                            a(href=furl(l2.url))= l2.title
+                          li(class=l2.url).substr(1)
+                            a(href=furl(l2.url))
+                              i
+                              span= l2.title
   
         .col-sm-9
           section.content
