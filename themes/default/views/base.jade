@@ -10,10 +10,10 @@ html(lang="en")
     meta(charset="utf-8")
 
     link(rel="shortcut icon", href="http://auth0.com/boot/img/favicon.png")
-    //- link(href='https://www.auth0.com/app.css', rel='stylesheet')
+    link(href='//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css', rel='stylesheet')
 
 
-    link(href='http://localhost:3000/app.css', rel='stylesheet')
+    link(href='https://auth0.com/app.css', rel='stylesheet')
     link(href='/css/docs.css', rel='stylesheet')
 
 
@@ -30,8 +30,8 @@ html(lang="en")
 
     script(src='//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js')
 
-  body
-    header.site-header
+  body.page-docs
+    header.site-header.header-fixed
       nav.navbar.navbar-default(role='navigation')
         .container
           .navbar-header
@@ -67,6 +67,11 @@ html(lang="en")
                 a.signin-button(href="javascript:signup()").btn.btn-sm.signup Create Free Account
 
 
+    //- .container
+    //-   .banner 
+    //-       ul 
+    //-         li Documentation
+    //-         li Index
 
     .container
       .row
@@ -76,10 +81,10 @@ html(lang="en")
               -var navigation = site.menus.navigation
               - for (var k1 in navigation)
                 - var l1 = navigation[k1]
-                li.box
+                li(class="box-" + l1.icon.substr(5)).box
                   - if (l1.icon)
                       span
-                        i(class='icon #{l1.icon}')
+                        //- i(class='icon #{l1.icon}')
                         | #{l1.title}
                   - else
                       span= l1.title
@@ -88,9 +93,11 @@ html(lang="en")
                       - var l2 = l1.items[k2]
                       - if (l2.url == url)
                           li.selected 
+                            i 
                             a(href=furl(l2.url))= l2.title
                       - else
                           li 
+                            i
                             a(href=furl(l2.url))= l2.title
   
         .col-sm-9
