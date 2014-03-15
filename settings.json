@@ -5,6 +5,7 @@
     "navigation": [
       {
         "title": "Getting Started",
+        "icon": "icon-star",
         "items": [
           { "title": "Start here", "url": "/" }
         ]
