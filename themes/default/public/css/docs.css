@@ -129,9 +129,15 @@
   text-decoration: underline;
 }
 .page-docs a.anchor {
-  margin-right: 5px;
+  margin-left: -24px;
   visibility: hidden;
   text-decoration: none;
+  position: relative;
+}
+.page-docs a.anchor i {
+  font-size: 14px;
+  width: 24px;
+  display: inline-block;
 }
 .page-docs h2:hover a.anchor {
   visibility: visible;
@@ -169,6 +175,13 @@
   margin-top: 20px;
   margin-bottom: 20px;
 }
+.page-docs h1 i,
+.page-docs h2 i,
+.page-docs h3 i,
+.page-docs h4 i,
+.page-docs h5 i {
+  display: none;
+}
 .page-docs h1 {
   margin-top: 0;
 }
@@ -199,7 +212,7 @@
   text-transform: uppercase;
   font-weight: bold;
   font-size: 12px;
-  margin-bottom: 10px;
+  margin-bottom: 4px;
   display: block;
   letter-spacing: 1px;
   color: #999;
@@ -207,20 +220,45 @@
 .page-docs .sidebar-docs ul li.box a {
   color: #333;
 }
+.page-docs .sidebar-docs ul li.box a:hover {
+  color: #000;
+}
 .page-docs .sidebar-docs ul li.box.box-laptop {
   background: #f1f1f1;
 }
-.page-docs .sidebar-docs ul ul li {
+.page-docs .sidebar-docs ul li {
   line-height: 28px;
 }
-.page-docs .sidebar-docs ul ul li i {
+.page-docs .sidebar-docs ul li i:before {
+  content: "\e16f";
+  font-family: "budicon-font" !important;
+  speak: none;
+}
+.page-docs .sidebar-docs ul li i {
   width: 10px;
   height: 10px;
   display: inline-block;
+  font-family: "budicon-font" !important;
+  font-style: normal !important;
+  font-weight: normal !important;
+  font-variant: normal !important;
+  text-transform: none !important;
+  speak: none;
+  line-height: 1;
+  margin-right: 8px;
+  position: relative;
+  top: -2px;
+}
+.page-docs .sidebar-docs li.box-laptop ul li i,
+.page-docs .sidebar-docs .box-mobile-phone ul li i {
   border: 2px solid #666;
   border-radius: 100px;
   position: relative;
-  margin-right: 8px;
+  position: static;
+}
+.page-docs .sidebar-docs li.box-laptop ul li i:before,
+.page-docs .sidebar-docs .box-mobile-phone ul li i:before {
+  content: none;
 }
 .page-docs section.content h1 {
   margin-top: 0;
