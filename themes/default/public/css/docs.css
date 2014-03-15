@@ -133,6 +133,15 @@
   visibility: hidden;
   text-decoration: none;
 }
+.page-docs h2:hover a.anchor {
+  visibility: visible;
+}
+.page-docs h3:hover a.anchor {
+  visibility: visible;
+}
+.page-docs h4:hover a.anchor {
+  visibility: visible;
+}
 .page-docs .widget-tut .snippet-header {
   background-color: #8a8a8a;
   padding: 7px;
@@ -219,6 +228,7 @@
 .page-docs section.content li,
 .page-docs section.content p {
   line-height: 26px;
+  font-size: 15px;
 }
 .page-docs section.content p {
   margin-bottom: 20px;
