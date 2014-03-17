@@ -71,12 +71,12 @@ html(lang="en")
             li
               a(href=furl(l1.url))= l1.title
 
-  script(src='/js/prettify.js')
+  script(src='https://docs.myauth0.com/js/prettify.js')
   script(type='text/javascript')
 
     !function ($) {
       $(function(){
-      $('pre').addClass('prettyprint');
+      $('pre code').parent().addClass('prettyprint');
       window.prettyPrint && prettyPrint();   
       })
     }(window.jQuery);
