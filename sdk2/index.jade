@@ -1,13 +1,13 @@
 p There are different ways of integrating Auth0 in your site. Below, some of them with a preview and a code snippet to copy paste.
 
 if account.loggedIn && !embedded
-  div 
+  div
     label Select one of your applications:
     select#client-chooser
       each client in account.clients
         option(value="#{client.clientID}") #{client.name}
 
-div 
+div
   label Select the widget mode:
   select#widget-chooser
     option(value="login") Login Widget - Modal
@@ -21,11 +21,11 @@ p This is how it will look on a browser...
   .browser-toolbar
     .browser-icons
       a(href="javascript:history.back()", target="widget-demo")
-        i.icon-arrow-left
+        i.icon-budicon-521
       a(href="javascript:history.forward()", target="widget-demo")
-        i.icon-arrow-right
+        i.icon-budicon-519
       a(href="javascript:document.getElementById('widget-demo').contentWindow.location.reload(true);")
-        i.icon-refresh
+        i.icon-budicon-436
     .browser-address
       i.icon-lock
   .browser-content(class="login-widget2")
@@ -33,7 +33,7 @@ p This is how it will look on a browser...
 
 div#widget-snippet
 
-p For more information about the login widget check the GitHub page 
+p For more information about the login widget check the GitHub page
   a(href="https://github.com/auth0/widget", target="_new") here
   | .
 
