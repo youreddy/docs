@@ -2,14 +2,16 @@
   border-color: #ffc0cb;
 }
 .page-docs header.site-header {
-  margin-bottom: 30px;
+  margin-bottom: 10px;
 }
 .page-docs .breadcrumb {
   padding: 14px 20px;
   border-radius: 3px;
-  margin-bottom: 30px;
+  margin-bottom: 40px;
   overflow: hidden;
   background-color: #14204d;
+  background: linear-gradient(120deg, #942f0d 0%, #14204d 100%);
+/* W3C */
 }
 .page-docs .breadcrumb ul {
   padding: 0;
@@ -26,14 +28,18 @@
 .page-docs .breadcrumb ul li a {
   color: #fff;
 }
-.page-docs h2.step-finished {
-  color: #8cc84b;
+.page-docs .breadcrumb ul.external-links {
+  float: right;
 }
-.page-docs h2.step-finished img {
-  position: absolute;
-  left: -18px;
-  display: inline-block;
-  margin-top: -3px;
+.page-docs .breadcrumb ul.external-links li {
+  margin-right: 0;
+  margin-left: 20px;
+}
+.page-docs .breadcrumb ul.external-links li a {
+  opacity: 0.6;
+}
+.page-docs .breadcrumb ul.external-links li a:hover {
+  opacity: 1;
 }
 .page-docs .installers {
   width: 550px;
@@ -104,21 +110,25 @@
 }
 .page-docs .browser-icons {
   float: left;
-  padding: 7px 0 0 0;
-  margin-left: 4px;
+  padding: 8px 0 0 0;
+  margin-left: 10px;
 }
 .page-docs .browser-icons i {
   margin-right: 10px;
+  color: #14204d;
 }
 .page-docs .browser-address {
   background: #fff;
   border: 1px solid #ddd;
   border-radius: 3px;
-  margin-left: 80px;
+  margin-left: 90px;
   padding: 4px;
 }
 .page-docs .browser-address i {
-  margin-top: 2px;
+  top: 3px;
+  position: relative;
+  opacity: 0.5;
+  left: 2px;
 }
 .page-docs .browser-content {
   background: #fff;

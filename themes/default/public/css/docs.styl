@@ -24,14 +24,16 @@ color_win8_cs= #f00;
 
 .page-docs
   header.site-header
-    margin-bottom: 30px;
+    margin-bottom: 10px;
 
   .breadcrumb
     padding: 14px 20px;
     border-radius: 3px;
-    margin-bottom: 30px;
+    margin-bottom: 40px;
     overflow: hidden
     background-color: color_blue;
+    background: linear-gradient(120deg, darken(color_red, 40%) 0%, color_blue 100%); /* W3C */
+
     ul
       padding: 0;
       margin: 0;
@@ -45,16 +47,16 @@ color_win8_cs= #f00;
         a
           color: white;
 
-  h2.step-finished {
-    color: #8cc84b;
-  }
 
-  h2.step-finished img {
-    position: absolute;
-    left: -18px;
-    display: inline-block;
-    margin-top: -3px;
-  }
+      &.external-links
+        float: right;
+        li
+          margin-right: 0;
+          margin-left: 20px;
+          a
+            opacity: .6;
+            &:hover
+              opacity: 1;
 
   .installers {
     width: 550px;
@@ -138,23 +140,27 @@ color_win8_cs= #f00;
 
   .browser-icons {
     float: left;
-    padding: 7px 0 0 0;
-    margin-left: 4px;
+    padding: 8px 0 0 0;
+    margin-left: 10px;
   }
 
   .browser-icons i {
     margin-right: 10px;
+    color: color_blue;
   }
 
   .browser-address {
     background: #ffffff;
     border: 1px solid #ddd;
     border-radius: 3px;
-    margin-left: 80px;
+    margin-left: 90px;
     padding: 4px;
   }
   .browser-address i {
-    margin-top: 2px;
+    top: 3px;
+    position: relative;
+    opacity: .5;
+    left: 2px;
   }
 
   .browser-content {
