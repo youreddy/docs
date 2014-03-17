@@ -213,13 +213,20 @@ html(lang="en")
             a(href="/") Auth0 &copy;
 
 
-  script(src='/js/prettify.js')
+
+  script(src='https://docs.myauth0.com/js/prettify.js')
   script(type='text/javascript')
 
     !function ($) {
       $(function(){
-      $('pre').addClass('prettyprint');
-      window.prettyPrint && prettyPrint();
+
+      $('pre').each(function (i, e) {
+        // Ignore 'pre' elements inside .api-explorer elements
+        if ($(e).closest('.api-explorer').length === 0) {
+          $(e).addClass('prettyprint');
+        }
+      });
+      window.prettyPrint && prettyPrint();   
       })
     }(window.jQuery);
 
