@@ -12,15 +12,13 @@ html(lang="en")
     link(rel="shortcut icon", href="http://auth0.com/boot/img/favicon.png")
     link(href='//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css', rel='stylesheet')
 
-
     link(href='https://auth0.com/app.css', rel='stylesheet')
     link(href='/css/docs.css', rel='stylesheet')
-
 
     script(type='text/javascript', src='//use.typekit.net/iws6ohy.js')
     script.
       try{Typekit.load();}catch(e){}
-    
+
     //- link(href='//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css', rel='stylesheet')
     link(href='//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css', rel='stylesheet')
 
@@ -53,24 +51,26 @@ html(lang="en")
               li.li-pricing
                 a(href="http://auth0.com/pricing") Pricing
 
-              
+
             ul.nav.navbar-nav.navbar-right
               li.li-docs
                 a(href="http://auth0.com/docs") Documentation
-              li 
+              li
                 a(href="http://blog.auth0.com") Blog
 
-              li 
+              li
                 a.signin-button(href="javascript:login()").login Login
 
-              li 
+              li
                 a.signin-button(href="javascript:signup()").btn.btn-sm.signup Create Free Account
 
 
     //- .container
-    //-   .banner 
-    //-       ul 
-    //-         li Documentation
+    //-   .breadcrumb
+    //-       ul
+    //-         li
+    //-           a(href="http://docs.auth0.com") Documentation
+    //-         li &raquo;
     //-         li Index
 
     .container
@@ -92,26 +92,24 @@ html(lang="en")
                     - for (var k2 in l1.items)
                       - var l2 = l1.items[k2]
                       - if (l2.url == url)
-                          li(class=l2.url).substr(1).selected 
-                            a(href=furl(l2.url))
-                              i 
-                              span= l2.title
-                      - else
-                          li(class=l2.url).substr(1)
+                          li(class=l2.url.substr(1)).selected
                             a(href=furl(l2.url))
                               i
                               span= l2.title
-  
+                      - else
+                          li(class=l2.url.substr(1))
+                            a(href=furl(l2.url))
+                              i
+                              span= l2.title
+
         .col-sm-9
           section.content
             block content
-    
 
-          .fixit 
-              | Found a typo? 
-              i(class="fa fa-github")
-              a(href='#', target='_blank') Fix it
-         
+
+          .fixit
+              a(href='#', target='_blank') Found a typo?  Fix it
+
     footer
         ul
           -var footer = site.menus.footer
@@ -157,7 +155,7 @@ html(lang="en")
     !function ($) {
       $(function(){
       $('pre').addClass('prettyprint');
-      window.prettyPrint && prettyPrint();   
+      window.prettyPrint && prettyPrint();
       })
     }(window.jQuery);
 
@@ -186,4 +184,3 @@ html(lang="en")
     }
 
     $('.fixit a').attr('href', 'https://github.com/auth0/docs/tree/master/docs' + window.location.pathname + '.md');
-    

@@ -5,19 +5,24 @@ color_grey = #d1d2d4;
 .page-docs
   padding-top: 120px;
 
-  .banner 
+  .breadcrumb
     padding: 14px 20px;
     border-radius: 3px;
     margin-bottom: 30px;
-    ul 
+    overflow: hidden
+    background-color: color_blue;
+    ul
       padding: 0;
       margin: 0;
-      li 
+      li
         float: left
         display: inline-block
         color: white;
         font-weight: bold
         font-size: 12px;
+        margin-right: 10px;
+        a
+          color: white;
 
   h2.step-finished {
     color: #8cc84b;
@@ -94,7 +99,7 @@ color_grey = #d1d2d4;
   }
 
   .browser iframe {
-    border-radius: 0 0 5px 5px; 
+    border-radius: 0 0 5px 5px;
     border: 0;
     width: 100%;
     height: 500px;
@@ -151,18 +156,18 @@ color_grey = #d1d2d4;
     text-decoration: underline;
   }
 
-  a.anchor 
+  a.anchor
     margin-left: -24px;
     visibility: hidden;
     text-decoration: none;
     position: relative;
 
-    i 
+    i
       font-size: 14px;
       width: 24px;
       display: inline-block
-  
-      &:hover 
+
+      &:hover
         visibility
 
   h2:hover a.anchor{
@@ -202,16 +207,16 @@ color_grey = #d1d2d4;
   h1, h2,h3,h4,h5
     margin-top: 20px;
     margin-bottom: 20px;
-    i 
+    i
       display: none
 
-  h1 
+  h1
     margin-top: 0;
 
-  p,li 
+  p,li
     color: #4d4d4d;
 
-  pre 
+  pre
     border: 0;
     padding: 20px;
     font-size: 13px;
@@ -219,7 +224,7 @@ color_grey = #d1d2d4;
     margin-bottom: 20px;
 
   .sidebar-docs
-    ul 
+    ul
       margin: 0;
       padding: 0;
       max-width: 230px;
@@ -229,7 +234,7 @@ color_grey = #d1d2d4;
         border-radius: 3px;
         margin-bottom: 20px;
         padding: 14px 20px;
-        strong 
+        strong
           text-transform: uppercase
           font-weight: bold;
           font-size: 12px;
@@ -237,27 +242,26 @@ color_grey = #d1d2d4;
           display: block
           letter-spacing: 1px;
           color: #999;
-        a 
+        a
           color: #666;
 
-          &:hover, &.selected
+          &:hover
             color: black;
 
-
-
         &.box-laptop
-          background: #f1f1f1;
-      
+          background: #f9f9f9;
+          border-color: transparent;
 
-    ul 
-      li 
+
+    ul
+      li
         line-height: 28px;
 
         i:before
           content: "\e16f";
           font-family: "budicon-font" !important;
           speak: none;
-        i 
+        i
           width: 10px;
           height: 10px;
           display: inline-block
@@ -272,10 +276,16 @@ color_grey = #d1d2d4;
           position: relative;
           top: -2px;
 
+        &.selected
+          a
+            color: black !important;
+            // font-weight: bold;
+
+
     li.box-laptop, .box-mobile-phone
 
       ul
-        li 
+        li
           i
             border: 2px solid #666;
             border-radius: 100px;
@@ -283,90 +293,68 @@ color_grey = #d1d2d4;
             position: static;
             &:before
               content: none;
-       
-
-        /* line 64 : /app/lib/docs/docs.styl */
-        .docs-page .quick-start ul li.node i {
-          border-color: #a9d353;
-        }
-
-        /* line 66 : /app/lib/docs/docs.styl */
-        .docs-page .quick-start ul li.asp i {
-          border-color: #4ea5c7;
-        }
-
-        /* line 68 : /app/lib/docs/docs.styl */
-        .docs-page .quick-start ul li.asp-win i {
-          border-color: #4e79c7;
-        }
-
-        /* line 70 : /app/lib/docs/docs.styl */
-        .docs-page .quick-start ul li.windows-azure i {
-          border-color: #684ec7;
-        }
-
-        /* line 72 : /app/lib/docs/docs.styl */
-        .docs-page .quick-start ul li.service-stack i {
-          border-color: #a84ec7;
-        }
-
-        /* line 74 : /app/lib/docs/docs.styl */
-        .docs-page .quick-start ul li.php i {
-          border-color: #cf5191;
-        }
-
-        /* line 76 : /app/lib/docs/docs.styl */
-        .docs-page .quick-start ul li.ruby-on-rails i {
-          border-color: #e35e59;
-        }
-
-        /* line 78 : /app/lib/docs/docs.styl */
-        .docs-page .quick-start ul li.ios i {
-          border-color: #e39359;
-        }
-
-        /* line 80 : /app/lib/docs/docs.styl */
-        .docs-page .quick-start ul li.android i {
-          border-color: #e3ae59;
-        }
-
-        /* line 82 : /app/lib/docs/docs.styl */
-        .docs-page .quick-start ul li.windows-phone i {
-          border-color: #e3ca59;
-        }
-
-        /* line 84 : /app/lib/docs/docs.styl */
-        .docs-page .quick-start ul li.xamarin i {
-          border-color: #dfe158;
-        }
-
-        /* line 86 : /app/lib/docs/docs.styl */
-        .docs-page .quick-start ul li.windows-8-c i {
-          border-color: #4ec75c;
-        }
-
-        /* line 88 : /app/lib/docs/docs.styl */
-        .docs-page .quick-start ul li.windows-8-js i {
-          border-color: #f00;
-        }
-
-        /* line 90 : /app/lib/docs/docs.styl */
-        .docs-page .quick-start ul li.wpf i {
-          border-color: #ffc0cb;
-        }
 
 
-      
+          &.nodejs-tutorial i
+            border-color: #a9d353;
+
+          &.aspnet-tutorial i
+            border-color: #4ea5c7;
+
+          &.aspnet-owin-tutorial i
+            border-color: #4e79c7;
+
+          &.azure-tutorial i
+            border-color: #684ec7;
+
+          &.servicestack-tutorial i
+            border-color: #a84ec7;
+
+          &.php-tutorial i
+            border-color: #cf5191;
+
+          &.rails-tutorial i
+            border-color: #e35e59;
+
+          &.ios-tutorial i
+            border-color: #e39359;
+
+
+          &.android-tutorial i
+            border-color: #e3ae59;
+
+
+          &.windowsphone-tutorial i
+            border-color: #e3ca59;
+
+
+          &.xamarin-tutorial i
+            border-color: #dfe158;
+
+
+          &.win8-tutorial i
+            border-color: #4ec75c;
+
+
+          &.win8-cs-tutorial i
+            border-color: #f00;
+
+
+          &.wpf-winforms-tutorial i
+            border-color: #ffc0cb;
+
+
+
     li.box-mobile-phone
-      ul 
-        li 
-          i 
+      ul
+        li
+          i
             border-radius: 0;
 
-       
+
 
   section.content
-    h1 
+    h1
       margin-top: 0;
 
     li, p
@@ -379,7 +367,7 @@ color_grey = #d1d2d4;
     ul, ol
       padding: 0;
       padding-left: 18px;
-      margin: 0; 
+      margin: 0;
       margin-bottom: 20px;
 
     blockquote
@@ -395,8 +383,36 @@ color_grey = #d1d2d4;
         color: color_blue
         margin: 0;
 
-    img 
+    img
       max-width: 100%;
+
+  .getting-started-logos
+    margin-bottom: 20px;
+
+  .logo-tutorial
+    background-color: #f1f1f1;
+    text-align: center
+    border-radius: 3px;
+    display: block
+    padding: 10px;
+    strong
+      background-color: white;
+      display: block
+      padding: 10px 0;
+      border-radius: 3px;
+      img
+        height: 45px;
+        max-width: 100%;
+
+
+    span
+      text-transform: uppercase
+      font-weight: bold
+      display: block
+      margin-top: 6px;
+      font-size: 11px;
+      letter-spacing: 1px;
+      color: #333;
 
   .fixit
     display: block
@@ -405,5 +421,5 @@ color_grey = #d1d2d4;
     padding-top: 20px;
     border-top: 1px solid #eee;
     color: #666;
-    a 
+    a
       font-weight: bold
