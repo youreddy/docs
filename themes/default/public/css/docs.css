@@ -1,3 +1,6 @@
+&.wpf-winforms-tutorial i {
+  border-color: #ffc0cb;
+}
 .page-docs {
   padding-top: 120px;
 }
@@ -229,9 +232,14 @@
 .page-docs .sidebar-docs ul li.box a:hover {
   color: #000;
 }
-.page-docs .sidebar-docs ul li.box.box-laptop {
+.page-docs .sidebar-docs ul li.box.box-laptop,
+.page-docs .sidebar-docs ul li.box.box-terminal {
   background: #f9f9f9;
   border-color: transparent;
+}
+.page-docs .sidebar-docs ul li.box.box-laptop {
+  margin-bottom: 0;
+  padding-bottom: 0;
 }
 .page-docs .sidebar-docs ul li {
   line-height: 28px;
@@ -254,76 +262,88 @@
   line-height: 1;
   margin-right: 8px;
   position: relative;
-  top: -2px;
+  top: 2px;
+  height: 14px;
 }
 .page-docs .sidebar-docs ul li.selected a {
   color: #000 !important;
 }
+.page-docs .sidebar-docs li.box-laptop:before {
+  content: "Tutorials";
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 12px;
+  margin-bottom: 6px;
+  display: block;
+  letter-spacing: 1px;
+  color: #333;
+}
 .page-docs .sidebar-docs li.box-laptop ul li i,
-.page-docs .sidebar-docs .box-mobile-phone ul li i {
+.page-docs .sidebar-docs li.box-mobile-phone ul li i {
   border: 2px solid #666;
+  height: 10px;
   border-radius: 100px;
   position: relative;
   position: static;
 }
 .page-docs .sidebar-docs li.box-laptop ul li i:before,
-.page-docs .sidebar-docs .box-mobile-phone ul li i:before {
+.page-docs .sidebar-docs li.box-mobile-phone ul li i:before {
   content: none;
 }
 .page-docs .sidebar-docs li.box-laptop ul li.nodejs-tutorial i,
-.page-docs .sidebar-docs .box-mobile-phone ul li.nodejs-tutorial i {
+.page-docs .sidebar-docs li.box-mobile-phone ul li.nodejs-tutorial i {
   border-color: #a9d353;
 }
 .page-docs .sidebar-docs li.box-laptop ul li.aspnet-tutorial i,
-.page-docs .sidebar-docs .box-mobile-phone ul li.aspnet-tutorial i {
+.page-docs .sidebar-docs li.box-mobile-phone ul li.aspnet-tutorial i {
   border-color: #4ea5c7;
 }
 .page-docs .sidebar-docs li.box-laptop ul li.aspnet-owin-tutorial i,
-.page-docs .sidebar-docs .box-mobile-phone ul li.aspnet-owin-tutorial i {
+.page-docs .sidebar-docs li.box-mobile-phone ul li.aspnet-owin-tutorial i {
   border-color: #4e79c7;
 }
 .page-docs .sidebar-docs li.box-laptop ul li.azure-tutorial i,
-.page-docs .sidebar-docs .box-mobile-phone ul li.azure-tutorial i {
+.page-docs .sidebar-docs li.box-mobile-phone ul li.azure-tutorial i {
   border-color: #684ec7;
 }
 .page-docs .sidebar-docs li.box-laptop ul li.servicestack-tutorial i,
-.page-docs .sidebar-docs .box-mobile-phone ul li.servicestack-tutorial i {
+.page-docs .sidebar-docs li.box-mobile-phone ul li.servicestack-tutorial i {
   border-color: #a84ec7;
 }
 .page-docs .sidebar-docs li.box-laptop ul li.php-tutorial i,
-.page-docs .sidebar-docs .box-mobile-phone ul li.php-tutorial i {
+.page-docs .sidebar-docs li.box-mobile-phone ul li.php-tutorial i {
   border-color: #cf5191;
 }
 .page-docs .sidebar-docs li.box-laptop ul li.rails-tutorial i,
-.page-docs .sidebar-docs .box-mobile-phone ul li.rails-tutorial i {
+.page-docs .sidebar-docs li.box-mobile-phone ul li.rails-tutorial i {
   border-color: #e35e59;
 }
 .page-docs .sidebar-docs li.box-laptop ul li.ios-tutorial i,
-.page-docs .sidebar-docs .box-mobile-phone ul li.ios-tutorial i {
+.page-docs .sidebar-docs li.box-mobile-phone ul li.ios-tutorial i {
   border-color: #e39359;
 }
 .page-docs .sidebar-docs li.box-laptop ul li.android-tutorial i,
-.page-docs .sidebar-docs .box-mobile-phone ul li.android-tutorial i {
+.page-docs .sidebar-docs li.box-mobile-phone ul li.android-tutorial i {
   border-color: #e3ae59;
 }
 .page-docs .sidebar-docs li.box-laptop ul li.windowsphone-tutorial i,
-.page-docs .sidebar-docs .box-mobile-phone ul li.windowsphone-tutorial i {
+.page-docs .sidebar-docs li.box-mobile-phone ul li.windowsphone-tutorial i {
   border-color: #e3ca59;
 }
 .page-docs .sidebar-docs li.box-laptop ul li.xamarin-tutorial i,
-.page-docs .sidebar-docs .box-mobile-phone ul li.xamarin-tutorial i {
+.page-docs .sidebar-docs li.box-mobile-phone ul li.xamarin-tutorial i {
   border-color: #dfe158;
 }
 .page-docs .sidebar-docs li.box-laptop ul li.win8-tutorial i,
-.page-docs .sidebar-docs .box-mobile-phone ul li.win8-tutorial i {
+.page-docs .sidebar-docs li.box-mobile-phone ul li.win8-tutorial i {
   border-color: #4ec75c;
 }
 .page-docs .sidebar-docs li.box-laptop ul li.win8-cs-tutorial i,
-.page-docs .sidebar-docs .box-mobile-phone ul li.win8-cs-tutorial i {
+.page-docs .sidebar-docs li.box-mobile-phone ul li.win8-cs-tutorial i {
   border-color: #f00;
 }
 .page-docs .sidebar-docs li.box-laptop ul li.wpf-winforms-tutorial i,
-.page-docs .sidebar-docs .box-mobile-phone ul li.wpf-winforms-tutorial i {
+.page-docs .sidebar-docs li.box-mobile-phone ul li.wpf-winforms-tutorial i {
   border-color: #ffc0cb;
 }
 .page-docs .sidebar-docs li.box-mobile-phone ul li i {

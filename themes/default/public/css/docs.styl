@@ -2,6 +2,26 @@ color_blue = #14204d;
 color_blue_light = #3cc8f4;
 color_red = #eb5422;
 color_grey = #d1d2d4;
+
+color_node_js = #a9d353;
+color_asp= #4ea5c7;
+color_aspnet_owin= #4e79c7;
+color_azure= #684ec7;
+color_servicestack= #a84ec7;
+color_php= #cf5191;
+color_rails= #e35e59;
+color_ios= #e39359;
+color_android= #e3ae59;
+color_windowsphone= #e3ca59;
+color_xamarin= #dfe158;
+color_win8= #4ec75c;
+color_win8_cs= #f00;
+
+
+&.wpf-winforms-tutorial i
+  border-color: #ffc0cb;
+
+
 .page-docs
   padding-top: 120px;
 
@@ -248,9 +268,14 @@ color_grey = #d1d2d4;
           &:hover
             color: black;
 
-        &.box-laptop
+        &.box-laptop, &.box-terminal
           background: #f9f9f9;
           border-color: transparent;
+
+        &.box-laptop
+          margin-bottom: 0;
+          padding-bottom: 0;
+
 
 
     ul
@@ -274,7 +299,9 @@ color_grey = #d1d2d4;
           line-height: 1;
           margin-right: 8px;
           position: relative;
-          top: -2px;
+          top: 2px;
+          height: 14px;
+          // background: red;
 
         &.selected
           a
@@ -282,12 +309,24 @@ color_grey = #d1d2d4;
             // font-weight: bold;
 
 
-    li.box-laptop, .box-mobile-phone
+
+    li.box-laptop:before
+      content: "Tutorials"
+      text-transform: uppercase
+      font-weight: bold;
+      font-size: 12px;
+      margin-bottom: 6px;
+      display: block
+      letter-spacing: 1px;
+      color: #333
+
+    li.box-laptop, li.box-mobile-phone
 
       ul
         li
           i
             border: 2px solid #666;
+            height: 10px;
             border-radius: 100px;
             position: relative
             position: static;
