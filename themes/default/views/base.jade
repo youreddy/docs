@@ -76,7 +76,12 @@ html(lang="en")
 
     !function ($) {
       $(function(){
-      $('pre code').parent().addClass('prettyprint');
+      $('pre').each(function (i, e) {
+        // Ignore 'pre' elements inside .api-explorer elements
+        if ($(e).closest('.api-explorer').length === 0) {
+          $(e).addClass('prettyprint');
+        }
+      });
       window.prettyPrint && prettyPrint();   
       })
     }(window.jQuery);
