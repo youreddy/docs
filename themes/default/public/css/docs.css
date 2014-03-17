@@ -1,8 +1,8 @@
 &.wpf-winforms-tutorial i {
   border-color: #ffc0cb;
 }
-.page-docs {
-  padding-top: 120px;
+.page-docs header.site-header {
+  margin-bottom: 30px;
 }
 .page-docs .breadcrumb {
   padding: 14px 20px;
@@ -108,13 +108,13 @@
   margin-left: 4px;
 }
 .page-docs .browser-icons i {
-  margin-right: 3px;
+  margin-right: 10px;
 }
 .page-docs .browser-address {
   background: #fff;
   border: 1px solid #ddd;
   border-radius: 3px;
-  margin-left: 60px;
+  margin-left: 80px;
   padding: 4px;
 }
 .page-docs .browser-address i {
@@ -172,9 +172,6 @@
 }
 .page-docs #widget-chooser {
   width: 400px;
-}
-.page-docs header.site-header {
-  position: fixed;
 }
 .page-docs h1,
 .page-docs h2,
