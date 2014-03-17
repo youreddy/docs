@@ -365,7 +365,9 @@
   max-width: 100%;
 }
 .page-docs .getting-started-logos {
-  margin-bottom: 20px;
+  margin-bottom: 30px;
+  margin-top: 30px;
+  overflow: hidden;
 }
 .page-docs .logo-tutorial {
   background-color: #f1f1f1;
