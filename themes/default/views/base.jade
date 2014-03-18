@@ -214,12 +214,11 @@ html(lang="en")
 
 
 
-  script(src='https://docs.myauth0.com/js/prettify.js')
+  script(src='https://docs.auth0.com/js/prettify.js')
   script(type='text/javascript')
 
     !function ($) {
       $(function(){
-
       $('pre').each(function (i, e) {
         // Ignore 'pre' elements inside .api-explorer elements
         if ($(e).closest('.api-explorer').length === 0) {
@@ -246,7 +245,7 @@ html(lang="en")
     $('h2,h3,h4').each(function(){
       $(this)
         .attr('id', sectionIndex)
-        .prepend('<a class="anchor" href="#' + sectionIndex + '"><i class="icon icon-budicon-345"></i></a>');
+        .prepend('<a class="anchor" href="#' + sectionIndex + '"><i class="icon icon-link"></i></a>');
       sectionIndex++;
     });
 
@@ -255,3 +254,4 @@ html(lang="en")
     }
 
     $('.fixit a').attr('href', 'https://github.com/auth0/docs/tree/master/docs' + window.location.pathname + '.md');
+    

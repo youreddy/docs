@@ -272,15 +272,21 @@ color_win8_cs= #f00;
           &:hover
             color: black;
 
-        &.box-laptop, &.box-terminal
+        &.box-terminal, &.box-mobile-phone, &.box-html5
           background: #f9f9f9;
           border-color: transparent;
 
-        &.box-laptop
+        &.box-terminal, &.box-mobile-phone
           margin-bottom: 0;
           padding-bottom: 0;
 
+        &.box-mobile-phone
+          border-radius: 0;
 
+        &.box-html5
+          border-radius: 0;
+          border-bottom-right-radius: 3px;
+          border-bottom-left-radius: 3px;
 
     ul
       li
@@ -315,7 +321,6 @@ color_win8_cs= #f00;
 
 
     li.box-laptop:before
-      content: "Tutorials"
       text-transform: uppercase
       font-weight: bold;
       font-size: 12px;

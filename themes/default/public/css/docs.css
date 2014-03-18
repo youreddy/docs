@@ -239,14 +239,24 @@
 .page-docs .sidebar-docs ul li.box a:hover {
   color: #000;
 }
-.page-docs .sidebar-docs ul li.box.box-laptop,
-.page-docs .sidebar-docs ul li.box.box-terminal {
+.page-docs .sidebar-docs ul li.box.box-terminal,
+.page-docs .sidebar-docs ul li.box.box-mobile-phone,
+.page-docs .sidebar-docs ul li.box.box-html5 {
   background: #f9f9f9;
   border-color: transparent;
 }
-.page-docs .sidebar-docs ul li.box.box-laptop {
+.page-docs .sidebar-docs ul li.box.box-terminal,
+.page-docs .sidebar-docs ul li.box.box-mobile-phone {
   margin-bottom: 0;
   padding-bottom: 0;
+}
+.page-docs .sidebar-docs ul li.box.box-mobile-phone {
+  border-radius: 0;
+}
+.page-docs .sidebar-docs ul li.box.box-html5 {
+  border-radius: 0;
+  border-bottom-right-radius: 3px;
+  border-bottom-left-radius: 3px;
 }
 .page-docs .sidebar-docs ul li {
   line-height: 28px;
@@ -276,7 +286,6 @@
   color: #000 !important;
 }
 .page-docs .sidebar-docs li.box-laptop:before {
-  content: "Tutorials";
   text-transform: uppercase;
   font-weight: bold;
   font-size: 12px;
