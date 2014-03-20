@@ -1,9 +1,6 @@
 &.wpf-winforms-tutorial i {
   border-color: #ffc0cb;
 }
-.page-docs header.site-header {
-  margin-bottom: 10px;
-}
 .page-docs .breadcrumb {
   padding: 14px 20px;
   border-radius: 3px;
@@ -241,7 +238,8 @@
 }
 .page-docs .sidebar-docs ul li.box.box-terminal,
 .page-docs .sidebar-docs ul li.box.box-mobile-phone,
-.page-docs .sidebar-docs ul li.box.box-html5 {
+.page-docs .sidebar-docs ul li.box.box-html5,
+.page-docs .sidebar-docs ul li.box.box-laptop {
   background: #f9f9f9;
   border-color: transparent;
 }
