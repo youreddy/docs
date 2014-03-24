@@ -7,7 +7,7 @@
     "markdocs": "~0.5.1",
     "winston": "~0.6.2",
     "nconf": "~0.6.4",
-    "express": "~3.0.0rc4",
+    "express": "~3.3.1",
     "passport": "~0.1.12",
     "jade": "~0.27.7",
     "winston-email": "0.0.6",
