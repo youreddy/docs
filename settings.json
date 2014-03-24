@@ -65,8 +65,8 @@
         "title": "API Reference",
         "icon": "icon-cogs",
         "items": [
-          { "title": "Auth0 API", "url": "/api"},
-          { "title": "Auth API", "url": "/auth-api"}
+          { "title": "API", "url": "/api"},
+          { "title": "Authentication Endpoints", "url": "/auth-api"}
         ]
       },
       {
