@@ -1,6 +1,9 @@
 &.wpf-winforms-tutorial i {
   border-color: #ffc0cb;
 }
+.page-docs .container {
+  min-width: 1170px;
+}
 .page-docs .breadcrumb {
   padding: 14px 20px;
   border-radius: 3px;
