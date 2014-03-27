@@ -17,7 +17,7 @@
   });<% } %>
   <% if (callbackOnHash) { %> 
   // authentication result comes back in `window.location.hash`
-  widget.parseHash(window.location.hash, function (profile, id_token, access_token, state) {
+  widget.getProfile(window.location.hash, function (err, profile, id_token, access_token, state) {
     /* 
       store the profile and id_token in a cookie or local storage
         $.cookie('profile', profile);

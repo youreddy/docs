@@ -1,10 +1,9 @@
-<button class="signin-google">Sign in with Google</button><br>
-<button class="signin-facebook">Sign in with Facebook</button><br>
-<button class="signin-waad">Sign in with Windows Azure AD</button><br>
-<button class="signin-etc">Sign in with ...</button><br><p>--- or ---</p>
-<label>User</label><input type="text" id="username"><br>
+<button class="signin-google">Sign in with Google (redirect)</button><br>
+<button class="signin-google-popup">Sign in with Google (popup)</button><br>
+<br><p>--- or ---</p>
+<label>Email</label><input type="text" id="email"><br>
 <label>Password</label><input type="password" id="password"><br>
-<button class="signin-db">Sign in with Username/Password</button>
+<button class="signin-db">Sign in with Email/Password</button>
 
 <script src="<%= auth0js_url %>"></script>
 <script src="http://code.jquery.com/jquery.js"></script>
@@ -20,30 +19,46 @@
     callbackURL:    '<%= account.callback %>'
   });<% } %>
 
+  // sign-in with social provider with plain redirect
   $('.signin-google').on('click', function() {
-    auth0.login({connection: 'google-oauth2'}); 
+    auth0.signin({connection: 'google-oauth2'}); // use connection identifier
   });
 
-  $('.signin-facebook').on('click', function() {
-    auth0.login({connection: 'facebook'}); 
+  <% if (callbackOnHash) { %> 
+  // authentication result comes back in `window.location.hash`
+  widget.getProfile(window.location.hash, function (err, profile, id_token, access_token, state) {
+    /* 
+      store the profile and id_token in a cookie or local storage
+        $.cookie('profile', profile);
+        $.cookie('id_token', id_token);
+    */
   });
+  <% } %>
 
-  $('.signin-waad').on('click', function() {
-    auth0.login({connection: 'tenant.onmicrosoft.com'}); 
-  });
-
-  $('.signin-etc').on('click', function() {
-    auth0.login({connection: 'connection-name'}); 
+  // sign-in with social provider using a popup (window.open)
+  $('.signin-google-popup').on('click', function() {
+    auth0.signin({popup: true, connection: 'google-oauth2'}, 
+                function(err, profile, id_token, access_token, state) {
+                    /* 
+                      store the profile and id_token in a cookie or local storage
+                        $.cookie('profile', profile);
+                        $.cookie('id_token', id_token);
+                    */
+                });
   });
 
   $('.signin-db').on('click', function() {
-    auth0.login({
+    auth0.signin({
       connection: 'foo', 
       username: 'bar', 
       password: 'foobar'
     },
-    function (err) {
-      // invalid user/password
+    function (err, profile, id_token, access_token, state) {
+      /* 
+          store the profile and id_token in a cookie or local storage
+            $.cookie('profile', profile);
+            $.cookie('id_token', id_token);
+        */
     });
   });
 </script>

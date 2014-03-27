@@ -2,6 +2,7 @@ var fs       = require('fs');
 
 var nconf     = require('nconf');
 var extend    = require('xtend');
+var jade      = require('jade');
 
 var tmplPath = __dirname + '/index.jade';
 var api_explorer_url = require('./api_explorer_script_url');
