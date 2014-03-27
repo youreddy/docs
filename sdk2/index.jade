@@ -8,12 +8,12 @@ if account.loggedIn && !embedded
         option(value="#{client.clientID}") #{client.name}
 
 div
-  label Select the widget mode:
+  label Select how you want to trigger login:
   select#widget-chooser
     option(value="login") Login Widget - Modal
     option(value="embedded") Login Widget - Inside a DIV
-    option(value="redirect") Login Link
-    option(value="custom") JavaScript API
+    option(value="custom") Custom UI
+    option(value="redirect") Plain Link
 
 
 p This is how it will look on a browser...
