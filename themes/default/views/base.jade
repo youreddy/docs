@@ -245,8 +245,8 @@ html(lang="en")
       sectionIndex++;
     });
 
-    if(window.location.hash) {
-      window.location.hash = window.location.hash;
+    if(location.hash) {
+      location.hash = location.hash;
     }
 
     $('.fixit a').attr('href', 'https://github.com/auth0/docs/tree/master/docs' + window.location.pathname + '.md');
