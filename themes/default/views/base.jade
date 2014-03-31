@@ -127,7 +127,7 @@ html(lang="en")
               a(href="http://github.com/auth0", target="_blank") Github
 
             li
-              a(href="https://chat.auth0.com", target="_blank") Chat With Us
+              a(href="http://chat.auth0.com", target="_blank") Chat With Us
 
             li
               a(href="mailto:support@auth0.com", target="_blank") Contact Us
@@ -245,8 +245,8 @@ html(lang="en")
       sectionIndex++;
     });
 
-    if(window.location.hash) {
-      window.location.hash = window.location.hash;
+    if(location.hash) {
+      location.hash = location.hash;
     }
 
     $('.fixit a').attr('href', 'https://github.com/auth0/docs/tree/master/docs' + window.location.pathname + '.md');
