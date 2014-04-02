@@ -35,7 +35,8 @@
           { "title": "PHP API", "url": "/phpapi-tutorial" },
           { "title": "Java API", "url": "/javaapi-tutorial" },
           { "title": ".NET WCF", "url": "/wcf-tutorial" },
-          { "title": "AWS", "url": "/awsapi-tutorial" }
+          { "title": "AWS", "url": "/awsapi-tutorial" },
+          { "title": "Azure Mobile Services", "url": "/wams" }
         ]
       },
       {
