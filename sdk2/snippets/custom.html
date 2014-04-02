@@ -26,9 +26,9 @@
 
   <% if (callbackOnHash) { %> 
   // authentication result comes back in `location.hash`
-  var result = widget.parseHash(location.hash);
+  var result = auth0.parseHash(location.hash);
   if (result) {
-      widget.getProfile(result.id_token, function (err, profile) {
+      auth0.getProfile(result.id_token, function (err, profile) {
           // store result.id_token and profile in local storage or cookie
       });
   }
