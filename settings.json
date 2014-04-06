@@ -21,7 +21,8 @@
           { "title": "ServiceStack", "url": "/servicestack-tutorial" },
           { "title": "PHP", "url": "/php-tutorial" },
           { "title": "Ruby", "url": "/rails-tutorial" },
-          { "title": "Java", "url": "/java-tutorial" }
+          { "title": "Java", "url": "/java-tutorial" },
+          { "title": "Python", "url": "/python-tutorial" }
         ]
       },
       {
@@ -33,8 +34,8 @@
           { "title": "Node.js API", "url": "/nodeapi-tutorial" },
           { "title": "Ruby API", "url": "/rubyapi-tutorial" },
           { "title": "PHP API", "url": "/phpapi-tutorial" },
-          { "title": "Python API", "url": "/pythonapi-tutorial" },
           { "title": "Java API", "url": "/javaapi-tutorial" },
+          { "title": "Python API", "url": "/pythonapi-tutorial" },
           { "title": ".NET WCF", "url": "/wcf-tutorial" },
           { "title": "AWS", "url": "/awsapi-tutorial" },
           { "title": "Azure Mobile Services", "url": "/wams" }
