@@ -88,7 +88,8 @@
           { "title": "Identity Providers", "url": "/identityproviders" },
           { "title": "SAML", "url":"/saml-configuration"},
           { "title": "Link Accounts", "url": "/link-accounts" },
-          { "title": "Custom Signup", "url": "/custom-signup" }
+          { "title": "Custom Signup", "url": "/custom-signup" },
+          { "title": "Multifactor Auth (beta)", "url": "/mfa" }
         ]
       }
     ],
