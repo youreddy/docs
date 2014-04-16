@@ -20,6 +20,7 @@
           { "title": "Windows Azure", "url": "/azure-tutorial" },
           { "title": "ServiceStack", "url": "/servicestack-tutorial" },
           { "title": "PHP", "url": "/php-tutorial" },
+          { "title": "PHP (Laravel)", "url": "/laravel-tutorial" },
           { "title": "Ruby", "url": "/rails-tutorial" },
           { "title": "Java", "url": "/java-tutorial" },
           { "title": "Python", "url": "/python-tutorial" }
