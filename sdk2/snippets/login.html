@@ -21,4 +21,4 @@
   }
   <% } %>
 </script>
-<button onclick="widget.signin()">Login</button>
+<button onclick="widget.signin(<% if (!callbackOnHash) { %>{ scope: 'openid profile' }<% } %>)">Login</button>
