@@ -50,6 +50,9 @@ html(lang="en")
 
       window.signup = function() {
         widget._hideSignIn();
+
+        ga('send', 'event', 'signup', 'open', 'docs');
+
         widget.once('closed', function () {
           $('#a0-widget').remove();
           widget
