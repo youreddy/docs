@@ -35,6 +35,7 @@
           { "title": "Node.js API", "url": "/nodeapi-tutorial" },
           { "title": "Ruby API", "url": "/rubyapi-tutorial" },
           { "title": "PHP API", "url": "/phpapi-tutorial" },
+          { "title": "PHP (Laravel) API", "url": "/laravelapi-tutorial" },
           { "title": "Java API", "url": "/javaapi-tutorial" },
           { "title": "Python API", "url": "/pythonapi-tutorial" },
           { "title": ".NET WCF", "url": "/wcf-tutorial" },
