@@ -17,7 +17,6 @@
           { "title": "Node.js", "url": "/nodejs-tutorial" },
           { "title": "ASP.NET", "url": "/aspnet-tutorial" },
           { "title": "ASP.NET (OWIN)", "url": "/aspnet-owin-tutorial" },
-          { "title": "Windows Azure", "url": "/azure-tutorial" },
           { "title": "ServiceStack", "url": "/servicestack-tutorial" },
           { "title": "PHP", "url": "/php-tutorial" },
           { "title": "PHP (Laravel)", "url": "/laravel-tutorial" },
