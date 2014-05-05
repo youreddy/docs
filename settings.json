@@ -7,7 +7,8 @@
         "title": "Getting Started",
         "icon": "icon-star",
         "items": [
-          { "title": "Start here", "url": "/" }
+          { "title": "Start here", "url": "/" },
+          { "title": "Web Apps vs Web APIs", "url": "/apps-apis" }
         ]
       },
       {
