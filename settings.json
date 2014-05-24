@@ -62,7 +62,6 @@
         "icon": "icon-html5",
         "items": [
           { "title": "Single Page Apps", "url": "/singlepageapp-tutorial" },
-          { "title": "Ember.js", "url": "/ember-tutorial" },
           { "title": "Angular.js", "url": "/angular-tutorial" }
         ]
       },
