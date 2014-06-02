@@ -81,7 +81,7 @@ app.configure(function(){
       winston.error('cant connect to the database (/test mongo ping timedout)');
       res.send(500, 'cann\'t connect to the database');
       process.exit(1);
-    }, 5000);
+    }, 15000);
     getDb(function (db) {
       db.command({ping: 1}, function (err) {
         clearTimeout(ping_check);
