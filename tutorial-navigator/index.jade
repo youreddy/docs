@@ -1,0 +1,10 @@
+div#tutorial-navigator
+
+script(src="https://cdn.auth0.com/tutorial-navigator/build.js", type="text/javascript")
+link(href="https://cdn.auth0.com/tutorial-navigator/build.css", type="text/css", rel="stylesheet", )
+
+script
+    var TutorialNavigator = require('tutorial-navigator');
+    var tutorial = new TutorialNavigator();
+    tutorial.render('#tutorial-navigator');
+

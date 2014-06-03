@@ -8,6 +8,7 @@
         "icon": "icon-star",
         "items": [
           { "title": "Start here", "url": "/" },
+          { "title": "Tutorial Navigator", "url": "/navigator" },
           { "title": "Web Apps vs Web APIs", "url": "/apps-apis" }
         ]
       },
