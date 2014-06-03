@@ -41,7 +41,7 @@ module.exports = function (req, res, next)  {
       jadeContext.globalClientID      = '';
     }
 
-    res.locals.apiExplorer = function (ctx) {
+    res.locals.navigator = function (ctx) {
       jadeContext = extend(jadeContext, ctx);
       return tmpl(jadeContext);
     };
