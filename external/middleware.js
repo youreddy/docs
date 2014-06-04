@@ -4,7 +4,7 @@ var nconf     = require('nconf');
 var extend    = require('xtend');
 var jade      = require('jade');
 
-var api_explorer_url = require('./api_explorer_script_url');
+var context = require('./context');
 var apiTmplPath = __dirname + '/api-explorer.jade';
 var tutorialTmplPath = __dirname + '/tutorial.jade';
 
@@ -19,7 +19,7 @@ var tutorialTmpl = jade.compile(fs.readFileSync(tutorialTmplPath).toString(), {
 });
 
 module.exports = function (req, res, next)  {
-  api_explorer_url.get(res.locals.account.clientId, function (err, jadeContext) {
+  context.get(res.locals.account.clientId, function (err, jadeContext) {
     jadeContext.docsDomain = nconf.get('DOMAIN_URL_DOCS');
 
     // the right-most property takes presedence.
