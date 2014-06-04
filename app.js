@@ -308,8 +308,7 @@ docsapp.addPreRender(function(req,res,next){
   next();
 });
 
-docsapp.addPreRender(require('./api-explorer/middleware'));
-docsapp.addPreRender(require('./tutorial-navigator/middleware'));
+docsapp.addPreRender(require('./external/middleware'));
 docsapp.addPreRender(require('./sdk/middleware'));
 docsapp.addPreRender(require('./sdk2/middleware'));
 require('./sdk/demos-routes')(app);

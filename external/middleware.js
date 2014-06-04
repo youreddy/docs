@@ -4,16 +4,22 @@ var nconf     = require('nconf');
 var extend    = require('xtend');
 var jade      = require('jade');
 
-var tmplPath = __dirname + '/index.jade';
-var api_explorer_url = require('./api_explorer_script_url');
+var context = require('./context');
+var apiTmplPath = __dirname + '/api-explorer.jade';
+var tutorialTmplPath = __dirname + '/tutorial.jade';
 
-var tmpl     = jade.compile(fs.readFileSync(tmplPath).toString(), {
-  filename: tmplPath,
+var apiTmpl = jade.compile(fs.readFileSync(apiTmplPath).toString(), {
+  filename: apiTmplPath,
+  pretty: true
+});
+
+var tutorialTmpl = jade.compile(fs.readFileSync(tutorialTmplPath).toString(), {
+  filename: tutorialTmplPath,
   pretty: true
 });
 
 module.exports = function (req, res, next)  {
-  api_explorer_url.get(res.locals.account.clientId, function (err, jadeContext) {
+  context.get(res.locals.account.clientId, function (err, jadeContext) {
     jadeContext.docsDomain = nconf.get('DOMAIN_URL_DOCS');
 
     // the right-most property takes presedence.
@@ -41,9 +47,14 @@ module.exports = function (req, res, next)  {
       jadeContext.globalClientID      = '';
     }
 
+    res.locals.apiExplorer = function (ctx) {
+      jadeContext = extend(jadeContext, ctx);
+      return apiTmpl(jadeContext);
+    };
+
     res.locals.navigator = function (ctx) {
       jadeContext = extend(jadeContext, ctx);
-      return tmpl(jadeContext);
+      return tutorialTmpl(jadeContext);
     };
 
     next();
