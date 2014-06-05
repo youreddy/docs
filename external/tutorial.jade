@@ -13,7 +13,7 @@ script
     var compose = function(val) { return val ? '/' + val + '-tutorial' : ''};
     var eqlPath = function(url) {
       var base = page.base() || '';
-      var path = window.location.pathname.slice(base.length) || '#!/';
+      var path = window.location.hash || '#!/';
       return path === url;
     }
 
