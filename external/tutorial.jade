@@ -8,7 +8,6 @@ script(type="text/javascript")
 script
     var TutorialNavigator = require('tutorial-navigator');
     var tutorial = new TutorialNavigator();
-    //- tutorial.render('#tutorial-navigator');
     var extract = /\/(.+)-tutorial/;
     var compose = function(val) { return val ? '/' + val + '-tutorial' : ''};
     var eqlPath = function(url) {
