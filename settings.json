@@ -7,8 +7,7 @@
         "title": "Getting Started",
         "icon": "icon-star",
         "items": [
-          { "title": "Start here", "url": "/" },
-          { "title": "Web Apps vs Web APIs", "url": "/apps-apis" }
+          { "title": "Quickstarts", "url": "/" }
         ]
       },
       {
@@ -83,6 +82,7 @@
         "items": [
           { "title": "Login Widget", "url":"/login-widget2"},
           { "title": "Normalized Profile", "url":"/user-profile"},
+          { "title": "Web Apps vs Web APIs", "url": "/apps-apis" },
           { "title": "Logout", "url":"/logout"},
           { "title": "Rules", "url":"/rules"},
           { "title": "Rules Repository", "url":"https://github.com/auth0/rules"},
