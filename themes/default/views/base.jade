@@ -144,26 +144,27 @@ html(lang="en")
               -var navigation = site.menus.navigation
               - for (var k1 in navigation)
                 - var l1 = navigation[k1]
-                li(class="box-" + l1.icon.substr(5)).box
-                  - if (l1.icon)
-                      strong
-                        //- i(class='icon #{l1.icon}')
-                        | #{l1.title}
-                  - else
-                      strong= l1.title
-                  ul
-                    - for (var k2 in l1.items)
-                      - var l2 = l1.items[k2]
-                      - if (l2.url == url)
-                          li(class=l2.url.substr(1)).selected
-                            a(href=furl(l2.url))
-                              i
-                              span= l2.title
-                      - else
-                          li(class=l2.url.substr(1))
-                            a(href=furl(l2.url))
-                              i
-                              span= l2.title
+                - if (!l1.disabled)
+                  li(class="box-" + l1.icon.substr(5)).box
+                    - if (l1.icon)
+                        strong
+                          //- i(class='icon #{l1.icon}')
+                          | #{l1.title}
+                    - else
+                        strong= l1.title
+                    ul
+                      - for (var k2 in l1.items)
+                        - var l2 = l1.items[k2]
+                        - if (l2.url == url)
+                            li(class=l2.url.substr(1)).selected
+                              a(href=furl(l2.url))
+                                i
+                                span= l2.title
+                        - else
+                            li(class=l2.url.substr(1))
+                              a(href=furl(l2.url))
+                                i
+                                span= l2.title
 
         .col-xs-9
           section.content

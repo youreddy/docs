@@ -14,6 +14,7 @@
       {
         "title": "Web Apps",
         "icon": "icon-laptop",
+        "disabled": true,
         "items": [
           { "title": "Node.js", "url": "/nodejs-tutorial" },
           { "title": "ASP.NET", "url": "/aspnet-tutorial" },
@@ -29,6 +30,7 @@
       {
         "title": "Web APIs",
         "icon": "icon-terminal",
+        "disabled": true,
         "items": [
           { "title": "ASP.NET Web API", "url": "/aspnetwebapi-tutorial" },
           { "title": "ASP.NET Web API (OWIN)", "url": "/aspnetwebapi-owin-tutorial" },
@@ -46,6 +48,7 @@
       {
         "title": "Mobile/Native",
         "icon": "icon-mobile-phone",
+        "disabled": true,
         "items": [
           { "title": "iOS", "url": "/ios-tutorial" },
           { "title": "Android", "url": "/android-tutorial" },
@@ -60,6 +63,7 @@
       {
         "title": "HTML5",
         "icon": "icon-html5",
+        "disabled": true,
         "items": [
           { "title": "Single Page Apps", "url": "/singlepageapp-tutorial" },
           { "title": "Angular.js", "url": "/angular-tutorial" }
