@@ -75,7 +75,7 @@ app.configure('production', function(){
 
 app.configure(function(){
   this.set("view engine", "jade");
-  this.use(express.logger('dev'));
+
   this.use('/test', function (req, res) {
     var ping_check = setTimeout(function () {
       winston.error('cant connect to the database (/test mongo ping timedout)');
@@ -95,6 +95,8 @@ app.configure(function(){
       });
     });
   });
+
+  this.use(express.logger('dev'));
 
   this.use(function (req, res, next) {
     res.set({
