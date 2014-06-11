@@ -3,7 +3,7 @@
 set -e
 
 #install all deps
-npm install --production
+npm install
 
 #set the version number in the package json without a new commit.
 mv .git .git-back
