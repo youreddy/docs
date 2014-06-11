@@ -30,7 +30,14 @@ html(lang="en")
       window.widget = new Auth0Widget({
         domain:         'auth0.auth0.com',
         clientID:       'zEYfpoFzUMEzilhkHilcWoNkrFfJ3hAI',
-        callbackURL:    'https://app.auth0.com/callback'
+        callbackURL:    'https://app.auth0.com/callback',
+        dict: {
+          signup: {
+            footerText: 'By signing up, you agree to our <a href="/terms" target="_new">terms of service</a> and <a href="/privacy" target="_new">privacy policy</a>'
+          }
+        },
+        showIcon: true,
+        icon: '//auth0.com/boot/badge.png'
       });
 
       widget.getClient().getSSOData(false, function (err, data) {
