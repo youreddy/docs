@@ -87,9 +87,10 @@ html(lang="en")
               span.icon-bar
               span.icon-bar
               span.icon-bar
-            a.navbar-brand(href='https://auth0.com/')
-              img(src="https://auth0.com/auth0-styleguide/img/logo.png")
-              span Auth0
+            h1.navbar-brand
+              a(href='https://auth0.com/')
+                img(src="https://auth0.com/auth0-styleguide/img/logo.png")
+                span Auth0
 
           #bs-example-navbar-collapse-1.collapse.navbar-collapse
             ul.nav.navbar-nav.navbar-left
@@ -144,26 +145,27 @@ html(lang="en")
               -var navigation = site.menus.navigation
               - for (var k1 in navigation)
                 - var l1 = navigation[k1]
-                li(class="box-" + l1.icon.substr(5)).box
-                  - if (l1.icon)
-                      strong
-                        //- i(class='icon #{l1.icon}')
-                        | #{l1.title}
-                  - else
-                      strong= l1.title
-                  ul
-                    - for (var k2 in l1.items)
-                      - var l2 = l1.items[k2]
-                      - if (l2.url == url)
-                          li(class=l2.url.substr(1)).selected
-                            a(href=furl(l2.url))
-                              i
-                              span= l2.title
-                      - else
-                          li(class=l2.url.substr(1))
-                            a(href=furl(l2.url))
-                              i
-                              span= l2.title
+                - if (!l1.disabled)
+                  li(class="box-" + l1.icon.substr(5)).box
+                    - if (l1.icon)
+                        strong
+                          //- i(class='icon #{l1.icon}')
+                          | #{l1.title}
+                    - else
+                        strong= l1.title
+                    ul
+                      - for (var k2 in l1.items)
+                        - var l2 = l1.items[k2]
+                        - if (l2.url == url)
+                            li(class=l2.url.substr(1)).selected
+                              a(href=furl(l2.url))
+                                i
+                                span= l2.title
+                        - else
+                            li(class=l2.url.substr(1))
+                              a(href=furl(l2.url))
+                                i
+                                span= l2.title
 
         .col-xs-9
           section.content
@@ -236,6 +238,19 @@ html(lang="en")
 
     ga('create', 'UA-37952868-1', 'auth0.com');
     ga('send', 'pageview');
+
+  //- Begin Inspectlet Embed Code
+  script#inspectletjs(type="text/javascript")
+    window.__insp = window.__insp || [];
+    __insp.push(['wid', 1881287289]);
+    (function() {
+      function __ldinsp(){var insp = document.createElement('script'); insp.type = 'text/javascript'; insp.async = true; insp.id = "inspsync"; insp.src = ('https:' == document.location.protocol ? 'https' : 'http') + '://cdn.inspectlet.com/inspectlet.js'; var x = document.getElementsByTagName('script')[0]; x.parentNode.insertBefore(insp, x); }
+      if (window.attachEvent){
+        window.attachEvent('onload', __ldinsp);
+      }else{
+        window.addEventListener('load', __ldinsp, false);
+      }
+    })();
 
   script
     var sectionIndex = 1;
