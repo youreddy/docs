@@ -23,7 +23,7 @@
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
-    "postinstall": "CI=true bower install"
+    "postinstall": "CI=true bower install --allow-root"
   },
   "engines": {
     "node": "0.10.24",
