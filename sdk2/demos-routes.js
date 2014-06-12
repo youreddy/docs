@@ -12,6 +12,11 @@ module.exports = function (app) {
       widget_script_url.get(req.query.a || WIDGET_FALLBACK_CLIENTID, function (err, widgetUrl, assetsUrl, tenant_domain, namespace, client, auth0jsUrl) {
         if (err) return res.send(err);
 
+        client = client || {
+          clientID: WIDGET_FALLBACK_CLIENTID,
+          callback: 'http://YOURAPP.com'
+        };
+
         res.locals.widget_url       = widgetUrl;
         res.locals.auth0_sdk_assets = assetsUrl;
         res.locals.tenant_domain    = tenant_domain;
@@ -22,15 +27,19 @@ module.exports = function (app) {
         res.locals.auth0js_url      = auth0jsUrl;
         res.locals.callbackOnHash   = req.query.callbackOnHash === 'true';
 
-        getDb(function (db) {
-          db.collection('connections').find({client_id: client.clientID, status: true}).toArray(function(err, connections) {
-            if (err) return res.send(err);
-            
-            res.locals.connections = connections;
-            next();
+        if (!nconf.get('db')) {
+          res.locals.connections = [];
+          next();
+        } else {
+          getDb(function (db) {
+            db.collection('connections').find({client_id: client.clientID, status: true}).toArray(function(err, connections) {
+              if (err) return res.send(err);
+
+              res.locals.connections = connections;
+              next();
+            });
           });
-        });
-        
+        }
       });
     }, function (req, res) {
       res.render(__dirname + '/demos/' + demo);

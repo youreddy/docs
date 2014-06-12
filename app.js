@@ -29,6 +29,8 @@ nconf
     'PUBLIC_ALLOWED_TUTORIALS': '/adldap-auth?,/adldap-x?,/adfs?',
   });
 
+console.log('db is ' + nconf.get('db'));
+
 if (nconf.get('NEWRELIC_KEY')) {
   require('newrelic');
 }
@@ -44,16 +46,22 @@ if (!nconf.get('AUTH0JS_URL')) {
 var connections = require('./lib/connections');
 var clients     = require('./lib/clients');
 
-var getDb = require('./lib/data');
-
 require('./lib/setupLogger');
 var winston = require('winston');
 
 passport.serializeUser(function(user, done) {
-   done(null, user.id);
- });
+  if (!nconf.get('db')) {
+    return done(null, user);
+  }
+  done(null, user.id);
+});
 
 passport.deserializeUser(function(id, done) {
+  if (!nconf.get('db')) {
+    return done(null, id);
+  }
+
+  var getDb = require('./lib/data');
   getDb(function(db){
     var userColl = db.collection("tenantUsers");
     userColl.findOne({id: id}, done);
@@ -76,25 +84,7 @@ app.configure('production', function(){
 app.configure(function(){
   this.set("view engine", "jade");
 
-  this.use('/test', function (req, res) {
-    var ping_check = setTimeout(function () {
-      winston.error('cant connect to the database (/test mongo ping timedout)');
-      res.send(500, 'cann\'t connect to the database');
-      process.exit(1);
-    }, 15000);
-    getDb(function (db) {
-      db.command({ping: 1}, function (err) {
-        clearTimeout(ping_check);
-        if (err) {
-          winston.error('cant connect to the database (/test)');
-          res.send(500, 'cann\'t connect to the database');
-        }
-        var result = process.memoryUsage();
-        result['db status'] = 'ok';
-        return res.json(200, result);
-      });
-    });
-  });
+  this.use('/test', require('./lib/test-ping'));
 
   this.use(express.logger('dev'));
 
@@ -318,6 +308,8 @@ require('./sdk2/demos-routes')(app);
 require('./sdk2/snippets-routes')(app);
 require('./lib/sitemap')(app);
 
+
+
 if (!module.parent) {
   var server;
   if (process.env.NODE_ENV === 'production') {
@@ -338,8 +330,9 @@ if (!module.parent) {
   }
 
   var port = nconf.get('PORT') || 5050;
-  server.listen(port);
-  console.log('Server listening on https://localhost:'  + port);
+  server.listen(port, function () {
+    console.log('Server listening on https://localhost:'  + port);
+  });
 } else {
   module.exports = docsapp;
 }

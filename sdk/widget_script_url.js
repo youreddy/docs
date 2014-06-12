@@ -10,7 +10,7 @@ var DOMAIN_URL_SERVER = nconf.get('DOMAIN_URL_SERVER');
 exports.get = function (clientID, done) {
   clients.findByClientId(clientID, function (err, client) {
     if (err) return done(err);
-
+    
     var tenant_domain = 'https://' + DOMAIN_URL_SERVER.replace('{tenant}', client ? client.tenant : 'YOUR-DOMAIN');
     var sdk_url;
 

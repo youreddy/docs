@@ -27,6 +27,11 @@ module.exports = function (app) {
     app.get('/widget2-snippets/' + snippet, function (req, res) {
 
       widget_script_url.get(req.query.a || WIDGET_FALLBACK_CLIENTID, function (err, widgetUrl, assetsUrl, tenant_domain, namespace, client, auth0jsUrl) {
+
+        client = client || {
+          clientID: WIDGET_FALLBACK_CLIENTID
+        };
+
         var jadelocals = {
           widget_url:     widgetUrl,
           auth0js_url:    auth0jsUrl,
