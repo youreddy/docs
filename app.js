@@ -29,7 +29,9 @@ nconf
     'PUBLIC_ALLOWED_TUTORIALS': '/adldap-auth?,/adldap-x?,/adfs?',
   });
 
-console.log('db is ' + nconf.get('db'));
+if (nconf.get('db')) {
+  console.log('db is ' + nconf.get('db'));
+}
 
 if (nconf.get('NEWRELIC_KEY')) {
   require('newrelic');
