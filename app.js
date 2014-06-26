@@ -233,6 +233,7 @@ var overrideIfClientInQsForPublicAllowedUrls = function (req, res, next) {
     res.locals.account.clientId     = client.clientID;
     res.locals.account.clientSecret = client.clientSecret;
     res.locals.account.callback     = client.callback;
+    res.locals.connectionName       = req.query.conn;
 
     next();
   });
@@ -258,6 +259,7 @@ var overrideIfClientInQs = function (req, res, next) {
     res.locals.account.clientId     = client.clientID;
     res.locals.account.clientSecret = client.clientSecret;
     res.locals.account.callback     = client.callback;
+    res.locals.connectionName       = req.query.conn;
 
     next();
   });
@@ -266,7 +268,7 @@ var overrideIfClientInQs = function (req, res, next) {
 var appendTicket = function (req, res, next) {
   res.locals.ticket = 'YOUR_TICKET';
   res.locals.connectionDomain = 'YOUR_CONNECTION_NAME';
-  res.locals.connectionName = 'YOUR_CONNECTION_NAME';
+  res.locals.connectionName = res.locals.connectionName || 'YOUR_CONNECTION_NAME';
   if (!req.query.ticket) return next();
   connections.findByTicket(req.query.ticket, function (err, connection) {
     if (err) return res.send(500);
