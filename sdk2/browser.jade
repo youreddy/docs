@@ -1,0 +1,28 @@
+p This is how it will look on a browser...
+.browser
+  .browser-toolbar
+    .browser-icons
+      a(href="javascript:history.back()", target="widget-demo")
+        i.icon-budicon-521
+      a(href="javascript:history.forward()", target="widget-demo")
+        i.icon-budicon-519
+      a(href="javascript:document.getElementById('widget-demo').contentWindow.location.reload(true);")
+        i.icon-budicon-436
+    .browser-address
+      i.icon-budicon-285
+  .browser-content(class="login-widget2")
+    iframe#widget-demo(src='')
+
+
+script
+  function refresh (method, clientId) {
+    $('#widget-demo').attr('src', '#{DOMAIN_URL_DOCS}/widget2-demos/' + method + '?' + (clientId !== 'YOUR_CLIENT_ID' ? '&a=' + clientId : '') + '&callbackOnHash=#{callbackOnHashMode}');
+  }
+
+  $('#client-chooser').change(function (e) {
+    var method = $('#widget-chooser').val();
+    var clientId = $(this).val();
+    refresh(method, clientId);
+  });
+
+  refresh('login', '#{account.clientId}');
