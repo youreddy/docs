@@ -308,6 +308,8 @@ docsapp.addPreRender(require('./external/middleware'));
 docsapp.addPreRender(require('./sdk/middleware'));
 docsapp.addPreRender(require('./sdk2/middleware'));
 docsapp.addPreRender(require('./sdk2/middleware-browser'));
+docsapp.addPreRender(require('./lib/middlewares').configuration);
+docsapp.addExtension(require('./lib/extensions').lodash);
 require('./sdk/demos-routes')(app);
 require('./sdk2/demos-routes')(app);
 require('./sdk2/snippets-routes')(app);
