@@ -23,6 +23,7 @@
   },
   "main": "app.js",
   "scripts": {
+    "test": "make test",
     "start": "node app.js",
     "postinstall": "CI=true bower install --allow-root"
   },
