@@ -303,10 +303,15 @@ docsapp.addPreRender(function(req,res,next){
   res.locals.uiURL   = scheme + '://' + nconf.get('DOMAIN_URL_APP');
   res.locals.sdkURL  = scheme + '://' + nconf.get('DOMAIN_URL_SDK');
 
+  if (res.locals.account && res.locals.account.clientId) {
+    res.locals.uiAppSettingsURL = res.locals.uiURL + '/#/applications/' + res.locals.account.clientId + '/settings';
+    res.locals.uiAppAddonsURL = res.locals.uiURL + '/#/applications/' + res.locals.account.clientId + '/addons';
+  }
+
   function removeScheme(url) {
     return url.slice(url.indexOf(':') + 1);
   }
-
+  
   // Auth0 client side Javascript URLs to use
   res.locals.auth0js_url                  = nconf.get('AUTH0JS_URL');
   res.locals.auth0js_url_no_scheme        = removeScheme(nconf.get('AUTH0JS_URL'));
