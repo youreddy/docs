@@ -280,7 +280,7 @@ var appendTicket = function (req, res, next) {
   });
 };
 
-var includes = require('./includes/includes');
+var includes = require('./lib/includes/includes');
 includes.init(path.join(__dirname, '/docs/includes'));
 
 var docsapp = new markdocs.App(__dirname, '', app);
@@ -304,15 +304,15 @@ docsapp.addPreRender(function(req,res,next){
   next();
 });
 
-docsapp.addPreRender(require('./external/middleware'));
-docsapp.addPreRender(require('./sdk/middleware'));
-docsapp.addPreRender(require('./sdk2/middleware'));
-docsapp.addPreRender(require('./sdk2/middleware-browser'));
+docsapp.addPreRender(require('./lib/external/middleware'));
+docsapp.addPreRender(require('./lib/sdk/middleware'));
+docsapp.addPreRender(require('./lib/sdk2/middleware'));
+docsapp.addPreRender(require('./lib/sdk2/middleware-browser'));
 docsapp.addPreRender(require('./lib/middlewares').configuration);
 docsapp.addExtension(require('./lib/extensions').lodash);
-require('./sdk/demos-routes')(app);
-require('./sdk2/demos-routes')(app);
-require('./sdk2/snippets-routes')(app);
+require('./lib/sdk/demos-routes')(app);
+require('./lib/sdk2/demos-routes')(app);
+require('./lib/sdk2/snippets-routes')(app);
 require('./lib/sitemap')(app);
 
 
