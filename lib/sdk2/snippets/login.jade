@@ -1,6 +1,6 @@
 mixin fiddletize(snippet)
   div
-    | Want to play around with this snippet?   
+    | Want to play around with this snippet?
     form(action='http://jsfiddle.net/api/post/library/pure/', method='post', target="_blank", style="display: inline;")
       input(type="hidden", name="html", value=snippet)
       input.edit-fiddle(type="submit", value="Edit in JsFiddle")
@@ -11,4 +11,4 @@ div#widget-login.widget-tut()
     code #{include_snippet('login')}
   mixin fiddletize(include_snippet('login'))
 
-script(src='https://localhost:5050/js/prettify.js')
+script(src='js/prettify.js')
