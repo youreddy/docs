@@ -5,7 +5,13 @@
   "author": "Auth10 <support@auth10.com>",
   "dependencies": {
     "async": "~0.2.9",
+    "auth0-application-types": "git://github.com/auth0/application-types",
+    "auth0-client-platforms": "git://github.com/auth0/client-platforms",
+    "auth0-native-platforms": "git://github.com/auth0/native-platforms",
+    "auth0-server-apis": "git://github.com/auth0/server-apis",
+    "auth0-server-platforms": "git://github.com/auth0/server-apis",
     "connect": "~2.8.5",
+    "debug": "^1.0.3",
     "ejs": "~0.8.4",
     "express": "~3.3.1",
     "express-redirect": "^1.1.1",
