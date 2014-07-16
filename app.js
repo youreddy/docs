@@ -20,6 +20,7 @@ nconf
     'COOKIE_SCOPE':      process.env.NODE_ENV === 'production' ? '.auth0.com' : null,
     'DOMAIN_URL_SERVER': '{tenant}.auth0.com:3000',
     'DOMAIN_URL_APP':    'localhost:8989',
+    'PACKAGER_URL':       'http://localhost:3001',
     'DOMAIN_URL_SDK':    'login-dev.auth0.com:3000',
     'PACKAGER_URL':   'http://localhost:3001',
     'DOMAIN_URL_DOCS':   'https://localhost:5050',
@@ -318,6 +319,7 @@ docsapp.addExtension(require('./lib/extensions').lodash);
 require('./lib/sdk/demos-routes')(app);
 require('./lib/sdk2/demos-routes')(app);
 require('./lib/sdk2/snippets-routes')(app);
+require('./packager')(app);
 require('./lib/sitemap')(app);
 require('./lib/packager')(app);
 
