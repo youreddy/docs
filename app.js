@@ -291,7 +291,7 @@ includes.init(path.join(__dirname, '/docs/includes'));
 
 var docsapp = new markdocs.App(__dirname, '', app);
 docsapp.addPreRender(defaultValues);
-docsapp.addPreRender(includes.add);;
+docsapp.addPreRender(includes.add);
 docsapp.addPreRender(overrideIfAuthenticated);
 docsapp.addPreRender(overrideIfClientInQs);
 docsapp.addPreRender(overrideIfClientInQsForPublicAllowedUrls);
