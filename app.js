@@ -21,11 +21,12 @@ nconf
     'DOMAIN_URL_SERVER': '{tenant}.auth0.com:3000',
     'DOMAIN_URL_APP':    'localhost:8989',
     'DOMAIN_URL_SDK':    'login-dev.auth0.com:3000',
-    'PACKAGER_URL':   'http://localhost:3001',
+    'PACKAGER_URL':      'http://localhost:3001',
     'DOMAIN_URL_DOCS':   'https://localhost:5050',
     'WIDGET_FALLBACK_CLIENTID': 'aCbTAJNi5HbsjPJtRpSP6BIoLPOrSj2C',
     'LOGIN_WIDGET_URL':  'https://cdn.auth0.com/w2/auth0-widget-2.6.min.js',
     'AUTH0JS_URL':       'https://cdn.auth0.com/w2/auth0-1.6.4.min.js',
+    'AUTH0_ANGULAR_URL': 'http://cdn.auth0.com/w2/auth0-angular-1.1.js',
     'SENSITIVE_DATA_ENCRYPTION_KEY': '0123456789',
     'PUBLIC_ALLOWED_TUTORIALS': '/adldap-auth?,/adldap-x?,/adfs?',
   });
@@ -290,22 +291,37 @@ includes.init(path.join(__dirname, '/docs/includes'));
 
 var docsapp = new markdocs.App(__dirname, '', app);
 docsapp.addPreRender(defaultValues);
-docsapp.addPreRender(includes.add);;
+docsapp.addPreRender(includes.add);
 docsapp.addPreRender(overrideIfAuthenticated);
 docsapp.addPreRender(overrideIfClientInQs);
 docsapp.addPreRender(overrideIfClientInQsForPublicAllowedUrls);
 docsapp.addPreRender(appendTicket);
 docsapp.addPreRender(embedded);
 docsapp.addPreRender(function(req,res,next){
-  if(process.env.NODE_ENV === 'production') {
-    res.locals.uiURL   = 'https://' + nconf.get('DOMAIN_URL_APP');
-    res.locals.sdkURL  = 'https://' + nconf.get('DOMAIN_URL_SDK');
-    res.locals.widget_url = nconf.get('LOGIN_WIDGET_URL');
-  } else {
-    res.locals.uiURL   = 'http://' + nconf.get('DOMAIN_URL_APP');
-    res.locals.sdkURL  = 'http://' + nconf.get('DOMAIN_URL_SDK');
-    res.locals.widget_url = nconf.get('LOGIN_WIDGET_URL');
+  var scheme = process.env.NODE_ENV === 'production' ? 'https' : 'http';
+
+  res.locals.uiURL   = scheme + '://' + nconf.get('DOMAIN_URL_APP');
+  res.locals.sdkURL  = scheme + '://' + nconf.get('DOMAIN_URL_SDK');
+
+  if (res.locals.account && res.locals.account.clientId) {
+    res.locals.uiAppSettingsURL = res.locals.uiURL + '/#/applications/' + res.locals.account.clientId + '/settings';
+    res.locals.uiAppAddonsURL = res.locals.uiURL + '/#/applications/' + res.locals.account.clientId + '/addons';
   }
+
+  function removeScheme(url) {
+    return url.slice(url.indexOf(':') + 1);
+  }
+  
+  // Auth0 client side Javascript URLs to use
+  res.locals.auth0js_url                  = nconf.get('AUTH0JS_URL');
+  res.locals.auth0js_url_no_scheme        = removeScheme(nconf.get('AUTH0JS_URL'));
+
+  res.locals.auth0_angular_url            = nconf.get('AUTH0_ANGULAR_URL');
+  res.locals.auth0_angular_url_no_scheme  = removeScheme(nconf.get('AUTH0_ANGULAR_URL'));
+
+  res.locals.widget_url                   = nconf.get('LOGIN_WIDGET_URL');
+  res.locals.widget_url_no_scheme         = removeScheme(nconf.get('LOGIN_WIDGET_URL'));
+
   next();
 });
 
@@ -318,6 +334,7 @@ docsapp.addExtension(require('./lib/extensions').lodash);
 require('./lib/sdk/demos-routes')(app);
 require('./lib/sdk2/demos-routes')(app);
 require('./lib/sdk2/snippets-routes')(app);
+require('./lib/packager')(app);
 require('./lib/sitemap')(app);
 require('./lib/packager')(app);
 
