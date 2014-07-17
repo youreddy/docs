@@ -298,15 +298,25 @@ docsapp.addPreRender(overrideIfClientInQsForPublicAllowedUrls);
 docsapp.addPreRender(appendTicket);
 docsapp.addPreRender(embedded);
 docsapp.addPreRender(function(req,res,next){
-  if(process.env.NODE_ENV === 'production') {
-    res.locals.uiURL   = 'https://' + nconf.get('DOMAIN_URL_APP');
-    res.locals.sdkURL  = 'https://' + nconf.get('DOMAIN_URL_SDK');
-    res.locals.widget_url = nconf.get('LOGIN_WIDGET_URL');
-  } else {
-    res.locals.uiURL   = 'http://' + nconf.get('DOMAIN_URL_APP');
-    res.locals.sdkURL  = 'http://' + nconf.get('DOMAIN_URL_SDK');
-    res.locals.widget_url = nconf.get('LOGIN_WIDGET_URL');
+  var scheme = process.env.NODE_ENV === 'production' ? 'https' : 'http';
+
+  res.locals.uiURL   = scheme + '://' + nconf.get('DOMAIN_URL_APP');
+  res.locals.sdkURL  = scheme + '://' + nconf.get('DOMAIN_URL_SDK');
+
+  function removeScheme(url) {
+    return url.slice(url.indexOf(':') + 1);
   }
+
+  // Auth0 client side Javascript URLs to use
+  res.locals.auth0js_url                  = nconf.get('AUTH0JS_URL');
+  res.locals.auth0js_url_no_scheme        = removeScheme(nconf.get('AUTH0JS_URL'));
+
+  res.locals.auth0_angular_url            = nconf.get('AUTH0_ANGULAR_URL');
+  res.locals.auth0_angular_url_no_scheme  = removeScheme(nconf.get('AUTH0_ANGULAR_URL'));
+
+  res.locals.widget_url                   = nconf.get('LOGIN_WIDGET_URL');
+  res.locals.widget_url_no_scheme         = removeScheme(nconf.get('LOGIN_WIDGET_URL'));
+
   next();
 });
 
