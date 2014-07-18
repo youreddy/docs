@@ -209,7 +209,7 @@ var overrideIfAuthenticated = function (req, res, next) {
     res.locals.account.tenant = client.tenant;
     res.locals.account.clientId = client.clientID;
     res.locals.account.clientSecret = client.clientSecret;
-    res.locals.account.callback = client.callback;
+    res.locals.account.callback = client.callback || 'http://YOUR_APP/callback';
     next();
   });
 };
@@ -238,7 +238,7 @@ var overrideIfClientInQsForPublicAllowedUrls = function (req, res, next) {
     res.locals.account.tenant       = client.tenant;
     res.locals.account.clientId     = client.clientID;
     res.locals.account.clientSecret = client.clientSecret;
-    res.locals.account.callback     = client.callback;
+    res.locals.account.callback     = client.callback || 'http://YOUR_APP/callback';
     res.locals.connectionName       = req.query.conn;
 
     next();
@@ -264,7 +264,7 @@ var overrideIfClientInQs = function (req, res, next) {
     res.locals.account.tenant       = client.tenant;
     res.locals.account.clientId     = client.clientID;
     res.locals.account.clientSecret = client.clientSecret;
-    res.locals.account.callback     = client.callback;
+    res.locals.account.callback     = client.callback || 'http://YOUR_APP/callback';
     res.locals.connectionName       = req.query.conn;
 
     next();
