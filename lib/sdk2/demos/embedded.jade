@@ -9,7 +9,7 @@ html
         var widget = new Auth0Widget({
           domain:       '!{namespace}',
           clientID:     '!{clientID}',
-          callbackURL:  '!{callback}',
+          callbackURL:  '!{callback || 'http://YOUR_APP/callback'}',
           assetsUrl:    '!{auth0_sdk_assets}',
           callbackOnLocationHash: !{callbackOnHash}
         });
