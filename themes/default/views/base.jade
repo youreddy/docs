@@ -272,5 +272,6 @@ html(lang="en")
       location.hash = location.hash;
     }
 
+    if (~['/', '/api', '/auth-api'].indexOf(window.location.pathname)) $('.fixit').hide();
     $('.fixit a').attr('href', 'https://github.com/auth0/docs/tree/master/docs' + window.location.pathname + '.md');
 
