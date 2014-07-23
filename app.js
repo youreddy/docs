@@ -322,6 +322,11 @@ docsapp.addPreRender(function(req,res,next){
   res.locals.widget_url                   = nconf.get('LOGIN_WIDGET_URL');
   res.locals.widget_url_no_scheme         = removeScheme(nconf.get('LOGIN_WIDGET_URL'));
 
+  // defualt values
+  if (res.locals.account) {
+    res.locals.account.callback = res.locals.account.callback || 'http://YOUR_APP/callback';
+  }
+  
   next();
 });
 
