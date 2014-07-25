@@ -341,9 +341,8 @@ docsapp.addExtension(require('./lib/extensions').lodash);
 require('./lib/sdk/demos-routes')(app);
 require('./lib/sdk2/demos-routes')(app);
 require('./lib/sdk2/snippets-routes')(app);
-require('./lib/packager')(app);
+require('./lib/packager')(app, overrideIfAuthenticated);
 require('./lib/sitemap')(app);
-require('./lib/packager')(app);
 
 
 
