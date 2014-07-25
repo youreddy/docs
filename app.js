@@ -137,6 +137,7 @@ app.get('/ticket/step', function (req, res) {
 
 var defaultValues = function (req, res, next) {
   res.locals.account = {};
+  res.locals.account.clientParam = '';
   res.locals.account.userName     = '';
   res.locals.account.appName      = 'YOUR_APP_NAME';
   res.locals.account.tenant       = 'YOUR_TENANT';
@@ -208,6 +209,7 @@ var overrideIfAuthenticated = function (req, res, next) {
     res.locals.account.namespace = nconf.get('DOMAIN_URL_SERVER').replace('{tenant}', client.tenant);
     res.locals.account.tenant = client.tenant;
     res.locals.account.clientId = client.clientID;
+    res.locals.account.clientParam = '&clientId=' + client.clientID;
     res.locals.account.clientSecret = client.clientSecret;
     res.locals.account.callback = client.callback;
     next();
@@ -311,7 +313,7 @@ docsapp.addPreRender(function(req,res,next){
   function removeScheme(url) {
     return url.slice(url.indexOf(':') + 1);
   }
-  
+
   // Auth0 client side Javascript URLs to use
   res.locals.auth0js_url                  = nconf.get('AUTH0JS_URL');
   res.locals.auth0js_url_no_scheme        = removeScheme(nconf.get('AUTH0JS_URL'));
@@ -326,7 +328,7 @@ docsapp.addPreRender(function(req,res,next){
   if (res.locals.account) {
     res.locals.account.callback = res.locals.account.callback || 'http://YOUR_APP/callback';
   }
-  
+
   next();
 });
 
