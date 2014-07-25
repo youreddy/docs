@@ -196,6 +196,8 @@ var overrideIfAuthenticated = function (req, res, next) {
 
     winston.debug('client found');
 
+    res.locals.account = res.locals.account || {};
+
     res.locals.account.loggedIn = true;
 
     res.locals.account.clients = nonGlobalClients;
