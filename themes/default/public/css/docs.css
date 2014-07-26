@@ -1,5 +1,18 @@
 .btn-package {
   white-space: normal;
+  margin-bottom: 0px;
+}
+
+div.package span:first-child {
+  display: block;
+}
+
+div.package a.btn-package {
+  line-height: 20px;
+}
+
+div.package span.smaller {
+  font-size: 10px;
 }
 
 &.wpf-winforms-tutorial i {
