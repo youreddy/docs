@@ -7,6 +7,11 @@ div.package span:first-child {
   display: block;
 }
 
+div.package span {
+  color: white;
+}
+
+
 div.package a.btn-package {
   line-height: 20px;
 }
