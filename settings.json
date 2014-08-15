@@ -15,7 +15,7 @@
         "icon": "icon-laptop",
         "disabled": true,
         "items": [
-          { "title": "Node.js", "url": "/nodejs-tutorial" },
+          { "title": "Node.js", "url": "/new/server-platforms/nodejs" },
           { "title": "ASP.NET", "url": "/aspnet-tutorial" },
           { "title": "ASP.NET (OWIN)", "url": "/aspnet-owin-tutorial" },
           { "title": "ServiceStack", "url": "/servicestack-tutorial" },
@@ -31,17 +31,22 @@
         "icon": "icon-terminal",
         "disabled": true,
         "items": [
-          { "title": "ASP.NET Web API", "url": "/aspnetwebapi-tutorial" },
-          { "title": "ASP.NET Web API (OWIN)", "url": "/aspnetwebapi-owin-tutorial" },
-          { "title": "Node.js API", "url": "/nodeapi-tutorial" },
-          { "title": "Ruby API", "url": "/rubyapi-tutorial" },
-          { "title": "PHP API", "url": "/phpapi-tutorial" },
-          { "title": "PHP (Laravel) API", "url": "/laravelapi-tutorial" },
-          { "title": "Java API", "url": "/javaapi-tutorial" },
-          { "title": "Python API", "url": "/pythonapi-tutorial" },
+          { "title": "ASP.NET Web API", "url": "/new/server-apis/aspnet-webapi" },
+          { "title": "ASP.NET Web API (OWIN)", "url": "/new/server-apis/webapi-owin" },
+          { "title": "Node.js API", "url": "/new/server-apis/nodejs" },
+          { "title": "Ruby API", "url": "/new/server-apis/ruby" },
+          { "title": "Ruby On Rails API", "url": "/new/server-apis/rails" },
+          { "title": "PHP API", "url": "/new/server-apis/php" },
+          { "title": "PHP (Laravel) API", "url": "/new/server-apis/php-laravel" },
+          { "title": "Java API", "url": "//new/server-apis/java" },
+          { "title": "Python API", "url": "/new/server-apis/python" },
           { "title": ".NET WCF", "url": "/wcf-tutorial" },
-          { "title": "AWS", "url": "/awsapi-tutorial" },
-          { "title": "Azure Mobile Services", "url": "/wams" }
+          { "title": "AWS", "url": "/new/server-apis/aws" },
+          { "title": "Azure Mobile Services", "url": "/new/server-apis/azure-mobile-services" },
+          { "title": "Firebase", "url": "/new/server-apis/firebase" },
+          { "title": "Salesforce", "url": "/new/server-apis/salesforce" },
+          { "title": "Salesforce (Sandbox)", "url": "/new/server-apis/salesforce-sandbox" },
+          { "title": "SAP OData", "url": "/new/server-apis/sap-odata" }
         ]
       },
       {
@@ -53,7 +58,9 @@
           { "title": "Android", "url": "/android-tutorial" },
           { "title": "Windows Phone", "url": "/windowsphone-tutorial" },
           { "title": "Xamarin", "url": "/xamarin-tutorial" },
-          { "title": "PhoneGap", "url": "/phonegap-tutorial" },
+          { "title": "PhoneGap", "url": "/new/native-platforms/cordova" },
+          { "title": "Cordova", "url": "/new/native-platforms/cordova" },
+          { "title": "Ionic", "url": "/new/native-platforms/ionic" },
           { "title": "Windows 8 (JS)", "url": "/win8-tutorial" },
           { "title": "Windows 8 (C#)", "url": "/win8-cs-tutorial" },
           { "title": "WPF / Winforms", "url": "/wpf-winforms-tutorial" }
@@ -64,8 +71,10 @@
         "icon": "icon-html5",
         "disabled": true,
         "items": [
-          { "title": "Single Page Apps", "url": "/singlepageapp-tutorial" },
-          { "title": "Angular.js", "url": "/angular-tutorial" }
+          { "title": "Single Page Apps", "url": "/new/client-platforms/vanillajs" },
+          { "title": "Vanilla JS", "url": "/new/client-platforms/vanillajs" },
+          { "title": "Angular.js", "url": "/new/client-platforms/angularjs" },
+          { "title": "jQuery", "url": "/new/client-platforms/jquery" }
         ]
       },
       {
@@ -90,6 +99,7 @@
           { "title": "Database Connections", "url": "/mysql-connection-tutorial" },
           { "title": "Protocols", "url":"/protocols"},
           { "title": "Sequence Diagrams", "url":"/sequence-diagrams"},
+          { "title": "Refresh token", "url":"/refresh-token"},
           { "title": "Identity Providers", "url": "/identityproviders" },
           { "title": "SAML", "url":"/saml-configuration"},
           { "title": "Link Accounts", "url": "/link-accounts" },
