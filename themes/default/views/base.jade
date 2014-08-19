@@ -24,14 +24,15 @@ html(lang="en")
     <![endif]-->
 
     script(src='//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js')
-    script(src="https://cdn.auth0.com/w2/auth0-widget-4.0.min.js")
+    script(src='//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js')
+    script(src="#{widget_url}")
 
     script.
 
       window.widget = new Auth0Widget({
-        domain:         'auth0.auth0.com',
-        clientID:       'zEYfpoFzUMEzilhkHilcWoNkrFfJ3hAI',
-        callbackURL:    'https://app.auth0.com/callback',
+        domain:         '#{env.AUTH0_DOMAIN}',
+        clientID:       '#{env.AUTH0_CLIENT_ID}',
+        callbackURL:    '#{uiURLLoginCallback}',
         dict: {
           signup: {
             footerText: 'By signing up, you agree to our <a href="/terms" target="_new">terms of service</a> and <a href="/privacy" target="_new">privacy policy</a>'
@@ -44,7 +45,7 @@ html(lang="en")
       widget.getClient().getSSOData(false, function (err, data) {
         if (!data || !data.sso) return;
         $('.login').remove();
-        $('.signup')
+        $('a.signup-button')
           .attr('href', 'https://app.auth0.com')
           .html('Open Dashboard');
       });
@@ -113,15 +114,25 @@ html(lang="en")
             ul.nav.navbar-nav.navbar-right
               li.li-docs
                 a(href="http://docs.auth0.com/") Documentation
+
               li
                 a(href="http://blog.auth0.com") Blog
 
               li
                 a.signin-button(href="javascript:login()").login Login
 
-              li
-                a.signin-button(href="javascript:signup()").btn.btn-sm.signup Create Free Account
+              if (user && user.tenants && user.tenants.length > 0)
+                li.dropdown
+                  span(role='button', data-toggle='dropdown', data-target='#').btn-dro Account (#{user.tenant})
+                    i.icon-budicon-460
+                  ul.dropdown-menu(role='menu', aria-labelledby='dLabel').animated
+                    each tenant in user.tenants
+                      if (user.tenant !== tenant)
+                        li
+                          a(href="/switch?tenant=#{tenant}") #{tenant}
 
+              li
+                a.signup-button(href="javascript:signup()").btn.btn-sm.signup Create Free Account
 
     .container
       .breadcrumb

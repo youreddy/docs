@@ -5,7 +5,7 @@ var express  = require('express');
 var http     = require('http');
 var https    = require('https');
 var passport = require('passport');
-var fs = require('fs');
+var fs       = require('fs');
 
 var app = express();
 
@@ -29,6 +29,7 @@ nconf
     'AUTH0_ANGULAR_URL': 'http://cdn.auth0.com/w2/auth0-angular-1.1.js',
     'SENSITIVE_DATA_ENCRYPTION_KEY': '0123456789',
     'PUBLIC_ALLOWED_TUTORIALS': '/adldap-auth?,/adldap-x?,/adfs?',
+    'AUTH0_CLIENT_ID':   'aCbTAJNi5HbsjPJtRpSP6BIoLPOrSj2C',
   });
 
 if (nconf.get('db')) {
@@ -45,6 +46,10 @@ if (!nconf.get('LOGIN_WIDGET_URL')) {
 
 if (!nconf.get('AUTH0JS_URL')) {
   nconf.set('AUTH0JS_URL', 'https://' + nconf.get('DOMAIN_URL_SDK') + '/w2/auth0.min.js');
+}
+
+if (!nconf.get('AUTH0_DOMAIN') && nconf.get('AUTH0_TENANT') && nconf.get('DOMAIN_URL_SERVER')) {
+  nconf.set('AUTH0_DOMAIN', nconf.get('DOMAIN_URL_SERVER').replace('{tenant}', nconf.get('AUTH0_TENANT')));
 }
 
 var connections = require('./lib/connections');
@@ -119,6 +124,7 @@ app.configure(function(){
   this.use(express.methodOverride());
   this.use(passport.initialize());
   this.use(passport.session());
+  this.use(require('./lib/set_current_tenant'));
   this.use(this.router);
 });
 
@@ -133,6 +139,11 @@ app.get('/ticket/step', function (req, res) {
     if (!currentStep) return res.send(404);
     res.send(currentStep);
   });
+});
+
+app.get('/switch', function (req, res) {
+  req.session.current_tenant = req.query.tenant;
+  res.redirect('/');
 });
 
 var defaultValues = function (req, res, next) {
@@ -168,6 +179,11 @@ var overrideIfAuthenticated = function (req, res, next) {
 
   if (!req.user || !req.user.tenant)
     return next();
+
+  res.locals.user = {
+    tenant: req.user.tenant,
+    tenants: req.user.tenants
+  };
 
   var queryDoc = {tenant: req.user.tenant};
 
@@ -304,8 +320,9 @@ docsapp.addPreRender(embedded);
 docsapp.addPreRender(function(req,res,next){
   var scheme = process.env.NODE_ENV === 'production' ? 'https' : 'http';
 
-  res.locals.uiURL   = scheme + '://' + nconf.get('DOMAIN_URL_APP');
-  res.locals.sdkURL  = scheme + '://' + nconf.get('DOMAIN_URL_SDK');
+  res.locals.uiURL              = scheme + '://' + nconf.get('DOMAIN_URL_APP');
+  res.locals.uiURLLoginCallback = res.locals.uiURL + '/callback';
+  res.locals.sdkURL             = scheme + '://' + nconf.get('DOMAIN_URL_SDK');
 
   if (res.locals.account && res.locals.account.clientId) {
     res.locals.uiAppSettingsURL = res.locals.uiURL + '/#/applications/' + res.locals.account.clientId + '/settings';
