@@ -46,7 +46,7 @@ html(lang="en")
         if (!data || !data.sso) return;
         $('.login').remove();
         $('a.signup')
-          .attr('href', 'https://app.auth0.com')
+          .attr('href', '#{uiURL}')
           .html('Open Dashboard');
       });
 
