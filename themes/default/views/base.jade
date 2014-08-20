@@ -101,7 +101,7 @@ html(lang="en")
                 img(src="https://auth0.com/auth0-styleguide/img/logo.png")
                 span Auth0
 
-          #bs-example-navbar-collapse-1.collapse.navbar-collapse
+          .collapse.navbar-collapse
             ul.nav.navbar-nav.navbar-left
               li.li-why
                 a(href="http://auth0.com/why-auth0") Why Auth0
@@ -111,28 +111,47 @@ html(lang="en")
                 a(href="http://auth0.com/pricing") Pricing
 
 
-            ul.nav.navbar-nav.navbar-right
-              li.li-docs
-                a(href="http://docs.auth0.com/") Documentation
 
-              li
-                a(href="http://blog.auth0.com") Blog
+
+            ul.nav.navbar-nav.navbar-right
+
+
+              li.dropdown
+                  span(role='button', data-toggle='dropdown', data-target='#').btn-dro More
+                    i.icon-budicon-460
+                  ul.dropdown-menu(role='menu', aria-labelledby='dLabel').animated
+
+                    li
+                      a(href="/lock") Lock
+
+                    li
+                      a(href="/opensource") Open Source    
+                    
+                    li.divider              
+
+                    li 
+
+                      a(href="/about") About
+
+
+
+                    li
+                      a(href="/customers") Customers
+
+                    li
+                      a(href="https://auth0.com/blog") Blog
+
+
+              li.li-docs
+                a(href="https://docs.auth0.com") Docs
+
+
 
               li
                 a.signin-button(href="javascript:login()").login Login
 
-              if (locals.user && user.tenants && user.tenants.length > 0)
-                li.dropdown
-                  span(role='button', data-toggle='dropdown', data-target='#').btn-dro Account (#{user.tenant})
-                    i.icon-budicon-460
-                  ul.dropdown-menu(role='menu', aria-labelledby='dLabel').animated
-                    each tenant in user.tenants
-                      if (user.tenant !== tenant)
-                        li
-                          a(href="/switch?tenant=#{tenant}") #{tenant}
-
               li
-                a.signup-button(href="javascript:signup()").btn.btn-sm.signup Create Free Account
+                a.signin-button(href="javascript:signup()").btn.btn-sm.signup Sign Up
 
     .container
       .breadcrumb

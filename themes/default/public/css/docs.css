@@ -2,66 +2,26 @@
   white-space: normal;
   margin-bottom: 0px;
 }
-
 div.package span:first-child {
   display: block;
 }
-
 div.package span {
-  color: white;
+  color: #fff;
 }
-
-
 div.package a.btn-package {
   line-height: 20px;
 }
-
 div.package span.smaller {
   font-size: 10px;
 }
-
-&.wpf-winforms-tutorial i {
+.wpf-winforms-tutorial i {
   border-color: #ffc0cb;
 }
-.page-docs .container {
-  min-width: 1170px;
+.page-docs #tutorial-navigator .step.select-app-type {
+  padding: 20px 4px;
 }
-.page-docs .breadcrumb {
-  padding: 14px 20px;
-  border-radius: 3px;
-  margin-bottom: 40px;
-  overflow: hidden;
-  background-color: #14204d;
-  background: linear-gradient(120deg, #942f0d 0%, #14204d 100%);
-/* W3C */
-}
-.page-docs .breadcrumb ul {
+.page-docs #tutorial-navigator .step.select-app-type .app-type .app-type-item strong.label {
   padding: 0;
-  margin: 0;
-}
-.page-docs .breadcrumb ul li {
-  float: left;
-  display: inline-block;
-  color: #fff;
-  font-weight: bold;
-  font-size: 12px;
-  margin-right: 10px;
-}
-.page-docs .breadcrumb ul li a {
-  color: #fff;
-}
-.page-docs .breadcrumb ul.external-links {
-  float: right;
-}
-.page-docs .breadcrumb ul.external-links li {
-  margin-right: 0;
-  margin-left: 20px;
-}
-.page-docs .breadcrumb ul.external-links li a {
-  opacity: 0.6;
-}
-.page-docs .breadcrumb ul.external-links li a:hover {
-  opacity: 1;
 }
 .page-docs .installers {
   width: 550px;
@@ -423,7 +383,8 @@ div.package span.smaller {
   max-width: 100%;
 }
 .page-docs .getting-started-logos {
-  margin: 20px 0 20px 0;
+  margin-bottom: 30px;
+  margin-top: 30px;
   overflow: hidden;
 }
 .page-docs .logo-tutorial {
