@@ -125,6 +125,7 @@ app.configure(function(){
   this.use(passport.initialize());
   this.use(passport.session());
   this.use(require('./lib/set_current_tenant'));
+  this.use(require('./lib/set_user_is_owner'));
   this.use(this.router);
 });
 
@@ -177,27 +178,37 @@ var embedded = function (req, res, next) {
 var overrideIfAuthenticated = function (req, res, next) {
   winston.debug('user', req.user);
 
-  if (!req.user || !req.user.tenant)
+  if (!req.user || !req.user.tenant) {
     return next();
-
+  }
+  
   res.locals.user = {
     tenant: req.user.tenant,
     tenants: req.user.tenants
   };
 
-  var queryDoc = {tenant: req.user.tenant};
+  var queryDoc = {
+    tenant: req.user.tenant
+  };
 
-  if(req.session.selectedClient){
+  if (req.session.selectedClient) {
     queryDoc.clientID = req.session.selectedClient;
   }
-
+  
   clients.find(queryDoc, function (err, clients) {
     if (err) {
       winston.error("error: " + err);
       return next(err);
     }
 
-    var globalClient, nonGlobalClients = [];
+    // filter user's clients
+    if (!req.user.is_owner) {
+      clients = clients.filter(function (c) {
+        return c.owners && ~c.owners.indexOf(req.user.id);
+      });
+    }
+
+    var globalClient = {}, nonGlobalClients = [];
 
     clients.forEach(function (client) {
       if (client.global) {
@@ -213,14 +224,13 @@ var overrideIfAuthenticated = function (req, res, next) {
     winston.debug('client found');
 
     res.locals.account = res.locals.account || {};
-
     res.locals.account.loggedIn = true;
-
     res.locals.account.clients = nonGlobalClients;
+
     var client = nonGlobalClients[0];
 
-    res.locals.account.globalClientId = globalClient.clientID;
-    res.locals.account.globalClientSecret = globalClient.clientSecret;
+    res.locals.account.globalClientId = globalClient.clientID || 'YOUR_GLOBAL_CLIENT_ID';
+    res.locals.account.globalClientSecret = globalClient.clientSecret || 'YOUR_GLOBAL_CLIENT_SECRET';
 
     res.locals.account.appName = client.name && client.name.trim !== '' ? client.name : 'Your App';
     res.locals.account.userName = req.user.name;
@@ -230,6 +240,7 @@ var overrideIfAuthenticated = function (req, res, next) {
     res.locals.account.clientParam = '&clientId=' + client.clientID;
     res.locals.account.clientSecret = client.clientSecret;
     res.locals.account.callback = client.callback;
+    
     next();
   });
 };
@@ -244,11 +255,7 @@ var overrideIfClientInQsForPublicAllowedUrls = function (req, res, next) {
   if (!req.query || !req.query.a) return next();
 
   clients.findByClientId(req.query.a, { signingKey: 0 }, function (err, client) {
-    if (err) {
-      console.error("error: " + err);
-      return next(err);
-    }
-
+    if (err) { return next(err); }
     if (!client) {
       return res.send(404, 'client not found');
     }
@@ -257,26 +264,23 @@ var overrideIfClientInQsForPublicAllowedUrls = function (req, res, next) {
     res.locals.account.namespace    = nconf.get('DOMAIN_URL_SERVER').replace('{tenant}', client.tenant);
     res.locals.account.tenant       = client.tenant;
     res.locals.account.clientId     = client.clientID;
-    res.locals.account.clientSecret = client.clientSecret;
+    res.locals.account.clientSecret = 'YOUR_CLIENT_SECRET'; // it's a public url (don't share client secret)
     res.locals.account.callback     = client.callback;
     res.locals.connectionName       = req.query.conn;
-
+    
     next();
   });
 };
 
 var overrideIfClientInQs = function (req, res, next) {
-  if (!req.query || !req.query.a) return next();
-  if (!req.user || !req.user.tenant) return next();
+  if (!req.query || !req.query.a) { return next(); }
+  if (!req.user || !req.user.tenant) { return next(); }
 
   clients.findByTenantAndClientId(req.user.tenant, req.query.a, function (err, client) {
-    if (err) {
-      console.error("error: " + err);
-      return next(err);
-    }
-
-    if (!client) {
-      return res.send(404, 'client not found');
+    if (err) { return next(err); }
+    if (!client) { return res.send(404, 'client not found'); }
+    if (!req.user.is_owner && (!client.owners || client.owners.indexOf(req.user.id) < 0)) {
+      return res.send(401);
     }
 
     res.locals.account.appName      = client.name && client.name.trim !== '' ? client.name : 'Your App';
