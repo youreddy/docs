@@ -166,21 +166,17 @@ html(lang="en")
 
           li
             a(href="mailto:support@auth0.com", target="_blank") Contact Us
-        .dropdown
-          button#dropdownMenu1.btn.dropdown-toggle(type='button', data-toggle='dropdown')
-            | Application Name
-            span.caret
-          ul.dropdown-menu(role='menu', aria-labelledby='dropdownMenu1')
-            li(role='presentation')
-              a(role='menuitem', tabindex='-1', href='#') Action
-            li(role='presentation')
-              a(role='menuitem', tabindex='-1', href='#') Another action
-            li(role='presentation')
-              a(role='menuitem', tabindex='-1', href='#') Something else here
-            li.divider(role='presentation')
-            li(role='presentation')
-              a(role='menuitem', tabindex='-1', href='#') Separated link
-
+        
+        if (locals.user && user.tenants && user.tenants.length > 0)
+          .dropdown
+            button#account-chooser.btn.dropdown-toggle(type='button', data-toggle='dropdown')
+              | #{user.tenant}
+              span.caret
+            ul.dropdown-menu(role='menu', aria-labelledby='account-chooser')
+              each tenant in user.tenants
+                if (user.tenant !== tenant)
+                  li(role='presentation')
+                    a(role='menuitem', tabindex='-1', href='/switch?tenant=#{tenant}') #{tenant}
 
     .container
       .row
@@ -217,7 +213,7 @@ html(lang="en")
           .srow
             ul.breadcrumb
               li
-                a(href="http://auth0.com/docs") Documentation
+                a(href="/") Documentation
               li &raquo;
               li=title
 
