@@ -230,7 +230,7 @@ var overrideIfAuthenticated = function (req, res, next) {
     var client = nonGlobalClients[0];
 
     res.locals.account.globalClientId = globalClient.clientID || 'YOUR_GLOBAL_CLIENT_ID';
-    res.locals.account.globalClientSecret = globalClient.clientSecret || 'YOUR_GLOBAL_CLIENT_SECRET';
+    res.locals.account.globalClientSecret = globalClient.clientSecret;
 
     res.locals.account.appName = client.name && client.name.trim !== '' ? client.name : 'Your App';
     res.locals.account.userName = req.user.name;
