@@ -153,7 +153,7 @@ html(lang="en")
     .container
       .sub-header.sub-header-dropdown
 
-        if (locals.user && user.tenants && user.tenants.length > 0)
+        if (locals.user && user.tenants && user.tenants.length > 1)
           .dropdown
             button#account-chooser.btn.dropdown-toggle(type='button', data-toggle='dropdown')
               | #{user.tenant}
