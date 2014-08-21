@@ -153,8 +153,20 @@ html(lang="en")
     .container
       .sub-header.sub-header-dropdown
 
+        if (locals.user && user.tenants && user.tenants.length > 0)
+          .dropdown
+            button#account-chooser.btn.dropdown-toggle(type='button', data-toggle='dropdown')
+              | #{user.tenant}
+              span.caret
+            ul.dropdown-menu(role='menu', aria-labelledby='account-chooser')
+              each tenant in user.tenants
+                if (user.tenant !== tenant)
+                  li(role='presentation')
+                    a(role='menuitem', tabindex='-1', href='/switch?tenant=#{tenant}') #{tenant}
+        else 
+          span.sub-header-text Documentation: API Reference & Help topics
 
-        span.sub-header-text Documentation: API Reference & Help topics
+
 
         ul.external-links
           li
@@ -168,18 +180,7 @@ html(lang="en")
 
           li
             a(href="mailto:support@auth0.com", target="_blank") Contact Us
-        
-        if (locals.user && user.tenants && user.tenants.length > 0)
-          .dropdown
-            button#account-chooser.btn.dropdown-toggle(type='button', data-toggle='dropdown')
-              | #{user.tenant}
-              span.caret
-            ul.dropdown-menu(role='menu', aria-labelledby='account-chooser')
-              each tenant in user.tenants
-                if (user.tenant !== tenant)
-                  li(role='presentation')
-                    a(role='menuitem', tabindex='-1', href='/switch?tenant=#{tenant}') #{tenant}
-
+          
     .container
       .row
         .col-xs-3
