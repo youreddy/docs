@@ -17,6 +17,6 @@
     "tests"
   ],
   "dependencies": {
-    "auth0-styleguide": "git@github.com:auth0/styleguide.git#~0.4.8"
+    "auth0-styleguide": "git@github.com:auth0/styleguide.git#~0.5.1"
   }
 }
