@@ -1,3 +1,4 @@
+var nconf = require('nconf');
 
 var Theme = function(docsapp) {
   this._docsapp = docsapp;
@@ -13,6 +14,11 @@ Theme.prototype._preRender = function(request, response, next) {
   response.locals.site.title = settings['title'] || 'Default';
   response.locals.site.menus = settings['menus'] || {};
   response.locals.title = title;
+  response.locals.env = {
+    AUTH0_DOMAIN:         nconf.get('AUTH0_DOMAIN'),
+    AUTH0_CLIENT_ID:      nconf.get('AUTH0_CLIENT_ID')
+  };
+  
   next();
 };
 
