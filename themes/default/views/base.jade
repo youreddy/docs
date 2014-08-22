@@ -24,14 +24,15 @@ html(lang="en")
     <![endif]-->
 
     script(src='//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js')
-    script(src="https://cdn.auth0.com/w2/auth0-widget-4.0.min.js")
+    script(src='//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js')
+    script(src="#{widget_url}")
 
     script.
 
       window.widget = new Auth0Widget({
-        domain:         'auth0.auth0.com',
-        clientID:       'zEYfpoFzUMEzilhkHilcWoNkrFfJ3hAI',
-        callbackURL:    'https://app.auth0.com/callback',
+        domain:         '#{env.AUTH0_DOMAIN}',
+        clientID:       '#{env.AUTH0_CLIENT_ID}',
+        callbackURL:    '#{uiURLLoginCallback}',
         dict: {
           signup: {
             footerText: 'By signing up, you agree to our <a href="/terms" target="_new">terms of service</a> and <a href="/privacy" target="_new">privacy policy</a>'
@@ -44,8 +45,8 @@ html(lang="en")
       widget.getClient().getSSOData(false, function (err, data) {
         if (!data || !data.sso) return;
         $('.login').remove();
-        $('.signup')
-          .attr('href', 'https://app.auth0.com')
+        $('a.signup')
+          .attr('href', '#{uiURL}')
           .html('Open Dashboard');
       });
 
@@ -100,7 +101,7 @@ html(lang="en")
                 img(src="https://auth0.com/auth0-styleguide/img/logo.png")
                 span Auth0
 
-          #bs-example-navbar-collapse-1.collapse.navbar-collapse
+          .collapse.navbar-collapse
             ul.nav.navbar-nav.navbar-left
               li.li-why
                 a(href="http://auth0.com/why-auth0") Why Auth0
@@ -110,41 +111,76 @@ html(lang="en")
                 a(href="http://auth0.com/pricing") Pricing
 
 
+
+
+
             ul.nav.navbar-nav.navbar-right
+
+
               li.li-docs
-                a(href="http://docs.auth0.com/") Documentation
-              li
-                a(href="http://blog.auth0.com") Blog
+                a(href="/") Documentation
+
+              li.dropdown
+                span(role='button', data-toggle='dropdown', data-target='#').btn-dro More
+                  i.icon-budicon-460
+                ul.dropdown-menu(role='menu', aria-labelledby='dLabel').animated
+
+
+
+                  li
+                    a(href="https://auth0.com/opensource") Open Source    
+                  
+                  li.divider              
+
+                  li 
+
+                    a(href="https://auth0.com/about") About
+
+
+
+                  li
+                    a(href="https://auth0.com/customers") Customers
+
+                  li
+                    a(href="https://auth0.com/blog") Blog
 
               li
                 a.signin-button(href="javascript:login()").login Login
 
               li
-                a.signin-button(href="javascript:signup()").btn.btn-sm.signup Create Free Account
-
+                a.signin-button(href="javascript:signup()").btn.btn-sm.signup Sign Up
 
     .container
-      .breadcrumb
-          ul.page-list
-            li
-              a(href="http://auth0.com/docs") Documentation
-            li &raquo;
-            li=title
+      .sub-header.sub-header-dropdown
 
-          ul.external-links
-            li
-              a(href="http://twitter.com/authzero", target="_blank") Twitter
-
-            li
-              a(href="http://github.com/auth0", target="_blank") Github
-
-            li
-              a(href="http://chat.auth0.com", target="_blank") Chat With Us
-
-            li
-              a(href="mailto:support@auth0.com", target="_blank") Contact Us
+        if (locals.user && user.tenants && user.tenants.length > 1)
+          .dropdown
+            button#account-chooser.btn.dropdown-toggle(type='button', data-toggle='dropdown')
+              | #{user.tenant}
+              span.caret
+            ul.dropdown-menu(role='menu', aria-labelledby='account-chooser')
+              each tenant in user.tenants
+                if (user.tenant !== tenant)
+                  li(role='presentation')
+                    a(role='menuitem', tabindex='-1', href='/switch?tenant=#{tenant}') #{tenant}
+        else 
+          span.sub-header-text Documentation: API Reference & Help topics
 
 
+
+        ul.external-links
+          li
+            a(href="http://twitter.com/authzero", target="_blank") Twitter
+
+          li
+            a(href="http://github.com/auth0", target="_blank") Github
+
+          li
+            a(href="http://chat.auth0.com", target="_blank") Chat With Us
+
+          li
+            a(href="mailto:support@auth0.com", target="_blank") Contact Us
+          
     .container
       .row
         .col-xs-3
@@ -176,7 +212,18 @@ html(lang="en")
                                 span= l2.title
 
         .col-xs-9
+
+          .srow
+            ul.breadcrumb
+              li
+                a(href="/") Documentation
+              li &raquo;
+              li=title
+
           section.content
+
+
+
             block content
 
 
@@ -212,7 +259,7 @@ html(lang="en")
                   a(href="http://chat.auth0.com") Support
 
                 li
-                  a(href="https://docs.auth0.com") Documentation
+                  a(href="/") Documentation
 
                 li
                   a(href="mailto:support@auth0.com") Contact Us
@@ -223,7 +270,7 @@ html(lang="en")
 
 
 
-  script(src='https://docs.auth0.com/js/prettify.js')
+  script(src='/js/prettify.js')
   script(type='text/javascript')
 
     !function ($) {
@@ -276,3 +323,24 @@ html(lang="en")
     if (~['/', '/api', '/auth-api'].indexOf(window.location.pathname)) $('.fixit').hide();
     $('.fixit a').attr('href', 'https://github.com/auth0/docs/tree/master/docs' + window.location.pathname + '.md');
 
+  if (locals.user && user.tenants && user.tenants.length > 1)
+    script
+      var getCookie = function (name) {
+        var match = document.cookie.match(RegExp('(?:^|;\\s*)' + name + '=([^;]*)'));
+        return match ? match[1] : null;
+      };
+
+      var setCookie = function (name, value, days) {
+        var date = new Date();
+        date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+        document.cookie = name + '=' + value + '; expires=' + date.toGMTString() + '; path=/; domain=myauth0.com';
+      }
+
+      setCookie('current_tenant', '#{user.tenant}', 7);
+
+      setInterval(function () {
+        var current_tenant = getCookie('current_tenant');
+        if (current_tenant && current_tenant !== '#{user.tenant}') {
+          window.location.reload(true);
+        }
+      }, 1000);

@@ -5,7 +5,7 @@ var express  = require('express');
 var http     = require('http');
 var https    = require('https');
 var passport = require('passport');
-var fs = require('fs');
+var fs       = require('fs');
 
 var app = express();
 
@@ -29,6 +29,7 @@ nconf
     'AUTH0_ANGULAR_URL': 'http://cdn.auth0.com/w2/auth0-angular-1.1.js',
     'SENSITIVE_DATA_ENCRYPTION_KEY': '0123456789',
     'PUBLIC_ALLOWED_TUTORIALS': '/adldap-auth?,/adldap-x?,/adfs?',
+    'AUTH0_CLIENT_ID':   'aCbTAJNi5HbsjPJtRpSP6BIoLPOrSj2C',
   });
 
 if (nconf.get('db')) {
@@ -45,6 +46,10 @@ if (!nconf.get('LOGIN_WIDGET_URL')) {
 
 if (!nconf.get('AUTH0JS_URL')) {
   nconf.set('AUTH0JS_URL', 'https://' + nconf.get('DOMAIN_URL_SDK') + '/w2/auth0.min.js');
+}
+
+if (!nconf.get('AUTH0_DOMAIN') && nconf.get('AUTH0_TENANT') && nconf.get('DOMAIN_URL_SERVER')) {
+  nconf.set('AUTH0_DOMAIN', nconf.get('DOMAIN_URL_SERVER').replace('{tenant}', nconf.get('AUTH0_TENANT')));
 }
 
 var connections = require('./lib/connections');
@@ -119,6 +124,8 @@ app.configure(function(){
   this.use(express.methodOverride());
   this.use(passport.initialize());
   this.use(passport.session());
+  this.use(require('./lib/set_current_tenant'));
+  this.use(require('./lib/set_user_is_owner'));
   this.use(this.router);
 });
 
@@ -133,6 +140,11 @@ app.get('/ticket/step', function (req, res) {
     if (!currentStep) return res.send(404);
     res.send(currentStep);
   });
+});
+
+app.get('/switch', function (req, res) {
+  req.session.current_tenant = req.query.tenant;
+  res.redirect('/');
 });
 
 var defaultValues = function (req, res, next) {
@@ -166,22 +178,37 @@ var embedded = function (req, res, next) {
 var overrideIfAuthenticated = function (req, res, next) {
   winston.debug('user', req.user);
 
-  if (!req.user || !req.user.tenant)
+  if (!req.user || !req.user.tenant) {
     return next();
+  }
+  
+  res.locals.user = {
+    tenant: req.user.tenant,
+    tenants: req.user.tenants
+  };
 
-  var queryDoc = {tenant: req.user.tenant};
+  var queryDoc = {
+    tenant: req.user.tenant
+  };
 
-  if(req.session.selectedClient){
+  if (req.session.selectedClient) {
     queryDoc.clientID = req.session.selectedClient;
   }
-
+  
   clients.find(queryDoc, function (err, clients) {
     if (err) {
       winston.error("error: " + err);
       return next(err);
     }
 
-    var globalClient, nonGlobalClients = [];
+    // filter user's clients
+    if (!req.user.is_owner) {
+      clients = clients.filter(function (c) {
+        return c.owners && ~c.owners.indexOf(req.user.id);
+      });
+    }
+
+    var globalClient = {}, nonGlobalClients = [];
 
     clients.forEach(function (client) {
       if (client.global) {
@@ -197,13 +224,12 @@ var overrideIfAuthenticated = function (req, res, next) {
     winston.debug('client found');
 
     res.locals.account = res.locals.account || {};
-
     res.locals.account.loggedIn = true;
-
     res.locals.account.clients = nonGlobalClients;
+
     var client = nonGlobalClients[0];
 
-    res.locals.account.globalClientId = globalClient.clientID;
+    res.locals.account.globalClientId = globalClient.clientID || 'YOUR_GLOBAL_CLIENT_ID';
     res.locals.account.globalClientSecret = globalClient.clientSecret;
 
     res.locals.account.appName = client.name && client.name.trim !== '' ? client.name : 'Your App';
@@ -214,6 +240,7 @@ var overrideIfAuthenticated = function (req, res, next) {
     res.locals.account.clientParam = '&clientId=' + client.clientID;
     res.locals.account.clientSecret = client.clientSecret;
     res.locals.account.callback = client.callback;
+    
     next();
   });
 };
@@ -228,11 +255,7 @@ var overrideIfClientInQsForPublicAllowedUrls = function (req, res, next) {
   if (!req.query || !req.query.a) return next();
 
   clients.findByClientId(req.query.a, { signingKey: 0 }, function (err, client) {
-    if (err) {
-      console.error("error: " + err);
-      return next(err);
-    }
-
+    if (err) { return next(err); }
     if (!client) {
       return res.send(404, 'client not found');
     }
@@ -241,26 +264,23 @@ var overrideIfClientInQsForPublicAllowedUrls = function (req, res, next) {
     res.locals.account.namespace    = nconf.get('DOMAIN_URL_SERVER').replace('{tenant}', client.tenant);
     res.locals.account.tenant       = client.tenant;
     res.locals.account.clientId     = client.clientID;
-    res.locals.account.clientSecret = client.clientSecret;
+    res.locals.account.clientSecret = 'YOUR_CLIENT_SECRET'; // it's a public url (don't share client secret)
     res.locals.account.callback     = client.callback;
     res.locals.connectionName       = req.query.conn;
-
+    
     next();
   });
 };
 
 var overrideIfClientInQs = function (req, res, next) {
-  if (!req.query || !req.query.a) return next();
-  if (!req.user || !req.user.tenant) return next();
+  if (!req.query || !req.query.a) { return next(); }
+  if (!req.user || !req.user.tenant) { return next(); }
 
   clients.findByTenantAndClientId(req.user.tenant, req.query.a, function (err, client) {
-    if (err) {
-      console.error("error: " + err);
-      return next(err);
-    }
-
-    if (!client) {
-      return res.send(404, 'client not found');
+    if (err) { return next(err); }
+    if (!client) { return res.send(404, 'client not found'); }
+    if (!req.user.is_owner && (!client.owners || client.owners.indexOf(req.user.id) < 0)) {
+      return res.send(401);
     }
 
     res.locals.account.appName      = client.name && client.name.trim !== '' ? client.name : 'Your App';
@@ -304,8 +324,9 @@ docsapp.addPreRender(embedded);
 docsapp.addPreRender(function(req,res,next){
   var scheme = process.env.NODE_ENV === 'production' ? 'https' : 'http';
 
-  res.locals.uiURL   = scheme + '://' + nconf.get('DOMAIN_URL_APP');
-  res.locals.sdkURL  = scheme + '://' + nconf.get('DOMAIN_URL_SDK');
+  res.locals.uiURL              = scheme + '://' + nconf.get('DOMAIN_URL_APP');
+  res.locals.uiURLLoginCallback = res.locals.uiURL + '/callback';
+  res.locals.sdkURL             = scheme + '://' + nconf.get('DOMAIN_URL_SDK');
 
   if (res.locals.account && res.locals.account.clientId) {
     res.locals.uiAppSettingsURL = res.locals.uiURL + '/#/applications/' + res.locals.account.clientId + '/settings';
