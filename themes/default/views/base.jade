@@ -323,7 +323,7 @@ html(lang="en")
     if (~['/', '/api', '/auth-api'].indexOf(window.location.pathname)) $('.fixit').hide();
     $('.fixit a').attr('href', 'https://github.com/auth0/docs/tree/master/docs' + window.location.pathname + '.md');
 
-  if (locals.user && user.tenant)
+  if (locals.user && user.tenants && user.tenants.length > 1)
     script
       var getCookie = function (name) {
         var match = document.cookie.match(RegExp('(?:^|;\\s*)' + name + '=([^;]*)'));
