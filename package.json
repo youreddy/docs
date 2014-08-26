@@ -8,6 +8,7 @@
     "connect": "~2.8.5",
     "ejs": "~0.8.4",
     "express": "~3.3.1",
+    "express-redirect": "^1.1.1",
     "jade": "~0.27.7",
     "lodash": "https://registry.npmjs.org/lodash/-/lodash-2.4.1.tgz",
     "markdocs": "~0.6.0",

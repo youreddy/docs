@@ -1,0 +1,32 @@
+[{
+  "from": "/ionic-tutorial",
+  "to" : "/new/native-platforms/ionic"
+},
+{
+  "from": "/javaapi-tutorial",
+  "to" : "/new/server-apis/java"
+},
+{
+  "from": "/laravelapi-tutorial",
+  "to" : "/new/server-apis/php-laravel"
+},
+{
+  "from": "/nodeapi-tutorial",
+  "to" : "/new/server-apis/nodejs"
+},
+{
+  "from": "/nodejs-tutorial",
+  "to" : "/new/server-platforms/nodejs"
+},
+{
+  "from": "/phpapi-tutorial",
+  "to" : "/new/server-apis/php"
+},
+{
+  "from": "/pythonapi-tutorial",
+  "to" : "/new/server-apis/python"
+},
+{
+  "from": "/rubyapi-tutorial",
+  "to" : "/new/server-apis/rails"
+}]

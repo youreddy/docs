@@ -6,8 +6,11 @@ var http     = require('http');
 var https    = require('https');
 var passport = require('passport');
 var fs       = require('fs');
+var fs = require('fs');
+var redirect = require("express-redirect")
 
 var app = express();
+redirect(app);
 
 nconf
   .use("memory")
@@ -181,7 +184,7 @@ var overrideIfAuthenticated = function (req, res, next) {
   if (!req.user || !req.user.tenant) {
     return next();
   }
-  
+
   res.locals.user = {
     tenant: req.user.tenant,
     tenants: req.user.tenants
@@ -194,7 +197,7 @@ var overrideIfAuthenticated = function (req, res, next) {
   if (req.session.selectedClient) {
     queryDoc.clientID = req.session.selectedClient;
   }
-  
+
   clients.find(queryDoc, function (err, clients) {
     if (err) {
       winston.error("error: " + err);
@@ -240,7 +243,7 @@ var overrideIfAuthenticated = function (req, res, next) {
     res.locals.account.clientParam = '&clientId=' + client.clientID;
     res.locals.account.clientSecret = client.clientSecret;
     res.locals.account.callback = client.callback;
-    
+
     next();
   });
 };
@@ -267,7 +270,7 @@ var overrideIfClientInQsForPublicAllowedUrls = function (req, res, next) {
     res.locals.account.clientSecret = 'YOUR_CLIENT_SECRET'; // it's a public url (don't share client secret)
     res.locals.account.callback     = client.callback;
     res.locals.connectionName       = req.query.conn;
-    
+
     next();
   });
 };
@@ -365,6 +368,7 @@ require('./lib/sdk/demos-routes')(app);
 require('./lib/sdk2/demos-routes')(app);
 require('./lib/sdk2/snippets-routes')(app);
 require('./lib/packager')(app, overrideIfAuthenticated);
+require('./lib/redirects')(app);
 require('./lib/sitemap')(app);
 
 
