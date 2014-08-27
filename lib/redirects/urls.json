@@ -29,4 +29,28 @@
 {
   "from": "/rubyapi-tutorial",
   "to" : "/new/server-apis/rails"
+}, {
+  "from": "/awsapi-tutorial",
+  "to": "/new/server-apis/aws"
+}, {
+  "from": "/wams",
+  "to": "/new/server-apis/azure-mobile-services"
+}, {
+  "from": "/firebaseapi-tutorial",
+  "to": "/new/server-apis/firebase"
+}, {
+  "from": "/salesforcesandboxapi-tutorial",
+  "to": "/new/server-apis/salesforce-sandbox"
+}, {
+  "from": "/salesforceapi-tutorial",
+  "to": "/new/server-apis/salesforce"
+}, {
+  "from": "/sapapi-tutorial",
+  "to": "/new/server-apis/sap-odata"
+}, {
+  "from": "/rails-tutorial",
+  "to": "/new/server-platforms/rails"
+}, {
+  "from": "/python-tutorial",
+  "to": "/new/server-platforms/python"
 }]
