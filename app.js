@@ -222,28 +222,29 @@ var overrideIfAuthenticated = function (req, res, next) {
       nonGlobalClients.push(client);
     });
 
-    if (nonGlobalClients.length === 0) return next();
-
-    winston.debug('client found');
-
     res.locals.account = res.locals.account || {};
     res.locals.account.loggedIn = true;
-    res.locals.account.clients = nonGlobalClients;
+    res.locals.account.userName = req.user.name;
 
-    var client = nonGlobalClients[0];
+    res.locals.account.namespace = nconf.get('DOMAIN_URL_SERVER').replace('{tenant}', req.user.tenant);
+    res.locals.account.tenant = req.user.tenant;
 
     res.locals.account.globalClientId = globalClient.clientID || 'YOUR_GLOBAL_CLIENT_ID';
     res.locals.account.globalClientSecret = globalClient.clientSecret;
 
+    if (nonGlobalClients.length === 0) {
+      return next();
+    }
+
+    res.locals.account.clients = nonGlobalClients;
+
+    var client = nonGlobalClients[0];
     res.locals.account.appName = client.name && client.name.trim !== '' ? client.name : 'Your App';
-    res.locals.account.userName = req.user.name;
-    res.locals.account.namespace = nconf.get('DOMAIN_URL_SERVER').replace('{tenant}', client.tenant);
-    res.locals.account.tenant = client.tenant;
     res.locals.account.clientId = client.clientID;
     res.locals.account.clientParam = '&clientId=' + client.clientID;
     res.locals.account.clientSecret = client.clientSecret;
     res.locals.account.callback = client.callback;
-
+    
     next();
   });
 };
