@@ -9,7 +9,7 @@ script
       apiExplorer({
         el:             $('#api-explorer'),
         isAuth:         #{isAuth},
-        tenantDomain:   '#{tenantDomain}',
+        tenantDomain:   '#{account.namespace}',
         clientId:       '#{globalClientID}',
         clientSecret:   '#{globalClientSecret}',
         docsDomain:     '#{docsDomain}',
@@ -18,4 +18,3 @@ script
         anchors:        #{anchors}
       });
     });
-

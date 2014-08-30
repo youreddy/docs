@@ -42,14 +42,6 @@ html(lang="en")
         icon: '//auth0.com/boot/badge.png'
       });
 
-      widget.getClient().getSSOData(false, function (err, data) {
-        if (!data || !data.sso) return;
-        $('.login').remove();
-        $('a.signup')
-          .attr('href', '#{uiURL}')
-          .html('Open Dashboard');
-      });
-
       window.login = function () {
         widget
           .once('closed', function () {
@@ -144,12 +136,16 @@ html(lang="en")
                   li
                     a(href="https://auth0.com/blog") Blog
 
-              li
-                a.signin-button(href="javascript:login()").login Login
+                if (locals.user)
+                  li
+                    a.signin-button(href="#{uiURL}").btn.btn-sm.signup Open Dashboard
+                else
+                  li
+                    a.signin-button(href="javascript:login()").login Login
 
-              li
-                a.signin-button(href="javascript:signup()").btn.btn-sm.signup Sign Up
-
+                  li
+                    a.signin-button(href="javascript:signup()").btn.btn-sm.signup Sign Up
+                  
     .container
       .sub-header.sub-header-dropdown
 

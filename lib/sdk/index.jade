@@ -1,6 +1,6 @@
 p There are different ways of integrating Auth0 in your site. Below, some of them with a preview and a code snippet to copy paste.
 
-if account.loggedIn && !embedded
+if account.loggedIn && account.clients && account.clients.length > 0 && !embedded
   div 
     label Select one of your applications:
     select#client-chooser
