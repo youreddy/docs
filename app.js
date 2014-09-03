@@ -7,7 +7,7 @@ var https    = require('https');
 var passport = require('passport');
 var fs       = require('fs');
 var fs = require('fs');
-var redirect = require("express-redirect")
+var redirect = require("express-redirect");
 
 var app = express();
 redirect(app);
@@ -31,6 +31,7 @@ nconf
     'AUTH0JS_URL':       'https://cdn.auth0.com/w2/auth0-1.6.4.min.js',
     'AUTH0_ANGULAR_URL': 'http://cdn.auth0.com/w2/auth0-angular-1.1.js',
     'SENSITIVE_DATA_ENCRYPTION_KEY': '0123456789',
+    'HMAC_ENCRYPTION_KEY': 'abcdefghij',
     'PUBLIC_ALLOWED_TUTORIALS': '/adldap-auth?,/adldap-x?,/adfs?',
     'AUTH0_CLIENT_ID':   'aCbTAJNi5HbsjPJtRpSP6BIoLPOrSj2C',
   });
