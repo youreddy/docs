@@ -53,4 +53,7 @@
 }, {
   "from": "/python-tutorial",
   "to": "/new/server-platforms/python"
+}, {
+  "from": "/php-tutorial",
+  "to": "/new/server-platforms/php"
 }]
