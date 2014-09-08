@@ -9,8 +9,7 @@ var fs       = require('fs');
 var fs = require('fs');
 var redirect = require("express-redirect");
 
-var app = express();
-redirect(app);
+var app = redirect(express());
 
 nconf
   .use("memory")
@@ -245,7 +244,7 @@ var overrideIfAuthenticated = function (req, res, next) {
     res.locals.account.clientParam = '&clientId=' + client.clientID;
     res.locals.account.clientSecret = client.clientSecret;
     res.locals.account.callback = client.callback;
-    
+
     next();
   });
 };
@@ -316,13 +315,21 @@ var appendTicket = function (req, res, next) {
 };
 
 /**
+ * Manage redirect 301 for deprecated links
+ * to point to new links or documents
+ */
+
+require('./lib/redirects')(app);
+
+/**
  * Register quickstart routes as an alias to index `/`
  * So that the tutorial navigator gets to load
  */
 
 var quickstartRoutes = require('./lib/quickstart-routes');
 
-app.get('/quickstart', alias('/'))
+app.get('/quickstart', alias('/'));
+
 quickstartRoutes.forEach(function(r) {
   app.get('/quickstart' + r, alias('/'));
 });
@@ -393,7 +400,6 @@ require('./lib/sdk/demos-routes')(app);
 require('./lib/sdk2/demos-routes')(app);
 require('./lib/sdk2/snippets-routes')(app);
 require('./lib/packager')(app, overrideIfAuthenticated);
-require('./lib/redirects')(app);
 require('./lib/sitemap')(app);
 
 
