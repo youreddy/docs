@@ -343,15 +343,16 @@ require('./lib/redirects')(app);
 /**
  * Register quickstart routes as an alias to index `/`
  * So that the tutorial navigator gets to load
+ * quickstart collections and render
  */
 
 var quickstartRoutes = require('./lib/quickstart-routes');
 
-app.get('/quickstart', alias('/'));
-
-quickstartRoutes.forEach(function(r) {
-  app.get('/quickstart' + r, alias('/'));
+quickstartRoutes.forEach(function(route) {
+  app.get('/quickstart' + route, alias('/'));
 });
+
+app.get('/quickstart', alias('/'));
 
 function alias(route) {
   return function(req, res, next) {
