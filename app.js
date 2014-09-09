@@ -315,6 +315,25 @@ var appendTicket = function (req, res, next) {
 };
 
 /**
+ * Add quickstart collections for initialization
+ * with server matching versioning for SEO and sitemap.xml
+ */
+
+var collections = require('./lib/quickstart-collections');
+
+var quickstartCollections = function (req, res, next) {
+  if (res.locals.quickstart != null) return next();
+  res.locals.quickstart = {};
+  res.locals.quickstart.apptypes = collections.apptypes;
+  res.locals.quickstart.clientPlatforms = collections.clientPlatforms;
+  res.locals.quickstart.nativePlatforms = collections.nativePlatforms;
+  res.locals.quickstart.hybridPlatforms = collections.hybridPlatforms;
+  res.locals.quickstart.serverPlatforms = collections.serverPlatforms;
+  res.locals.quickstart.serverApis = collections.serverApis;
+  next();
+}
+
+/**
  * Manage redirect 301 for deprecated links
  * to point to new links or documents
  */
@@ -355,6 +374,7 @@ docsapp.addPreRender(overrideIfAuthenticated);
 docsapp.addPreRender(overrideIfClientInQs);
 docsapp.addPreRender(overrideIfClientInQsForPublicAllowedUrls);
 docsapp.addPreRender(appendTicket);
+docsapp.addPreRender(quickstartCollections);
 docsapp.addPreRender(embedded);
 docsapp.addPreRender(function(req,res,next){
   var scheme = process.env.NODE_ENV === 'production' ? 'https' : 'http';
