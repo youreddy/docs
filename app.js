@@ -9,8 +9,7 @@ var fs       = require('fs');
 var fs = require('fs');
 var redirect = require("express-redirect");
 
-var app = express();
-redirect(app);
+var app = redirect(express());
 
 nconf
   .use("memory")
@@ -245,7 +244,7 @@ var overrideIfAuthenticated = function (req, res, next) {
     res.locals.account.clientParam = '&clientId=' + client.clientID;
     res.locals.account.clientSecret = client.clientSecret;
     res.locals.account.callback = client.callback;
-    
+
     next();
   });
 };
@@ -315,8 +314,59 @@ var appendTicket = function (req, res, next) {
   });
 };
 
+/**
+ * Add quickstart collections for initialization
+ * with server matching versioning for SEO and sitemap.xml
+ */
+
+var collections = require('./lib/quickstart-collections');
+
+var quickstartCollections = function (req, res, next) {
+  if (res.locals.quickstart != null) return next();
+  res.locals.quickstart = {};
+  res.locals.quickstart.apptypes = collections.apptypes;
+  res.locals.quickstart.clientPlatforms = collections.clientPlatforms;
+  res.locals.quickstart.nativePlatforms = collections.nativePlatforms;
+  res.locals.quickstart.hybridPlatforms = collections.hybridPlatforms;
+  res.locals.quickstart.serverPlatforms = collections.serverPlatforms;
+  res.locals.quickstart.serverApis = collections.serverApis;
+  next();
+}
+
+/**
+ * Manage redirect 301 for deprecated links
+ * to point to new links or documents
+ */
+
+require('./lib/redirects')(app);
+
+/**
+ * Register quickstart routes as an alias to index `/`
+ * So that the tutorial navigator gets to load
+ * quickstart collections and render
+ */
+
+var quickstartRoutes = require('./lib/quickstart-routes');
+
+quickstartRoutes.forEach(function(route) {
+  app.get('/quickstart' + route, alias('/'));
+});
+
+app.get('/quickstart', alias('/'));
+
+function alias(route) {
+  return function(req, res, next) {
+    req.url = route;
+    next();
+  }
+}
+
 var includes = require('./lib/includes/includes');
 includes.init(path.join(__dirname, '/docs/includes'));
+
+/**
+ * Create and boot DocsApp as `Markdocs` app
+ */
 
 var docsapp = new markdocs.App(__dirname, '', app);
 docsapp.addPreRender(defaultValues);
@@ -325,6 +375,7 @@ docsapp.addPreRender(overrideIfAuthenticated);
 docsapp.addPreRender(overrideIfClientInQs);
 docsapp.addPreRender(overrideIfClientInQsForPublicAllowedUrls);
 docsapp.addPreRender(appendTicket);
+docsapp.addPreRender(quickstartCollections);
 docsapp.addPreRender(embedded);
 docsapp.addPreRender(function(req,res,next){
   var scheme = process.env.NODE_ENV === 'production' ? 'https' : 'http';
@@ -370,10 +421,13 @@ require('./lib/sdk/demos-routes')(app);
 require('./lib/sdk2/demos-routes')(app);
 require('./lib/sdk2/snippets-routes')(app);
 require('./lib/packager')(app, overrideIfAuthenticated);
-require('./lib/redirects')(app);
 require('./lib/sitemap')(app);
 
 
+/**
+ * Export `docsapp` or boot a new https server
+ * with it
+ */
 
 if (!module.parent) {
   var server;

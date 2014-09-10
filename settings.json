@@ -15,7 +15,7 @@
         "icon": "icon-laptop",
         "disabled": true,
         "items": [
-          { "title": "Node.js", "url": "/new/server-platforms/nodejs" },
+          { "title": "Node.js", "url": "/server-platforms/nodejs" },
           { "title": "ASP.NET", "url": "/aspnet-tutorial" },
           { "title": "ASP.NET (OWIN)", "url": "/aspnet-owin-tutorial" },
           { "title": "ServiceStack", "url": "/servicestack-tutorial" },
@@ -31,22 +31,22 @@
         "icon": "icon-terminal",
         "disabled": true,
         "items": [
-          { "title": "ASP.NET Web API", "url": "/new/server-apis/aspnet-webapi" },
-          { "title": "ASP.NET Web API (OWIN)", "url": "/new/server-apis/webapi-owin" },
-          { "title": "Node.js API", "url": "/new/server-apis/nodejs" },
-          { "title": "Ruby API", "url": "/new/server-apis/ruby" },
-          { "title": "Ruby On Rails API", "url": "/new/server-apis/rails" },
-          { "title": "PHP API", "url": "/new/server-apis/php" },
-          { "title": "PHP (Laravel) API", "url": "/new/server-apis/php-laravel" },
-          { "title": "Java API", "url": "//new/server-apis/java" },
-          { "title": "Python API", "url": "/new/server-apis/python" },
+          { "title": "ASP.NET Web API", "url": "/server-apis/aspnet-webapi" },
+          { "title": "ASP.NET Web API (OWIN)", "url": "/server-apis/webapi-owin" },
+          { "title": "Node.js API", "url": "/server-apis/nodejs" },
+          { "title": "Ruby API", "url": "/server-apis/ruby" },
+          { "title": "Ruby On Rails API", "url": "/server-apis/rails" },
+          { "title": "PHP API", "url": "/server-apis/php" },
+          { "title": "PHP (Laravel) API", "url": "/server-apis/php-laravel" },
+          { "title": "Java API", "url": "/server-apis/java" },
+          { "title": "Python API", "url": "/server-apis/python" },
           { "title": ".NET WCF", "url": "/wcf-tutorial" },
-          { "title": "AWS", "url": "/new/server-apis/aws" },
-          { "title": "Azure Mobile Services", "url": "/new/server-apis/azure-mobile-services" },
-          { "title": "Firebase", "url": "/new/server-apis/firebase" },
-          { "title": "Salesforce", "url": "/new/server-apis/salesforce" },
-          { "title": "Salesforce (Sandbox)", "url": "/new/server-apis/salesforce-sandbox" },
-          { "title": "SAP OData", "url": "/new/server-apis/sap-odata" }
+          { "title": "AWS", "url": "/server-apis/aws" },
+          { "title": "Azure Mobile Services", "url": "/server-apis/azure-mobile-services" },
+          { "title": "Firebase", "url": "/server-apis/firebase" },
+          { "title": "Salesforce", "url": "/server-apis/salesforce" },
+          { "title": "Salesforce (Sandbox)", "url": "/server-apis/salesforce-sandbox" },
+          { "title": "SAP OData", "url": "/server-apis/sap-odata" }
         ]
       },
       {
@@ -58,9 +58,9 @@
           { "title": "Android", "url": "/android-tutorial" },
           { "title": "Windows Phone", "url": "/windowsphone-tutorial" },
           { "title": "Xamarin", "url": "/xamarin-tutorial" },
-          { "title": "PhoneGap", "url": "/new/native-platforms/cordova" },
-          { "title": "Cordova", "url": "/new/native-platforms/cordova" },
-          { "title": "Ionic", "url": "/new/native-platforms/ionic" },
+          { "title": "PhoneGap", "url": "/native-platforms/cordova" },
+          { "title": "Cordova", "url": "/native-platforms/cordova" },
+          { "title": "Ionic", "url": "/native-platforms/ionic" },
           { "title": "Windows 8 (JS)", "url": "/win8-tutorial" },
           { "title": "Windows 8 (C#)", "url": "/win8-cs-tutorial" },
           { "title": "WPF / Winforms", "url": "/wpf-winforms-tutorial" }
@@ -71,10 +71,10 @@
         "icon": "icon-html5",
         "disabled": true,
         "items": [
-          { "title": "Single Page Apps", "url": "/new/client-platforms/vanillajs" },
-          { "title": "Vanilla JS", "url": "/new/client-platforms/vanillajs" },
-          { "title": "Angular.js", "url": "/new/client-platforms/angularjs" },
-          { "title": "jQuery", "url": "/new/client-platforms/jquery" }
+          { "title": "Single Page Apps", "url": "/client-platforms/vanillajs" },
+          { "title": "Vanilla JS", "url": "/client-platforms/vanillajs" },
+          { "title": "Angular.js", "url": "/client-platforms/angularjs" },
+          { "title": "jQuery", "url": "/client-platforms/jquery" }
         ]
       },
       {
@@ -94,7 +94,7 @@
           { "title": "Web Apps vs Web APIs", "url": "/apps-apis" },
           { "title": "Logout", "url":"/logout"},
           { "title": "Rules", "url":"/rules"},
-          { "title": "Rules Repository", "url":"https://github.com/auth0/rules"},
+          { "title": "Rules Repository", "url": "https://github.com/auth0/rules" },
           { "title": "Active Directory", "url": "/ad" },
           { "title": "Database Connections", "url": "/mysql-connection-tutorial" },
           { "title": "Protocols", "url":"/protocols"},
