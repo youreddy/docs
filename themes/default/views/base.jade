@@ -23,6 +23,8 @@ html(lang="en")
     script(src="http://html5shim.googlecode.com/svn/trunk/html5.js")
     <![endif]-->
 
+    script(src="/js/shims/window.location.origin.js")
+
     script(src='//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js')
     script(src='//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js')
     script(src="#{widget_url}")
@@ -77,7 +79,6 @@ html(lang="en")
       }
 
 
-
   body.page-docs
     header.site-header
       nav.navbar.navbar-default(role='navigation')
@@ -120,11 +121,11 @@ html(lang="en")
 
 
                   li
-                    a(href="https://auth0.com/opensource") Open Source    
-                  
-                  li.divider              
+                    a(href="https://auth0.com/opensource") Open Source
 
-                  li 
+                  li.divider
+
+                  li
 
                     a(href="https://auth0.com/about") About
 
@@ -145,7 +146,7 @@ html(lang="en")
 
                   li
                     a.signin-button(href="javascript:signup()").btn.btn-sm.signup Sign Up
-                  
+
     .container
       .sub-header.sub-header-dropdown
 
@@ -159,7 +160,7 @@ html(lang="en")
                 if (user.tenant !== tenant)
                   li(role='presentation')
                     a(role='menuitem', tabindex='-1', href='/switch?tenant=#{tenant}') #{tenant}
-        else 
+        else
           span.sub-header-text Documentation: API Reference & Help topics
 
 
@@ -176,7 +177,7 @@ html(lang="en")
 
           li
             a(href="mailto:support@auth0.com", target="_blank") Contact Us
-          
+
     .container
       .row
         .col-xs-3
