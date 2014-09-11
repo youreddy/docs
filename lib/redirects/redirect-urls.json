@@ -1,63 +1,63 @@
 [{
   "from": "/ionic-tutorial",
-  "to" : "/new/native-platforms/ionic"
+  "to" : "/native-platforms/ionic"
 },
 {
   "from": "/javaapi-tutorial",
-  "to" : "/new/server-apis/java"
+  "to" : "/server-apis/java"
 },
 {
   "from": "/laravelapi-tutorial",
-  "to" : "/new/server-apis/php-laravel"
+  "to" : "/server-apis/php-laravel"
 },
 {
   "from": "/nodeapi-tutorial",
-  "to" : "/new/server-apis/nodejs"
+  "to" : "/server-apis/nodejs"
 },
 {
   "from": "/nodejs-tutorial",
-  "to" : "/new/server-platforms/nodejs"
+  "to" : "/server-platforms/nodejs"
 },
 {
   "from": "/phpapi-tutorial",
-  "to" : "/new/server-apis/php"
+  "to" : "/server-apis/php"
 },
 {
   "from": "/pythonapi-tutorial",
-  "to" : "/new/server-apis/python"
+  "to" : "/server-apis/python"
 },
 {
   "from": "/rubyapi-tutorial",
-  "to" : "/new/server-apis/rails"
+  "to" : "/server-apis/rails"
 }, {
   "from": "/awsapi-tutorial",
-  "to": "/new/server-apis/aws"
+  "to": "/server-apis/aws"
 }, {
   "from": "/wams",
-  "to": "/new/server-apis/azure-mobile-services"
+  "to": "/server-apis/azure-mobile-services"
 }, {
   "from": "/firebaseapi-tutorial",
-  "to": "/new/server-apis/firebase"
+  "to": "/server-apis/firebase"
 }, {
   "from": "/salesforcesandboxapi-tutorial",
-  "to": "/new/server-apis/salesforce-sandbox"
+  "to": "/server-apis/salesforce-sandbox"
 }, {
   "from": "/salesforceapi-tutorial",
-  "to": "/new/server-apis/salesforce"
+  "to": "/server-apis/salesforce"
 }, {
   "from": "/sapapi-tutorial",
-  "to": "/new/server-apis/sap-odata"
+  "to": "/server-apis/sap-odata"
 }, {
   "from": "/rails-tutorial",
-  "to": "/new/server-platforms/rails"
+  "to": "/server-platforms/rails"
 }, {
   "from": "/python-tutorial",
-  "to": "/new/server-platforms/python"
+  "to": "/server-platforms/python"
 }, {
   "from": "/php-tutorial",
-  "to": "/new/server-platforms/php"
+  "to": "/server-platforms/php"
 },
 {
   "from": "/java-tutorial",
-  "to" : "/new/server-platforms/java"
+  "to" : "/server-platforms/java"
 }]
