@@ -23,6 +23,7 @@
     "nconf": "~0.6.4",
     "newrelic": "~1.1.1",
     "passport": "~0.1.12",
+    "prerender-node": "^1.0.6",
     "request": "^2.37.0",
     "winston": "~0.6.2",
     "winston-email": "0.0.6",

@@ -1,13 +1,17 @@
-var markdocs = require('markdocs');
-var nconf    = require('nconf');
-var path     = require('path');
-var express  = require('express');
-var http     = require('http');
-var https    = require('https');
-var passport = require('passport');
-var fs       = require('fs');
-var fs = require('fs');
+/**
+ * Module dependencies.
+ */
+
 var redirect = require("express-redirect");
+var prerender = require('prerender-node');
+var passport = require('passport');
+var markdocs = require('markdocs');
+var express = require('express');
+var nconf = require('nconf');
+var https = require('https');
+var http = require('http');
+var path = require('path');
+var fs = require('fs');
 
 var app = redirect(express());
 
@@ -33,7 +37,9 @@ nconf
     'HMAC_ENCRYPTION_KEY': 'abcdefghij',
     'PUBLIC_ALLOWED_TUTORIALS': '/adldap-auth?,/adldap-x?,/adfs?',
     'AUTH0_CLIENT_ID':   'aCbTAJNi5HbsjPJtRpSP6BIoLPOrSj2C',
+    'PRERENDER_ENABLED': false
   });
+
 
 if (nconf.get('db')) {
   console.log('db is ' + nconf.get('db'));
@@ -54,6 +60,18 @@ if (!nconf.get('AUTH0JS_URL')) {
 if (!nconf.get('AUTH0_DOMAIN') && nconf.get('AUTH0_TENANT') && nconf.get('DOMAIN_URL_SERVER')) {
   nconf.set('AUTH0_DOMAIN', nconf.get('DOMAIN_URL_SERVER').replace('{tenant}', nconf.get('AUTH0_TENANT')));
 }
+
+if (nconf.get('PRERENDER_SERVICE_URL')) {
+  prerender.set('prerenderServiceUrl', nconf.get('PRERENDER_SERVICE_URL'));
+};
+
+if (nconf.get('PRERENDER_TOKEN')) {
+  prerender.set('prerenderToken', nconf.get('PREPRENDER_TOKEN'));
+};
+
+if (nconf.get('PRERENDER_PROTOCOL')) {
+  prerender.set('protocol', nconf.get('PRERENDER_PROTOCOL'));
+};
 
 var connections = require('./lib/connections');
 var clients     = require('./lib/clients');
@@ -95,6 +113,10 @@ app.configure('production', function(){
 
 app.configure(function(){
   this.set("view engine", "jade");
+
+  if (nconf.get('PRERENDER_ENABLED')) {
+    this.use(prerender);
+  };
 
   this.use('/test', require('./lib/test-ping'));
 
