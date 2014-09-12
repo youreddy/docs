@@ -115,6 +115,9 @@ app.configure(function(){
   this.set("view engine", "jade");
 
   if (nconf.get('PRERENDER_ENABLED')) {
+    // Add swiftype UserAgent bot
+    prerender.crawlerUserAgents('Swiftbot');
+    // add prerender middleware
     this.use(prerender);
   };
 
