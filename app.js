@@ -116,7 +116,7 @@ app.configure(function(){
 
   if (nconf.get('PRERENDER_ENABLED')) {
     // Add swiftype UserAgent bot
-    prerender.crawlerUserAgents('Swiftbot');
+    prerender.crawlerUserAgents.push('Swiftbot');
     // add prerender middleware
     this.use(prerender);
   };
