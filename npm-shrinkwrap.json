@@ -13,9 +13,9 @@
       "resolved": "git://github.com/auth0/application-types#fd4d0ba869cfe4d82d636473ca9472c7e51c21f7"
     },
     "auth0-client-platforms": {
-      "version": "0.1.1",
-      "from": "auth0-client-platforms@git://github.com/auth0/client-platforms#b86ce42bee598a355ec396daf9b6568be7190834",
-      "resolved": "git://github.com/auth0/client-platforms#b86ce42bee598a355ec396daf9b6568be7190834"
+      "version": "0.1.2",
+      "from": "auth0-client-platforms@git://github.com/auth0/client-platforms#c0542fef82a6d7f03a08b2a861a6bffbb9b018b5",
+      "resolved": "git://github.com/auth0/client-platforms#c0542fef82a6d7f03a08b2a861a6bffbb9b018b5"
     },
     "auth0-native-platforms": {
       "version": "0.1.3",
