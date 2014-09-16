@@ -293,6 +293,7 @@ var overrideIfClientInQsForPublicAllowedUrls = function (req, res, next) {
     res.locals.account.namespace    = nconf.get('DOMAIN_URL_SERVER').replace('{tenant}', client.tenant);
     res.locals.account.tenant       = client.tenant;
     res.locals.account.clientId     = client.clientID;
+    res.locals.account.clientParam = '&clientId=' + client.clientID;
     res.locals.account.clientSecret = 'YOUR_CLIENT_SECRET'; // it's a public url (don't share client secret)
     res.locals.account.callback     = client.callback;
     res.locals.connectionName       = req.query.conn;
