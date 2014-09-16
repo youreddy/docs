@@ -317,6 +317,7 @@ var overrideIfClientInQs = function (req, res, next) {
     res.locals.account.namespace    = nconf.get('DOMAIN_URL_SERVER').replace('{tenant}', client.tenant);
     res.locals.account.tenant       = client.tenant;
     res.locals.account.clientId     = client.clientID;
+    res.locals.account.clientParam = '&clientId=' + client.clientID;
     res.locals.account.clientSecret = client.clientSecret;
     res.locals.account.callback     = client.callback;
     res.locals.connectionName       = req.query.conn;
