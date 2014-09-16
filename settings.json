@@ -86,6 +86,27 @@
         ]
       },
       {
+        "title": "Integrations",
+        "icon": "icon-cogs",
+        "items": [
+          { "title": "AD RMS", "url": "/integrations/ad-rms"},
+          { "title": "Box", "url": "/integrations/box"},
+          { "title": "CloudBees", "url": "/integrations/cloudbees"},
+          { "title": "Concur (Beta)", "url": "/integrations/concur"},
+          { "title": "Dropbox", "url": "/integrations/dropbox"},
+          { "title": "Dynamic CRM", "url": "/integrations/dynamic-crm"},
+          { "title": "Echosign", "url": "/integrations/echosign"},
+          { "title": "Egnyte", "url": "/integrations/egnyte"},
+          { "title": "New Relic", "url": "/integrations/new-relic" },
+          { "title": "Office 365", "url": "/integrations/office-365" },
+          { "title": "Salesforce", "url": "/integrations/salesforce" },
+          { "title": "Sharepoint", "url": "/integrations/sharepoint" },
+          { "title": "SpringCM", "url": "/integrations/springcm" },
+          { "title": "ZenDesk", "url": "/integrations/zendesk" },
+          { "title": "Zoom", "url": "/integrations/zoom" }
+        ]
+      },
+      {
         "title": "Help Topics",
         "icon": "icon-question-sign",
         "items": [
