@@ -40,9 +40,9 @@ p Auth0 JavaScript libraries are Open Source:
 
 script
   function refresh (method, clientId) {
-    $('#widget-demo').attr('src', '#{DOMAIN_URL_DOCS}/widget2-demos/' + method + '?' + (clientId !== 'YOUR_CLIENT_ID' ? '&a=' + clientId : '') + '&callbackOnHash=#{callbackOnHashMode}');
+    $('#widget-demo').attr('src', '#{DOMAIN_URL_DOCS}/widget2-demos/' + method + '?' + (clientId !== 'YOUR_CLIENT_ID' ? '&a=' + clientId : '') + '&callbackOnHash=#{callbackOnHashMode}' + '&backend=#{backend}');
 
-    $('#widget-snippet').load('#{DOMAIN_URL_DOCS}/widget2-snippets/' + method + '?' + (clientId !== 'YOUR_CLIENT_ID' ? '&a=' + clientId : '') + '&callbackOnHash=#{callbackOnHashMode}', function() {
+    $('#widget-snippet').load('#{DOMAIN_URL_DOCS}/widget2-snippets/' + method + '?' + (clientId !== 'YOUR_CLIENT_ID' ? '&a=' + clientId : '') + '&callbackOnHash=#{callbackOnHashMode}' + '&backend=#{backend}', function() {
       prettyPrint();
     });
   }

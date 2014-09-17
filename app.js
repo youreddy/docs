@@ -12,6 +12,7 @@ var https = require('https');
 var http = require('http');
 var path = require('path');
 var fs = require('fs');
+var default_callback = require('./lib/default_callback');
 
 var app = redirect(express());
 
@@ -185,7 +186,7 @@ var defaultValues = function (req, res, next) {
   res.locals.account.namespace    = 'YOUR_NAMESPACE';
   res.locals.account.clientId     = 'YOUR_CLIENT_ID';
   res.locals.account.clientSecret = 'YOUR_CLIENT_SECRET';
-  res.locals.account.callback     = 'http://YOUR_APP/callback';
+  res.locals.account.callback     = default_callback.get(req) || 'http://YOUR_APP/callback';
 
   next();
 };
@@ -431,9 +432,13 @@ docsapp.addPreRender(function(req,res,next){
   res.locals.widget_url                   = nconf.get('LOGIN_WIDGET_URL');
   res.locals.widget_url_no_scheme         = removeScheme(nconf.get('LOGIN_WIDGET_URL'));
 
+  res.locals.hasCallback = res.locals.account && !!res.locals.account.callback;
+
   // defualt values
   if (res.locals.account) {
-    res.locals.account.callback = res.locals.account.callback || 'http://YOUR_APP/callback';
+    res.locals.account.callback = res.locals.account.callback ||
+                                  default_callback.get(req) ||
+                                  'http://YOUR_APP/callback';
   }
 
   next();
