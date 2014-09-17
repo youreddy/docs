@@ -88,6 +88,7 @@
       {
         "title": "Integrations",
         "icon": "icon-cogs",
+        "disabled" : true,
         "items": [
           { "title": "AD RMS", "url": "/integrations/ad-rms"},
           { "title": "Box", "url": "/integrations/box"},
