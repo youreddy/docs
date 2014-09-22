@@ -56,8 +56,10 @@
 }, {
   "from": "/php-tutorial",
   "to": "/server-platforms/php"
-},
-{
+},{
   "from": "/java-tutorial",
   "to" : "/server-platforms/java"
+},{
+  "from": "/phonegap-tutorial",
+  "to" : "/native-platforms/phonegap"
 }]
