@@ -30,7 +30,20 @@ div.package span.smaller {
   color: #fff;
   display: inline-block;
   vertical-align: middle;
-  font-size: 14px;
+  font-weight: bold;
+  font-size: 12px;
+  color: #fff;
+}
+.sub-navbar .navbar-form {
+  padding: 0;
+}
+.sub-navbar .navbar-form input {
+  min-width: 180px;
+}
+.sub-navbar .navbar-form input,
+.sub-navbar .navbar-form button {
+  -webkit-box-shadow: none;
+  box-shadow: none;
 }
 .sub-navbar .navbar-form input:focus,
 .sub-navbar .navbar-form button:focus,
@@ -38,8 +51,8 @@ div.package span.smaller {
 .sub-navbar .navbar-form button:active {
   outline: 0;
   border: 1px solid #ccc;
-  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
-  box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
+  -webkit-box-shadow: none;
+  box-shadow: none;
   -webkit-transition: border-color ease-in-out 0.15s, -webkit-box-shadow ease-in-out 0.15s;
   -o-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
   transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
@@ -461,6 +474,22 @@ div.package span.smaller {
 }
 .page-docs .fixit a {
   font-weight: bold;
+}
+.page-docs form#search button,
+.page-docs form#search input {
+  border: 1px solid transparent;
+}
+.page-docs form#search button {
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+}
+.page-docs form#search input {
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+}
+.page-docs form#search .btn.btn-default:hover,
+.page-docs form#search a.btn.btn-default:hover {
+  background: #fff;
 }
 .page-docs #search-results .st-search-summary {
   margin-bottom: 20px;
