@@ -137,7 +137,7 @@ html(lang="en")
                     a.signin-button(href="javascript:signup()").btn.btn-sm.signup Sign Up
 
     .container
-      nav.navbar-default.sub-navbar
+      nav.navbar.navbar-default.sub-navbar
         if (locals.user && user.tenants && user.tenants.length > 1)
           .dropdown
             button#account-chooser.btn.dropdown-toggle(type='button', data-toggle='dropdown')
