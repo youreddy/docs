@@ -17,14 +17,13 @@ div.package span.smaller {
 .wpf-winforms-tutorial i {
   border-color: #ffc0cb;
 }
-.sub-header .btn {
-  min-width: 226px;
-}
-.sub-header .dropdown-menu {
-  min-width: 226px;
-}
 .sub-navbar {
   background: #5d676f;
+  border-radius: 3px;
+  margin-bottom: 40px;
+  font-weight: bold;
+  font-size: 12px;
+  color: #fff;
 }
 .sub-navbar .navbar-text {
   color: #fff;
@@ -34,8 +33,62 @@ div.package span.smaller {
   font-size: 12px;
   color: #fff;
 }
+.sub-navbar .dropdown {
+  display: inline-block;
+  height: 100%;
+  margin: 0px;
+  padding-left: 0px;
+}
+.sub-navbar .dropdown .caret {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+}
+.sub-navbar .dropdown .btn.dropdown-toggle {
+  color: #fff;
+  min-width: 226px;
+  line-height: 32px;
+  font-size: 12px;
+  background: none;
+  border: 0;
+  border-radius: 0;
+  border-right: 1px solid #ccc;
+  text-transform: none;
+  background: linear-gradient(180deg, transparent 30%, rgba(0,0,0,0.8) 100%);
+  border-top-left-radius: 3px;
+  border-bottom-left-radius: 3px;
+  letter-spacing: 0.5px;
+  position: relative;
+  text-align: left;
+  padding-left: 20px;
+  padding-right: 40px;
+  letter-spacing: 0.5px;
+  display: inline-block;
+  height: 100%;
+}
+.sub-navbar .dropdown .btn.dropdown-toggle:focus,
+.sub-navbar .dropdown .btn.dropdown-toggle:active {
+  outline: 0;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  -webkit-transition: border-color ease-in-out 0.15s, -webkit-box-shadow ease-in-out 0.15s;
+  -o-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+  transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+}
+.sub-navbar .dropdown .btn.dropdown-toggle:hover {
+  -webkit-background: linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.8) 100%);
+  -o-background: linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.8) 100%);
+  background: linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.8) 100%);
+}
+.sub-navbar .dropdown .dropdown-menu {
+  min-width: 226px;
+}
 .sub-navbar .navbar-form {
+  margin: 5px 10px;
   padding: 0;
+}
+.sub-navbar .navbar-form:last-child {
+  margin: 5px 10px;
 }
 .sub-navbar .navbar-form input {
   min-width: 180px;
@@ -50,7 +103,6 @@ div.package span.smaller {
 .sub-navbar .navbar-form input:active,
 .sub-navbar .navbar-form button:active {
   outline: 0;
-  border: 1px solid #ccc;
   -webkit-box-shadow: none;
   box-shadow: none;
   -webkit-transition: border-color ease-in-out 0.15s, -webkit-box-shadow ease-in-out 0.15s;

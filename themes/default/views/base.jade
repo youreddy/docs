@@ -137,43 +137,42 @@ html(lang="en")
                     a.signin-button(href="javascript:signup()").btn.btn-sm.signup Sign Up
 
     .container
-      nav.navbar.navbar-default.sub-navbar
-        .container-fluid
-          if (locals.user && user.tenants && user.tenants.length > 1)
-            .dropdown
-              button#account-chooser.btn.dropdown-toggle(type='button', data-toggle='dropdown')
-                | #{user.tenant}
-                span.caret
-              ul.dropdown-menu(role='menu', aria-labelledby='account-chooser')
-                each tenant in user.tenants
-                  if (user.tenant !== tenant)
-                    li(role='presentation')
-                      a(role='menuitem', tabindex='-1', href='/switch?tenant=#{tenant}') #{tenant}
-          else
-            .navbar-header
-              small.navbar-text Documentation: API Reference & Help topics
+      nav.navbar-default.sub-navbar
+        if (locals.user && user.tenants && user.tenants.length > 1)
+          .dropdown
+            button#account-chooser.btn.dropdown-toggle(type='button', data-toggle='dropdown')
+              | #{user.tenant}
+              span.caret
+            ul.dropdown-menu(role='menu', aria-labelledby='account-chooser')
+              each tenant in user.tenants
+                if (user.tenant !== tenant)
+                  li(role='presentation')
+                    a(role='menuitem', tabindex='-1', href='/switch?tenant=#{tenant}') #{tenant}
+        else
+          .navbar-header
+            small.navbar-text Documentation: API Reference & Help topics
 
 
-          form#search.navbar-form.navbar-right(role="search", action="/search", autocomplete="off")
-            .form-group
-              .input-group
-                span.input-group-btn
-                  button.btn.btn-default.btn-small(type="submit", value="")
-                    i.icon.icon-budicon-489
-                input#search-input.form-control(type="text", placeholder="Search for terms", name="stq")
+        form#search.navbar-form.navbar-right(role="search", action="/search", autocomplete="off")
+          .form-group
+            .input-group
+              span.input-group-btn
+                button.btn.btn-default.btn-small(type="submit", value="")
+                  i.icon.icon-budicon-489
+              input#search-input.form-control(type="text", placeholder="Search for terms", name="stq")
 
-          ul.external-links
-            //- li
-            //-   a(href="http://twitter.com/authzero", target="_blank") Twitter
+        //- ul.external-links
+        //-   li
+        //-     a(href="http://twitter.com/authzero", target="_blank") Twitter
 
-            //- li
-            //-   a(href="http://github.com/auth0", target="_blank") Github
+        //-   li
+        //-     a(href="http://github.com/auth0", target="_blank") Github
 
-            //- li
-            //-   a(href="http://chat.auth0.com", target="_blank") Chat With Us
+        //-   li
+        //-     a(href="http://chat.auth0.com", target="_blank") Chat With Us
 
-            //- li
-            //-   a(href="mailto:support@auth0.com", target="_blank") Contact Us
+        //-   li
+        //-     a(href="mailto:support@auth0.com", target="_blank") Contact Us
 
     .container
       .row
