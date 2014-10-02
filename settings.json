@@ -19,11 +19,11 @@
           { "title": "ASP.NET", "url": "/aspnet-tutorial" },
           { "title": "ASP.NET (OWIN)", "url": "/aspnet-owin-tutorial" },
           { "title": "ServiceStack", "url": "/servicestack-tutorial" },
-          { "title": "PHP", "url": "/php-tutorial" },
+          { "title": "PHP", "url": "/server-platforms/php" },
           { "title": "PHP (Laravel)", "url": "/laravel-tutorial" },
-          { "title": "Ruby", "url": "/rails-tutorial" },
-          { "title": "Java", "url": "/java-tutorial" },
-          { "title": "Python", "url": "/python-tutorial" }
+          { "title": "Ruby", "url": "/server-platforms/rails" },
+          { "title": "Java", "url": "/server-platforms/java" },
+          { "title": "Python", "url": "/server-platforms/python" }
         ]
       },
       {
