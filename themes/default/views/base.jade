@@ -31,53 +31,32 @@ html(lang="en")
 
     script.
 
-      window.widget = new Auth0Widget({
-        domain:         '#{env.AUTH0_DOMAIN}',
-        clientID:       '#{env.AUTH0_CLIENT_ID}',
+      window.widget = new Auth0Lock('#{env.AUTH0_CLIENT_ID}', '#{env.AUTH0_DOMAIN}');
+
+      window.widgetShowOptions = {
         callbackURL:    '#{uiURLLoginCallback}',
         dict: {
           signup: {
             footerText: 'By signing up, you agree to our <a href="/terms" target="_new">terms of service</a> and <a href="/privacy" target="_new">privacy policy</a>'
           }
         },
-        showIcon: true,
         icon: '//auth0.com/boot/badge.png'
-      });
+      };
 
       window.login = function () {
-        widget
-          .once('closed', function () {
-            widget.signin({});
-          })._hideSignIn();
+        widget.hide(function() {
+          widget.showSignin(widgetShowOptions);
+        });
       };
 
       window.signup = function() {
-        widget._hideSignIn();
-
-        ga('send', 'event', 'signup', 'open', 'docs');
-
-        widget.once('closed', function () {
-          $('#a0-widget').remove();
-          widget
-            .once('closed', function () {
-              show_widget_demo();
-            }).signup({
-              enableReturnUserExperience: false,
-              enableADRealmDiscovery: false
-            });
+        widget.hide(function() {
+          widget.once('ready', function () {
+            ga('send', 'event', 'signup', 'open', 'docs');
+          });
+          widget.showSignup(widgetShowOptions);
         });
       }
-
-      window.show_widget_demo = function() {
-        widget.signin({
-          container: 'root',
-          chrome: true,
-          _avoidInitialFocus: true,
-          enableReturnUserExperience: false,
-          enableADRealmDiscovery: false
-        });
-      }
-
 
   body.page-docs
     header.site-header
