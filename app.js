@@ -447,14 +447,14 @@ docsapp.addPreRender(function(req,res,next){
 });
 
 docsapp.addPreRender(require('./lib/external/middleware'));
-docsapp.addPreRender(require('./lib/sdk/middleware'));
-docsapp.addPreRender(require('./lib/sdk2/middleware'));
-docsapp.addPreRender(require('./lib/sdk2/middleware-browser'));
+docsapp.addPreRender(require('./lib/sdk-snippets/sdk/middleware'));
+docsapp.addPreRender(require('./lib/sdk-snippets/sdk2/middleware'));
+docsapp.addPreRender(require('./lib/sdk-snippets/sdk2/middleware-browser'));
 docsapp.addPreRender(require('./lib/middlewares').configuration);
 docsapp.addExtension(require('./lib/extensions').lodash);
-require('./lib/sdk/demos-routes')(app);
-require('./lib/sdk2/demos-routes')(app);
-require('./lib/sdk2/snippets-routes')(app);
+require('./lib/sdk-snippets/sdk/demos-routes')(app);
+require('./lib/sdk-snippets/sdk2/demos-routes')(app);
+require('./lib/sdk-snippets/sdk2/snippets-routes')(app);
 require('./lib/packager')(app, overrideIfAuthenticated);
 require('./lib/sitemap')(app);
 
