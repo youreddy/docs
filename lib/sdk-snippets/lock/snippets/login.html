@@ -12,12 +12,10 @@
   function signin() {
     lock.show({
         callbackURL: '<%= account.callback %>'
-      , responseType: <%= callbackOnHash ? 'token' : 'code' %>
-      <% if (!callbackOnHash) { %>
+      , responseType: '<%= callbackOnHash ? "token" : "code" %>'<% if (!callbackOnHash) { %>
       , authParams: {
         scope: 'openid profile'
-      }
-      <% } %>
+      }<% } %>
     });
   }
 </script>
