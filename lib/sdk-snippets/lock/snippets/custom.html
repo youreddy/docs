@@ -1,0 +1,63 @@
+<button class="signin-google">Sign in with Google (redirect)</button><br>
+<button class="signin-google-popup">Sign in with Google (popup)</button><br>
+<br><p>--- or ---</p>
+<label>Email</label><input type="text" id="email"><br>
+<label>Password</label><input type="password" id="password"><br>
+<button class="signin-db">Sign in with Email/Password</button>
+
+<script src="<%= auth0js_url %>"></script>
+<script src="http://code.jquery.com/jquery.js"></script>
+<script>
+<% if (callbackOnHash) { %>  var auth0 = new Auth0({
+    domain:                 '<%= account.namespace %>',
+    clientID:               '<%= account.clientId %>', 
+    callbackURL:            '<%= account.callback %>',
+    callbackOnLocationHash: true
+  });<% } else { %>  var auth0 = new Auth0({
+    domain:         '<%= account.namespace %>',
+    clientID:       '<%= account.clientId %>',
+    callbackURL:    '<%= account.callback %>'
+  });<% } %>
+
+  // sign-in with social provider with plain redirect
+  $('.signin-google').on('click', function() {
+    auth0.signin({connection: 'google-oauth2'}); // use connection identifier
+  });
+
+  <% if (callbackOnHash) { %> 
+  // authentication result comes back in `location.hash`
+  var result = auth0.parseHash(location.hash);
+  if (result) {
+      auth0.getProfile(result.id_token, function (err, profile) {
+          // store result.id_token and profile in local storage or cookie
+      });
+  }
+  <% } %>
+
+  // sign-in with social provider using a popup (window.open)
+  $('.signin-google-popup').on('click', function() {
+    auth0.signin({popup: true, connection: 'google-oauth2'}, 
+                function(err, profile, id_token, access_token, state) {
+                    /* 
+                      store the profile and id_token in a cookie or local storage
+                        $.cookie('profile', profile);
+                        $.cookie('id_token', id_token);
+                    */
+                });
+  });
+
+  $('.signin-db').on('click', function() {
+    auth0.signin({
+      connection: 'foo', 
+      username: 'bar', 
+      password: 'foobar'
+    },
+    function (err, profile, id_token, access_token, state) {
+      /* 
+          store the profile and id_token in a cookie or local storage
+            $.cookie('profile', profile);
+            $.cookie('id_token', id_token);
+        */
+    });
+  });
+</script>

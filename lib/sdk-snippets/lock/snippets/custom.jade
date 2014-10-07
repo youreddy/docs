@@ -1,0 +1,12 @@
+mixin fiddletize(snippet)
+  div
+    | Want to play around with this snippet?   
+    form(action='http://jsfiddle.net/api/post/library/pure/', method='post', target="_blank", style="display: inline;")
+      input(type="hidden", name="html", value=snippet)
+      input.edit-fiddle(type="submit", value="Edit in JsFiddle")
+
+div#widget-custom.widget-tut()
+  .snippet-header Copy this HTML/JS code on your website...
+  pre(class="prettyprint")
+    code #{include_snippet('custom')}
+  mixin fiddletize(include_snippet('custom'))

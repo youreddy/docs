@@ -1,0 +1,24 @@
+<script src="<%= widget_url %>"></script>
+<script type="text/javascript">
+<% if (callbackOnHash) { %>
+  var widget = new Auth0Widget({
+        domain:           '<%= account.namespace %>',
+        clientID:         '<%= account.clientId %>',
+        callbackURL:      '<%= account.callback %>',
+        callbackOnLocationHash: true
+  });<% } else { %>
+  var widget = new Auth0Widget({
+    domain:         '<%= account.namespace %>',
+    clientID:       '<%= account.clientId %>',
+    callbackURL:    '<%= account.callback %>'
+  });<% } %>
+  <% if (callbackOnHash) { %>
+  var result = widget.parseHash(location.hash);
+  if (result) {
+      widget.getProfile(result.id_token, function (err, profile) {
+          // store result.id_token and profile in local storage or cookie
+      });
+  }
+  <% } %>
+</script>
+<button onclick="widget.signin(<% if (!callbackOnHash) { %>{ scope: 'openid profile' }<% } %>)">Login</button>

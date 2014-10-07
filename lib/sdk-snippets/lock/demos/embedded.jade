@@ -1,0 +1,19 @@
+html
+  head
+  body
+    #root(style='width: 320px; margin: 40px auto; padding: 10px; border-style: dashed; border-width: 1px;')
+      | embeded area
+    script(src=widget_url)
+    script
+      if (window.Auth0Widget) {
+        var widget = new Auth0Widget({
+          domain:       '!{namespace}',
+          clientID:     '!{clientID}',
+          callbackURL:  '!{callback || 'http://YOUR_APP/callback'}',
+          assetsUrl:    '!{auth0_sdk_assets}',
+          callbackOnLocationHash: !{callbackOnHash}
+        });
+        widget.signin({ container: 'root', chrome: true, _avoidInitialFocus: true });
+      } else {
+        document.getElementById('root').innerHTML = 'Cannot load the widget at the moment, try again later.';
+      }

@@ -1,0 +1,14 @@
+html
+  head
+  body
+    button(onclick='widget.signin()') Login
+    script(src=widget_url)
+    script
+      var widget = new Auth0Widget({
+        domain:       '!{namespace}',
+        clientID:     '!{clientID}',
+        callbackURL:  '!{callback || 'http://YOUR_APP/callback'}',
+        assetsUrl:    '!{auth0_sdk_assets}',
+        callbackOnLocationHash: !{callbackOnHash}
+      });
+      widget.signin({_avoidInitialFocus: true});
