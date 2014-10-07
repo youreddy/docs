@@ -1,21 +1,21 @@
-<div id="root" style="width: 320px; margin: 40px auto; padding: 10px; border-style: dashed; border-width: 1px;">
+<div id="root" style="width: 280px; margin: 40px auto; padding: 10px; border-style: dashed; border-width: 1px;">
     embeded area
 </div>
 <script src="<%= widget_url %>"></script>
 <script>
-<% if (callbackOnHash) { %>	
+<% if (callbackOnHash) { %>
   var widget = new Auth0Widget({
         domain:           '<%= account.namespace %>',
-        clientID:         '<%= account.clientId %>', 
+        clientID:         '<%= account.clientId %>',
         callbackURL:      '<%= account.callback %>',
         callbackOnLocationHash: true
-  });<% } else { %>	
+  });<% } else { %>
   var widget = new Auth0Widget({
         domain:         '<%= account.namespace %>',
         clientID:       '<%= account.clientId %>',
         callbackURL:    '<%= account.callback %>'
   });<% } %>
-  <% if (callbackOnHash) { %> 
+  <% if (callbackOnHash) { %>
   var result = widget.parseHash(location.hash);
   if (result) {
       widget.getProfile(result.id_token, function (err, profile) {
