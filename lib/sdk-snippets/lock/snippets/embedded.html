@@ -15,8 +15,7 @@
   lock.show({
       container: 'root'
     , callbackURL: '<%= account.callback %>'
-    , responseType: '<%= callbackOnHash ? "token" : "code" %>'
-    , chrome: true<% if (!callbackOnHash) { %>
+    , responseType: '<%= callbackOnHash ? "token" : "code" %>'<% if (!callbackOnHash) { %>
     , authParams: {
       scope: 'openid profile'
     }<% } %>
