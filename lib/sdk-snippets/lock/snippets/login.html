@@ -1,24 +1,24 @@
 <script src="<%= widget_url %>"></script>
 <script type="text/javascript">
-<% if (callbackOnHash) { %>
-  var widget = new Auth0Widget({
-        domain:           '<%= account.namespace %>',
-        clientID:         '<%= account.clientId %>',
-        callbackURL:      '<%= account.callback %>',
-        callbackOnLocationHash: true
-  });<% } else { %>
-  var widget = new Auth0Widget({
-    domain:         '<%= account.namespace %>',
-    clientID:       '<%= account.clientId %>',
-    callbackURL:    '<%= account.callback %>'
-  });<% } %>
+  var lock = new Auth0Lock('<%= account.clientId %>', '<%= account.namespace %>');
   <% if (callbackOnHash) { %>
-  var result = widget.parseHash(location.hash);
+  var result = lock.parseHash(location.hash);
   if (result) {
-      widget.getProfile(result.id_token, function (err, profile) {
-          // store result.id_token and profile in local storage or cookie
-      });
+    lock.getProfile(result.id_token, function (err, profile) {
+      // store result.id_token and profile in local storage or cookie
+    });
   }
   <% } %>
+  function signin() {
+    lock.show({
+        callbackURL: '<%= account.callback %>'
+      , responseType: <%= callbackOnHash ? 'token' : 'code' %>
+      <% if (!callbackOnHash) { %>
+      , authParams: {
+        scope: 'openid profile'
+      }
+      <% } %>
+    });
+  }
 </script>
-<button onclick="widget.signin(<% if (!callbackOnHash) { %>{ scope: 'openid profile' }<% } %>)">Login</button>
+<button onclick="signin()">Login</button>

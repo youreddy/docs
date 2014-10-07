@@ -1,19 +1,20 @@
 html
   head
   body
-    #root(style='width: 320px; margin: 40px auto; padding: 10px; border-style: dashed; border-width: 1px;')
+    #root(style='width: 280px; margin: 40px auto; padding: 10px; border-style: dashed; border-width: 1px;')
       | embeded area
     script(src=widget_url)
     script
-      if (window.Auth0Widget) {
-        var widget = new Auth0Widget({
-          domain:       '!{namespace}',
-          clientID:     '!{clientID}',
-          callbackURL:  '!{callback || 'http://YOUR_APP/callback'}',
-          assetsUrl:    '!{auth0_sdk_assets}',
-          callbackOnLocationHash: !{callbackOnHash}
+      if (window.Auth0Lock) {
+        var lock = new Auth0Lock('!{clientID}', '!{namespace}', {
+          assetsUrl:    '!{auth0_sdk_assets}'
         });
-        widget.signin({ container: 'root', chrome: true, _avoidInitialFocus: true });
+
+        lock.show({
+          container: 'root',
+          callbackURL:  '!{callback || 'http://YOUR_APP/callback'}',
+          responsetType: '!{callbackOnHash ? "token" : "code"}'
+        });
       } else {
         document.getElementById('root').innerHTML = 'Cannot load the widget at the moment, try again later.';
       }

@@ -1,14 +1,22 @@
 html
   head
   body
-    button(onclick='widget.signin()') Login
+    button(onclick='show()') Login
     script(src=widget_url)
     script
-      var widget = new Auth0Widget({
-        domain:       '!{namespace}',
-        clientID:     '!{clientID}',
-        callbackURL:  '!{callback || 'http://YOUR_APP/callback'}',
-        assetsUrl:    '!{auth0_sdk_assets}',
-        callbackOnLocationHash: !{callbackOnHash}
+      // define lock
+      var lock = new Auth0Lock('!{clientID}', '!{namespace}', {
+        assetsUrl:    '!{auth0_sdk_assets}'
       });
-      widget.signin({_avoidInitialFocus: true});
+
+      // define show function to invoke lock.show
+      function show() {
+        lock.show({
+          callbackURL:  '!{callback || 'http://YOUR_APP/callback'}',
+          responsetType: '!{callbackOnHash ? "token" : "code"}',
+          focusInput: false
+        });
+      }
+
+      // invoke at load
+      show();
