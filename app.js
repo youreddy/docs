@@ -31,7 +31,7 @@ nconf
     'PACKAGER_URL':      'http://localhost:3001',
     'DOMAIN_URL_DOCS':   'https://localhost:5050',
     'WIDGET_FALLBACK_CLIENTID': 'aCbTAJNi5HbsjPJtRpSP6BIoLPOrSj2C',
-    'LEGACY_WIDGET_URL':  'https://cdn.auth0.com/w2/auth0-widget-2.6.min.js',
+    'LEGACY_WIDGET_URL':  'https://cdn.auth0.com/w2/auth0-widget-5.2.min.js',
     'LOGIN_WIDGET_URL':  'https://cdn.auth0.com/js/lock-6.2.min.js',
     'AUTH0JS_URL':       'https://cdn.auth0.com/w2/auth0-1.6.4.min.js',
     'AUTH0_ANGULAR_URL': 'http://cdn.auth0.com/w2/auth0-angular-1.1.js',
