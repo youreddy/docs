@@ -78,6 +78,17 @@
         ]
       },
       {
+        "title": "Libraries",
+        "icon": "icon-book",
+        "items": [
+          { "title": "Auth0.js", "url": "https://github.com/auth0/auth0.js" },
+          { "title": "Lock", "url": "/lock" },
+          { "title": "Browser", "url": "/quickstart/spa"},
+          { "title": "Mobile & Native", "url": "/quickstart/native-mobile" },
+          { "title": "Server", "url": "/quickstart/webapp" }
+        ]
+      },
+      {
         "title": "API Reference",
         "icon": "icon-cogs",
         "items": [
@@ -111,7 +122,6 @@
         "title": "Help Topics",
         "icon": "icon-question-sign",
         "items": [
-          { "title": "Login Widget", "url":"/login-widget2"},
           { "title": "Normalized Profile", "url":"/user-profile"},
           { "title": "Web Apps vs Web APIs", "url": "/apps-apis" },
           { "title": "Logout", "url":"/logout"},
@@ -128,7 +138,8 @@
           { "title": "Custom Signup", "url": "/custom-signup" },
           { "title": "Multifactor Auth (beta)", "url": "/mfa" },
           { "title": "SharePoint Apps (beta)", "url": "/sharepoint-apps"},
-          { "title": "Password Policies (beta)", "url": "/password-strength"}
+          { "title": "Password Policies (beta)", "url": "/password-strength"},
+          { "title": "Legacy Widget", "url":"/login-widget2"}
         ]
       }
     ],
