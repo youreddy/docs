@@ -447,6 +447,19 @@ docsapp.addPreRender(function(req,res,next){
   next();
 });
 
+var lockGithub = require('./lib/lock-github');
+
+docsapp.addPreRender(function(req, res, next) {
+  function save(err) {
+    if (err) return next(err);
+    res.locals.lock_readme = lockGithub.cache['README.md'];
+    next();
+  }
+
+  if ('README.md' in lockGithub.cache) return save(null);
+  lockGithub('README.md', save);
+});
+
 docsapp.addPreRender(require('./lib/external/middleware'));
 docsapp.addPreRender(require('./lib/sdk-snippets/lock/middleware-browser'));
 docsapp.addPreRender(require('./lib/sdk-snippets/login-widget/middleware'));
