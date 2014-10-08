@@ -448,14 +448,18 @@ docsapp.addPreRender(function(req,res,next){
 });
 
 docsapp.addPreRender(require('./lib/external/middleware'));
+docsapp.addPreRender(require('././lib/sdk-snippets/lock/middleware-browser'));
 docsapp.addPreRender(require('././lib/sdk-snippets/login-widget/middleware'));
 docsapp.addPreRender(require('././lib/sdk-snippets/login-widget2/middleware'));
 docsapp.addPreRender(require('././lib/sdk-snippets/login-widget2/middleware-browser'));
+docsapp.addPreRender(require('././lib/sdk-snippets/lock/middleware'));
 docsapp.addPreRender(require('./lib/middlewares').configuration);
 docsapp.addExtension(require('./lib/extensions').lodash);
-require('././lib/sdk-snippets/login-widget/demos-routes')(app);
+require('././lib/sdk-snippets/lock/demos-routes')(app);
+require('././lib/sdk-snippets/lock/snippets-routes')(app);
 require('././lib/sdk-snippets/login-widget2/demos-routes')(app);
 require('././lib/sdk-snippets/login-widget2/snippets-routes')(app);
+require('././lib/sdk-snippets/login-widget/demos-routes')(app);
 require('./lib/packager')(app, overrideIfAuthenticated);
 require('./lib/sitemap')(app);
 

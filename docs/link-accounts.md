@@ -1,25 +1,30 @@
 # Linking Accounts
 
-Auth0 supports the association of different accounts. Applications often support multiple identity providers. Through linking, a user can authenticate with one identity provider and later on with another, but appear to the app as being the same. 
+Auth0 supports the association of different accounts. Applications often support multiple identity providers. Through linking, a user can authenticate with one identity provider and later on with another, but appear to the app as being the same.
 
 **Linking through Auth0 Login Widget**
 
 ```
 <script src="@@widget_url@@"></script>
 <script type="text/javascript">
-  var widget = new Auth0Widget({
-    domain:       '@@account.namespace@@',
-    clientID:     '@@account.clientId@@', 
-    callbackURL:  '@@account.callback@@',
-    dict: {
-      signin: {
-        title: 'Link with another account'
+  var lock = new Auth0Lock('@@account.clientId@@', '@@account.namespace@@');
+
+  function signin () {
+    lock.show({
+      callbackURL:  '@@account.callback@@',
+      dict: {
+        signin: {
+          title: 'Link with another account'
+        }
+      },
+      authParams: {
+        access_token: '...LOGGED_IN_USER_ACCESS_TOKEN...'
       }
-    }
-  });
+    })
+  }
 </script>
 
-<a href="javascript:widget.signin({ access_token: '...LOGGED_IN_USER_ACCESS_TOKEN...' })">Add account</a>
+<a href="javascript:signin()">Add account</a>
 ```
 
 > Notice the `access_token` fragment of the URL that is normally not present. This is the `access_token` Auth0 will generate when a user logs in. It identifies a logged in user univocally in Auth0.
@@ -73,7 +78,7 @@ The SDKs should make this very easy. The SDK for your platform will make it avai
 <%= ClaimsPrincipal.Current.FindFirst("access_token").Value %>
 ```
 
-If you are rolling up your own implementation, it will be available through the standard OAuth2 flow: 
+If you are rolling up your own implementation, it will be available through the standard OAuth2 flow:
 
   1. User logs in and returns to the app with a `code`
   2. The app exchanges the `code` for the `access_token`

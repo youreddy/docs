@@ -10,10 +10,10 @@ lodash: true
   <blockquote>
     <a href="@@base_url@@/auth0-angular/master/create-package?path=examples/widget-with-thirdparty-api&type=js@@account.clientParam@@" class="btn btn-lg btn-success btn-package" style="text-transform: uppercase; color: white">
       <span style="display: block">Download a Seed project</span>
-      <% if (account.userName) { %> 
+      <% if (account.userName) { %>
       <span class="smaller" style="display:block; font-size: 11px">with your Auth0 API Keys already set and configured</span>
       <% } %>
-    </a> 
+    </a>
   </blockquote>
 </div>
 
@@ -23,10 +23,10 @@ lodash: true
   <blockquote>
     <a href="@@base_url@@/auth0-angular/master/create-package?path=examples/widget-with-api&type=js@@account.clientParam@@" class="btn btn-lg btn-success btn-package" style="text-transform: uppercase; color: white">
       <span style="display: block">Download a Seed project</span>
-      <% if (account.userName) { %> 
+      <% if (account.userName) { %>
       <span class="smaller" style="display:block; font-size: 11px">with your Auth0 API Keys already set and configured</span>
       <% } %>
-    </a> 
+    </a>
   </blockquote>
 </div>
 
@@ -42,7 +42,7 @@ lodash: true
 <!-- We use client cookies to save the user credentials -->
 <script src="//code.angularjs.org/1.2.16/angular-cookies.min.js"></script>
 
-<!-- Auth0 widget script and AngularJS module -->
+<!-- Auth0Lock script and AngularJS module -->
 <script src="@@widget_url_no_scheme@@"></script>
 <script src="//cdn.auth0.com/w2/auth0-angular-2.js"> </script>
 
@@ -75,7 +75,7 @@ angular.module('YOUR-APP-NAME', ['auth0'])
 
 ### 3. Let's implement the login
 
-Now we're ready to implement the Login. We can inject the `auth` service in any controller and just call `signin` method to show the Login / SignUp popup. 
+Now we're ready to implement the Login. We can inject the `auth` service in any controller and just call `signin` method to show the Login / SignUp popup.
 In this case, we'll add the call in the `login` method of the `LoginCtrl` controller. When setting `popup` to `true`, the `signin` method accepts a callback as a parameter. That means that we can handle login success and failure the following way:
 
 ````js
@@ -151,8 +151,8 @@ $scope.login = function() {
     auth.getToken({
       // By default the first active third party add-on will be used
       // However, We can specify which third party API to use here by specifying the name of the add-on
-      // api: <%= configuration.api %> 
-      
+      // api: <%= configuration.api %>
+
     }).then(function(thirdPartyToken) {
       // Do something with the thirdPartyToken. Add it as a header or save it for later usage
       $location.path('/');
@@ -163,7 +163,7 @@ $scope.login = function() {
 }
 ```
 
-We're going to activate the <%= configuration.api %> add-on in the following steps. Once we do that, the code we wrote here will just work. 
+We're going to activate the <%= configuration.api %> add-on in the following steps. Once we do that, the code we wrote here will just work.
 
 <% } %>
 
@@ -191,8 +191,8 @@ Now it's time to sit back, relax and open a beer. You've implemented Login and S
 ### Optional Steps
 #### Let's add routing
 
-In most cases, we'll have routing in our app. 
-We usually want users to be authenticated to access some of the routes. For those routes, we must set the `requiresLogin` property to `true`. 
+In most cases, we'll have routing in our app.
+We usually want users to be authenticated to access some of the routes. For those routes, we must set the `requiresLogin` property to `true`.
 So let's add the `$routeProvider` configuration in the `config` method of our app and let's specify the login to route to which the users will be redirected if trying to access a route to which they don't have access to:
 
 ````js
