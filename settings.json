@@ -111,24 +111,25 @@
         "title": "Help Topics",
         "icon": "icon-question-sign",
         "items": [
-          { "title": "Login Widget", "url":"/login-widget2"},
-          { "title": "Normalized Profile", "url":"/user-profile"},
+          { "title": "Login Widget", "url": "/login-widget2" },
+          { "title": "Normalized Profile", "url": "/user-profile"},
           { "title": "Web Apps vs Web APIs", "url": "/apps-apis" },
           { "title": "Logout", "url":"/logout"},
-          { "title": "Rules", "url":"/rules"},
+          { "title": "Rules", "url": "/rules" },
           { "title": "Rules Repository", "url": "https://github.com/auth0/rules" },
           { "title": "Active Directory", "url": "/ad" },
           { "title": "Database Connections", "url": "/mysql-connection-tutorial" },
-          { "title": "Protocols", "url":"/protocols"},
-          { "title": "Sequence Diagrams", "url":"/sequence-diagrams"},
-          { "title": "Refresh token", "url":"/refresh-token"},
+          { "title": "Protocols", "url": "/protocols" },
+          { "title": "Sequence Diagrams", "url":"/sequence-diagrams" },
+          { "title": "JSON Web Tokens (JWT)", "url": "/jwt" },
+          { "title": "Refresh Token", "url":"/refresh-token"},
           { "title": "Identity Providers", "url": "/identityproviders" },
           { "title": "SAML", "url":"/saml-configuration"},
           { "title": "Link Accounts", "url": "/link-accounts" },
           { "title": "Custom Signup", "url": "/custom-signup" },
           { "title": "Multifactor Auth (beta)", "url": "/mfa" },
-          { "title": "SharePoint Apps (beta)", "url": "/sharepoint-apps"},
-          { "title": "Password Policies (beta)", "url": "/password-strength"}
+          { "title": "SharePoint Apps (beta)", "url": "/sharepoint-apps" },
+          { "title": "Password Policies (beta)", "url": "/password-strength" }
         ]
       }
     ],
