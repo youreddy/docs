@@ -1,10 +1,10 @@
-# JsonWebTokens in Auth0
+# JSON Web Tokens (JWT) in Auth0
 
 ## Standard JWT
 
-When using the `scope=openid`, Auth0 will generate both an `access_token` and a `JsonWebToken` (JWT). The former is just an opaque value that can be sent in subsequent API calls to Auth0. The JWT on the other hand, is a richer data structure with two characteristics:
+When setting `scope: 'openid'` in authorization requests, Auth0 will generate both an `access_token` and a JSON Web Token (JWT). The former is just an opaque value that can be sent in subsequent API calls to Auth0. The JWT on the other hand, is a richer data structure with two characteristics:
 
-1. It contains properties about the logged in user, your Auth0 account and the app.
+1. It contains claims about the logged in user, your Auth0 account and the app.
 2. It is digitally signed to prevent tampering.
 
 > Want to learn more about JWT? Take a look at the draft spec [here](http://self-issued.info/docs/draft-ietf-oauth-json-web-token.html). JWT adoption is increasing with the support of companies like Google, Microsoft, etc.
@@ -18,12 +18,12 @@ A JWT consists of 3 segments:
 	alg: 'HS256'	
 }
 ```
-###2. Body
+###2. Claims
 The minimum information will be:
 
 ```javascript
 {
- 	iss: "https://@@account.namespace@@",
+    iss: "https://@@account.namespace@@",
     sub: "{connection}|{user_id}",
     aud: "@@account.clientId@@",
     exp: 1372674336,
@@ -37,7 +37,13 @@ The minimum information will be:
 * `exp` the __expiration__, set to 10 hours.
 * `iat` the __issued at timestamp__.
 
-If the `scope` in the authorization request is set to `scope=openid profile`, then all the properties of the [user profile](user-profile) are added to the Body. You can also define specific attributes with the syntax: `scope: 'openid {attr1} {attr2} {attrN}'`. For example: `scope: 'openid name email picture'`.
+Additional claims can be included in the token (e.g. full name or email address) by modifying the `scope` parameter in authorization requests.
+By setting `scope: 'openid'`, only the minimal claims will be returned.
+
+If `scope` is set to `'openid profile'`, all properties of the [user's profile](user-profile) will be added as claims.
+You can also request specific attributes with the syntax: `scope: 'openid {attr1} {attr2} {attrN}'`. For example: `scope: 'openid name email my_custom_field picture'`.
+
+Keep in mind that when [calling an API that uses JWT](sequence-diagrams), tokens are sent on every request. Consider the size of your tokens and configure `scope` accordingly.
 
 > __Beware!__ If you are using the `implicit flow`, as you would if you are issuing the authorization request from a device, the JWT is returned in the URL, not in the response body. Some browsers have restrictions on URL lengths and can give you unexpected results.
 
