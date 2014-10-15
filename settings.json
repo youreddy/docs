@@ -128,7 +128,8 @@
           { "title": "Custom Signup", "url": "/custom-signup" },
           { "title": "Multifactor Auth (beta)", "url": "/mfa" },
           { "title": "SharePoint Apps (beta)", "url": "/sharepoint-apps"},
-          { "title": "Password Policies (beta)", "url": "/password-strength"}
+          { "title": "Password Policies (beta)", "url": "/password-strength"},
+          { "title": "User Migration (beta)", "url": "/migrating"}
         ]
       }
     ],
