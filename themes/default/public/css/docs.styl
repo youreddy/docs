@@ -41,16 +41,99 @@ div.package span.smaller {
 &.wpf-winforms-tutorial i
   border-color: #ffc0cb;
 
+.sub-navbar
+  background: #5d676f;
+  border-radius: 3px;
+  margin-bottom: 40px;
+  font-weight: bold;
+  font-size: 12px;
+  color: #fff;
+  min-height: 44px;
 
-.sub-header
-  .btn 
-    min-width: 226px;
-  .dropdown-menu
-    min-width: 226px;
+  .navbar-text
+    color: white;
+    display: inline-block;
+    vertical-align: middle;
+    font-weight: bold;
+    font-size: 12px;
+    color: #fff;
+    margin: 6px 15px;
+    line-height: 32px;
+
+  .dropdown
+    display: inline-block;
+    height: 100%;
+    margin: 0px;
+    padding-left: 0px;
+    .caret
+      position: absolute;
+      right: 20px;
+      top: 20px;
+    .btn.dropdown-toggle
+      color: #fff;
+      min-width: 226px;
+      line-height: 32px;
+      font-size: 12px;
+      background: none;
+      border: 0;
+      border-radius: 0;
+      border-right: 1px solid #ccc;
+      text-transform: none;
+      background: linear-gradient(180deg, transparent 30%, rgba(0,0,0,0.8) 100%);
+      border-top-left-radius: 3px;
+      border-bottom-left-radius: 3px;
+      letter-spacing: 0.5px;
+      position: relative;
+      text-align: left;
+      padding-left: 20px;
+      padding-right: 40px;
+      letter-spacing: 0.5px;
+      display: inline-block;
+      height: 100%;
+      &:focus, &:active
+        outline: 0;
+        -webkit-box-shadow: none;
+        box-shadow: none;
+        -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+        -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+        transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+      &:hover
+        -webkit-background: linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.8) 100%);
+        -o-background: linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.8) 100%);
+        background: linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.8) 100%);
+
+    .dropdown-menu
+      min-width: 226px;
+
+  .navbar-form
+    margin: 5px 10px;
+    padding: 0;
+    &:last-child
+      margin: 5px 10px;
+    input
+      min-width: 180px;
+    input, button
+      -webkit-box-shadow: none;
+      box-shadow: none;
+      &:focus, &:active
+        outline: 0;
+        -webkit-box-shadow: none;
+        box-shadow: none;
+        -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+        -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+        transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+
+    .btn
+      font-size: 14px;
+      padding-left: 10px;
+      padding-right: 10px;
+      i
+        font-size: 14px;
+        line-height: 14px;
+        display: inline-block;
+        vertical-align: middle;
 
 .page-docs
-  
-
 
   #tutorial-navigator .step.select-app-type
     padding: 20px 4px;
@@ -472,3 +555,36 @@ div.package span.smaller {
     color: #666;
     a
       font-weight: bold
+
+  form#search
+    button, input
+      border: 1px solid transparent;
+    button
+      border-top-left-radius: 20px;
+      border-bottom-left-radius: 20px;
+    input
+      border-top-right-radius: 20px;
+      border-bottom-right-radius: 20px;
+
+    .btn.btn-default:hover, a.btn.btn-default:hover
+      background: #fff;
+
+  #search-results
+    .st-search-summary
+      margin-bottom: 20px;
+
+    .st-results
+      h3
+        font-size: 20px;
+        margin-bottom: 10px;
+      .st-result
+        padding-bottom: 20px;
+        margin-bottom: 20px;
+        .st-snippet
+          em
+            font-weight: bold;
+            background-color: rgba(255,242,51,.29804);
+        &.final
+          margin-bottom: 10px;
+    .st-pagination
+      text-align: center;

@@ -37,6 +37,7 @@ nconf
     'SENSITIVE_DATA_ENCRYPTION_KEY': '0123456789',
     'HMAC_ENCRYPTION_KEY': 'abcdefghij',
     'PUBLIC_ALLOWED_TUTORIALS': '/adldap-auth?,/adldap-x?,/adfs?',
+    'AUTH0_TENANT': 'auth0-dev',
     'AUTH0_CLIENT_ID':   'aCbTAJNi5HbsjPJtRpSP6BIoLPOrSj2C',
     'PRERENDER_ENABLED': false
   });
@@ -64,15 +65,15 @@ if (!nconf.get('AUTH0_DOMAIN') && nconf.get('AUTH0_TENANT') && nconf.get('DOMAIN
 
 if (nconf.get('PRERENDER_SERVICE_URL')) {
   prerender.set('prerenderServiceUrl', nconf.get('PRERENDER_SERVICE_URL'));
-};
+}
 
 if (nconf.get('PRERENDER_TOKEN')) {
   prerender.set('prerenderToken', nconf.get('PREPRENDER_TOKEN'));
-};
+}
 
 if (nconf.get('PRERENDER_PROTOCOL')) {
   prerender.set('protocol', nconf.get('PRERENDER_PROTOCOL'));
-};
+}
 
 var connections = require('./lib/connections');
 var clients     = require('./lib/clients');
@@ -188,13 +189,14 @@ var defaultValues = function (req, res, next) {
   res.locals.account.clientSecret = 'YOUR_CLIENT_SECRET';
   res.locals.account.callback     = default_callback.get(req) || 'http://YOUR_APP/callback';
 
+  res.locals.base_url             = nconf.get('DOMAIN_URL_DOCS');
   next();
 };
 
 var embedded = function (req, res, next) {
   res.locals.embedded = false;
+
   if (req.query.e || req.query.callback) {
-    res.locals.base_url = nconf.get('DOMAIN_URL_DOCS');
     res.locals.embedded = true;
   }
 
